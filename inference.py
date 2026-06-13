@@ -19,7 +19,7 @@ from collections import deque
 from loguru import logger
 
 from config_manager import CFG
-from asm1_ode_solver import ASM1Solver, ASM1Parameters
+from asm1_ode_solver import ASM1Solver, ASM1Parameters, ReactorConfig
 from asm1_ppo_env import WWTPControlEnv
 # 🚀 【核心修改 1】引入统一的特征构建器，彻底消灭重复代码和特征 Bug
 from lgbm_feature_builder import LGBMFeatureBuilder
@@ -157,8 +157,12 @@ class DataDrivenModels:
                         df_tft[col] = 0.0
                 df_tft = df_tft[tft_cols]
 
-                if len(df_tft) < seq_len:
-                    pad_df = pd.DataFrame([df_tft.iloc[0].values] * (seq_len - len(df_tft)), columns=df_tft.columns)
+                if len(df_tft) == 0:
+                    # Cold start: buffer is empty, use zero-filled placeholder
+                    df_tft = pd.DataFrame(np.zeros((seq_len, len(tft_cols)), dtype=np.float32), columns=tft_cols)
+                elif len(df_tft) < seq_len:
+                    pad_values = df_tft.iloc[0].values
+                    pad_df = pd.DataFrame([pad_values] * (seq_len - len(df_tft)), columns=df_tft.columns)
                     df_tft = pd.concat([pad_df, df_tft], ignore_index=True)
 
                 X_tft = df_tft.values.astype(np.float32).reshape(1, seq_len, num_features)
@@ -186,7 +190,12 @@ class FusionInferenceEngine:
         self._lock = threading.Lock()
         
         self.model_manager = ModelManager(model_dir)
-        self.asm1_solver = ASM1Solver(ASM1Parameters())
+        # 🚀 从配置文件注入反应器体积，确保 ASM1 与 config.yaml 中的 asm1.volume 一致
+        reactor_cfg = ReactorConfig(
+            volume=getattr(CFG.asm1, 'volume', 5000.0),
+            S_O_sat=getattr(CFG.asm1, 'saturation_do', 9.0),
+        )
+        self.asm1_solver = ASM1Solver(ASM1Parameters(), reactor=reactor_cfg)
         self.data_models = DataDrivenModels(self.model_manager)
         
         self.ppo_model = None
@@ -248,7 +257,10 @@ class FusionInferenceEngine:
                 ], dtype=np.float32)
                 
                 Q_in = float(sensor_data.get('Q_in', getattr(CFG.asm1, 'default_flow', 10000.0)))
-                S_S_in = float(sensor_data.get('COD_in', getattr(CFG.asm1, 'default_cod_in', 350.0)))
+                # 🚀 进水总 COD 转换为溶解性 COD (S_S)，与出水端 S_S_fraction 保持一致
+                raw_cod_in = float(sensor_data.get('COD_in', getattr(CFG.asm1, 'default_cod_in', 350.0)))
+                influent_soluble_fraction = 0.50  # 进水溶解性比例通常 40%~60%
+                S_S_in = raw_cod_in * influent_soluble_fraction
                 S_NH_in = float(sensor_data.get('NH3_in', getattr(CFG.asm1, 'default_nh3_in', 30.0)))
                 
                 if self.env is None:
@@ -259,14 +271,23 @@ class FusionInferenceEngine:
                 self.env.S_S_in = S_S_in
                 self.env.S_NH_in = S_NH_in
                 
-                current_Kla, current_R = 80.0, 0.8 
+                current_Kla, current_R = 80.0, 0.8
+                # 注意：反应器体积由 solver.reactor.volume 提供 (来自 config.yaml asm1.volume)
                 result = self.asm1_solver.solve(
                     t_span_days=(0, 1/24), y0=current_state,
-                    Q_in=Q_in * (1 + current_R), V=getattr(CFG.asm1, 'volume', 5000.0),
+                    Q_in=Q_in * (1 + current_R),
                     S_S_in=S_S_in, S_NH_in=S_NH_in, S_O_in=1.5,
-                    KLa=current_Kla, dt_hours=1.0
+                    KLa=current_Kla, R=current_R, dt_hours=1.0
                 )
-                asm1_pred_state = result['y'][-1] if result.get('success', False) else current_state
+                if result.get('success', False):
+                    asm1_pred_state = result['y'][-1]
+                    # 🚀 检查 NaN 传播：若求解器返回 NaN，回退到当前状态
+                    if np.any(np.isnan(asm1_pred_state)):
+                        logger.warning("ASM1 求解返回 NaN 状态，回退到当前观测状态")
+                        asm1_pred_state = current_state.copy()
+                else:
+                    logger.warning(f"ASM1 ODE 求解失败: {result.get('message', 'Unknown')}，回退到当前观测状态")
+                    asm1_pred_state = current_state.copy()
                 
                 # [Fix] Get ML-predicted effluent COD (single scalar value)
                 data_pred = self.data_models.predict_residual()

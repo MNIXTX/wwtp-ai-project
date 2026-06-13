@@ -15,9 +15,18 @@ from loguru import logger
 # 依赖注入：引入真实的物理基座
 from asm1_ode_solver import ASM1Solver, ASM1Parameters, ReactorConfig
 
+# 🚀 读取全局配置（优先使用 config.yaml 中的校准参数）
+try:
+	from config_manager import CFG
+	_CFG_CAL = getattr(CFG, 'calibration', None)
+except Exception:
+	_CFG_CAL = None
+
 # 设置中文字体
-plt.rcParams['font.sans-serif'] = ['SimHei', 'Microsoft YaHei', 'Arial Unicode MS'] 
-plt.rcParams['axes.unicode_minus'] = False
+# 🚀 仅在尚未设置时配置中文字体，避免重复覆盖用户自定义配置
+if 'SimHei' not in plt.rcParams['font.sans-serif']:
+	plt.rcParams['font.sans-serif'] = ['SimHei', 'Microsoft YaHei', 'Arial Unicode MS']
+	plt.rcParams['axes.unicode_minus'] = False
 
 # ==========================================
 # 1. 解耦核心：配置数据类与回调接口
@@ -79,10 +88,24 @@ class ASM1CalibrationEngine:
         
         self._stop_requested = False
         self.df = None
-        
+
+        # 🚀 若 config.yaml 中存在校准段，则优先使用其参数覆盖 dataclass 默认值
+        if _CFG_CAL is not None:
+            self.cfg.de_popsize = getattr(_CFG_CAL, 'de_popsize', self.cfg.de_popsize)
+            self.cfg.de_maxiter = getattr(_CFG_CAL, 'de_maxiter', self.cfg.de_maxiter)
+            self.cfg.de_tol = getattr(_CFG_CAL, 'de_tol', self.cfg.de_tol)
+            self.cfg.nh3_penalty_weight = getattr(_CFG_CAL, 'nh3_penalty_weight', self.cfg.nh3_penalty_weight)
+            # 同步列名映射
+            cfg_col_map = getattr(_CFG_CAL, 'scada_column_mapping', None)
+            if cfg_col_map is not None:
+                if hasattr(cfg_col_map, 'model_dump'):
+                    self.cfg.col_map = cfg_col_map.model_dump()
+                elif hasattr(cfg_col_map, 'dict'):
+                    self.cfg.col_map = cfg_col_map.dict()
+
         self.reactor_cfg = ReactorConfig(volume=self.cfg.volume, S_O_sat=self.cfg.saturation_do)
         self.solver = ASM1Solver(params=ASM1Parameters(), reactor=self.reactor_cfg)
-        
+
         # 🚀 【手术 2】引入线程锁，保护并发状态更新
         self._state_lock = threading.Lock()
 
@@ -98,9 +121,19 @@ class ASM1CalibrationEngine:
         if not os.path.exists(csv_path):
             raise FileNotFoundError(f"找不到校准数据文件: {csv_path}")
             
-        self.df = pd.read_csv(csv_path)
+        self.df = pd.read_csv(csv_path, encoding='utf-8-sig')
+        # 🚀 清洗列名（去除 BOM 残留、首尾空格等不可见字符）
+        self.df.columns = [str(col).strip().replace('﻿', '') for col in self.df.columns]
+
+        # 🚀 校验必要列是否存在
+        required = set(self.cfg.col_map.values())
+        missing = required - set(self.df.columns)
+        if missing:
+            raise KeyError(f"CSV 缺少校准所需列: {missing}。当前可用列: {list(self.df.columns)}")
+
         initial_len = len(self.df)
-        self.df = self.df.dropna()
+        # 🚀 仅在校准用到的列上 dropna，避免其他无关列的空值导致过度丢弃
+        self.df = self.df.dropna(subset=list(required))
         self._log("SUCCESS", f"加载完成，有效连续数据点: {len(self.df)} (丢弃 {initial_len - len(self.df)} 行)")
 
     def _ode_system_wrapper(self, t, y, u_interp):
@@ -110,8 +143,8 @@ class ASM1CalibrationEngine:
         # 🚀 【手术 1】修复 KLa 量纲黑洞：将 SCADA 的 1/h 转换为 ODE 期望的 1/d
         Kla_d = Kla_h * 24.0 
         
-        args = (Q, self.cfg.volume, S_s_in, S_nh_in, 0.0, Kla_d, 0.0)
-        return self.solver._ode_system(t, y, args)
+        args = (Q, self.reactor_cfg.volume, S_s_in, S_nh_in, 0.0, Kla_d, 0.0)
+        return self.solver._ode_func(t, y, args)
 
     def simulate(self, opt_params):
         """向量化一次性积分"""
@@ -122,13 +155,18 @@ class ASM1CalibrationEngine:
         t_span = (0.0, float(n_steps - 1) * dt_days)
         t_eval = np.arange(n_steps, dtype=float) * dt_days
         
+        # 🚀 进水总 COD 转换为溶解性 COD (S_S)，与 ODE 的 S_S_in 物理量纲一致
+        influent_soluble_fraction = 0.50  # 进水溶解性比例通常 40%~60%
+        inf_cod_soluble = self.df[cm['inf_cod']].values * influent_soluble_fraction
+        inf_nh3 = self.df[cm['inf_nh3']].values
+
         u_interp = interp1d(
-            t_eval, 
+            t_eval,
             np.column_stack([
-                self.df[cm['flow']].values, 
-                self.df[cm['inf_cod']].values, 
-                self.df[cm['inf_nh3']].values, 
-                self.df[cm['kla_meas']].values # 保持原始 1/h 传入，在 wrapper 中统一转换
+                self.df[cm['flow']].values,
+                inf_cod_soluble,
+                inf_nh3,
+                self.df[cm['kla_meas']].values  # 保持原始 1/h 传入，在 wrapper 中统一转换
             ]),
             axis=0, kind='linear', bounds_error=False, fill_value="extrapolate"
         )
@@ -164,7 +202,7 @@ class ASM1CalibrationEngine:
             return sim_cod, sim_nh3, sim_do
             
         except Exception as e:
-            self._log("DEBUG", f"ODE 求解异常: {str(e)}")
+            self._log("WARNING", f"ODE 求解异常: {str(e)}")
             return None, None, None
 
     def objective_function(self, opt_params):
@@ -174,18 +212,11 @@ class ASM1CalibrationEngine:
 
         sim_cod, sim_nh3, _ = self.simulate(opt_params)
         if sim_cod is None:
-            return 1e6 
-            
-        cm = self.cfg.col_map
-        # 🚀 【跨文件手术 1】修复物理失真：将 SCADA 总 COD 转换为溶解性 COD，与 ODE 输出对齐
-        real_cod = self.df[cm['eff_cod']].values * self.cfg.S_S_fraction 
-        real_nh3 = self.df[cm['eff_nh3']].values
-        
-        mean_cod = np.mean(real_cod) + 1e-4
-        mean_nh3 = np.mean(real_nh3) + 1e-4
-        
-        nrmse_cod = np.sqrt(np.mean((real_cod - sim_cod)**2)) / mean_cod
-        nrmse_nh3 = np.sqrt(np.mean((real_nh3 - sim_nh3)**2)) / mean_nh3
+            return 1e6
+
+        # 🚀 [优化] 使用 run_calibration() 中预缓存的数组，避免每次目标函数调用都从 DataFrame 提取
+        nrmse_cod = np.sqrt(np.mean((self._real_cod - sim_cod)**2)) / self._mean_cod
+        nrmse_nh3 = np.sqrt(np.mean((self._real_nh3 - sim_nh3)**2)) / self._mean_nh3
         
         current_loss = nrmse_cod + self.cfg.nh3_penalty_weight * nrmse_nh3
         
@@ -219,14 +250,22 @@ class ASM1CalibrationEngine:
     def run_calibration(self) -> Dict[str, Any]:
         """执行差分进化全局优化"""
         self._stop_requested = False
-        
+
+        # 🚀 [优化] 预提取目标数组，避免 objective_function 每次调用都从 DataFrame 重复读取
+        cm = self.cfg.col_map
+        self._real_cod = self.df[cm['eff_cod']].values * self.cfg.S_S_fraction
+        self._real_nh3 = self.df[cm['eff_nh3']].values
+        self._mean_cod = np.mean(self._real_cod) + 1e-4
+        self._mean_nh3 = np.mean(self._real_nh3) + 1e-4
+
         # 状态局部化与线程安全初始化
         with self._state_lock:
             self._run_generation = 0
             self._run_best_loss = 1e6
-            self._best_params_so_far = np.zeros(len(self.cfg.bounds))
+            # 🚀 初始化为参数边界的中间值，而非全零（全零在合法边界之外）
+            self._best_params_so_far = np.array([(lo + hi) / 2 for lo, hi in self.cfg.bounds])
             self._run_start_time = time.time()
-        
+
         self._log("INFO", "启动差分进化算法进行全局参数寻优...")
         self.progress_cb(0.0, "开始校准...")
         
@@ -239,7 +278,9 @@ class ASM1CalibrationEngine:
                 popsize=self.cfg.de_popsize, 
                 maxiter=self.cfg.de_maxiter, 
                 tol=self.cfg.de_tol,
-                workers=1,       
+                # 🚀 workers=1 为单进程（兼容 Windows spawn + UI 线程）。
+                # 在 Linux 服务器上可改为 workers=-1 以获得 4-8x 加速。
+                workers=1,
                 updating='deferred',
                 callback=self._de_callback,  
                 disp=False                   

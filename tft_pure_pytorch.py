@@ -145,6 +145,14 @@ class TFTEngine:
     """TFT 算法引擎"""
 
     _session_cache: Dict[str, ort.InferenceSession] = {}
+    _cache_lock = None  # 线程安全的延迟初始化锁
+
+    @classmethod
+    def _get_cache_lock(cls):
+        if cls._cache_lock is None:
+            import threading
+            cls._cache_lock = threading.Lock()
+        return cls._cache_lock
 
     def __init__(self, config: TrainConfig,
                  progress_cb: Optional[ProgressCallback] = None,
@@ -170,6 +178,10 @@ class TFTEngine:
 
         self.optimizer = torch.optim.AdamW(self.model.parameters(), lr=self.cfg.learning_rate, weight_decay=1e-4)
         self.criterion = nn.MSELoss()
+        # 🚀 余弦退火学习率调度：从初始 lr 平滑衰减至接近 0，加速收敛
+        self.scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
+            self.optimizer, T_max=self.cfg.epochs, eta_min=self.cfg.learning_rate * 0.01
+        )
 
     def _log(self, level: str, msg: str):
         self.log_cb(level, msg)
@@ -222,6 +234,8 @@ class TFTEngine:
 
             avg_loss = epoch_loss / max(1, num_batches)
             final_loss = avg_loss
+
+            self.scheduler.step()
 
             state = TrainingState(
                 epoch=epoch + 1,
@@ -293,7 +307,7 @@ class TFTEngine:
                     input_names=['input_data'],
                     output_names=['prediction', 'feature_weights'],
                     dynamic_axes=dynamic_axes,
-                    do_constant_folding=False
+                    do_constant_folding=True
                 )
         finally:
             # 恢复原始 stdout
@@ -320,10 +334,13 @@ class TFTEngine:
 
     @classmethod
     def predict(cls, onnx_path: str, input_data: np.ndarray) -> float:
-        """生产级推理接口"""
+        """生产级推理接口（线程安全）"""
         if onnx_path not in cls._session_cache:
-            cls._session_cache[onnx_path] = ort.InferenceSession(onnx_path, providers=['CPUExecutionProvider'])
-            logger.info(f"💾 ONNX Session 已缓存: {onnx_path}")
+            with cls._get_cache_lock():
+                # 双重检查：锁内再次确认，防止多个线程同时创建 session
+                if onnx_path not in cls._session_cache:
+                    cls._session_cache[onnx_path] = ort.InferenceSession(onnx_path, providers=['CPUExecutionProvider'])
+                    logger.info(f"💾 ONNX Session 已缓存: {onnx_path}")
 
         session = cls._session_cache[onnx_path]
 

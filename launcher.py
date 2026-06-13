@@ -45,9 +45,17 @@ def main():
         webbrowser.open(f"http://{HOST}:{PORT}")
         return
 
-    # 3. Start Streamlit hidden
+    # 3. Start Streamlit (prefer pythonw.exe for no console window, fallback to python.exe)
+    pythonw_path = venv_python.with_name("pythonw.exe")
+    if not pythonw_path.exists():
+        # 某些嵌入式 Python 或精简发行版没有 pythonw.exe
+        pythonw_path = venv_python
+        creationflags = subprocess.CREATE_NO_WINDOW if sys.platform == "win32" else 0
+    else:
+        creationflags = subprocess.CREATE_NO_WINDOW if sys.platform == "win32" else 0
+
     cmd = [
-        str(venv_python.with_name("pythonw.exe")),
+        str(pythonw_path),
         "-m", "streamlit", "run", "ui/app.py",
         "--server.headless=true",
         f"--server.port={PORT}",
@@ -57,7 +65,6 @@ def main():
         "--server.enableCORS=false",
     ]
 
-    creationflags = subprocess.CREATE_NO_WINDOW if sys.platform == "win32" else 0
     proc = subprocess.Popen(
         cmd,
         stdout=subprocess.DEVNULL,

@@ -4,12 +4,12 @@ ASM1 ODE 求解引擎 (性能优化版)
 - 可选 Numba JIT 加速 ODE 函数 (10-50x)
 - LSODA 自适应刚/非刚切换 (比 RK45 快 3-5x)
 - 预分配数组 + 宽松容差 (RL 训练专用)
-- SciPy solve_ivp 数值积分，RK45/BDF 自动降级
+- SciPy solve_ivp 数值积分，LSODA→RK45→BDF 自动降级
 """
 import numpy as np
 from scipy.integrate import solve_ivp
-from typing import Dict, Optional, Tuple, List
-from dataclasses import dataclass, field
+from typing import Dict, Optional, Tuple
+from dataclasses import dataclass
 from loguru import logger
 
 # ==========================================
@@ -74,16 +74,7 @@ def _asm1_ode_core(S_S, S_NH, S_O, X_H, X_A,
     return dS_S, dS_NH, dS_O, dX_H, dX_A
 
 
-# 预计算常量 (模块加载时计算一次)
-_INV_Y_H_1 = None  # (1.0 - Y_H) / Y_H
-_INV_Y_H_2 = None  # 1.0 / Y_H
-_INV_YA_COMBO = None  # (4.57 - Y_A) / Y_A
-_INV_YA_2 = None  # 1.0 / Y_A
-
-# 预分配输出数组池 (线程不安全，但 solve_ivp 是单线程的)
-_OUT_BUF = np.empty(5, dtype=np.float64)
-
-
+# 预分配输出数组池 (每个 solver 实例独立持有，避免多实例线程竞争)
 def _make_ode_func(params, reactor):
     """创建 ODE 函数闭包 (预绑定参数，避免每次 args 拆包)"""
     p = params
@@ -94,8 +85,11 @@ def _make_ode_func(params, reactor):
     S_O_sat = r.S_O_sat
     X_R_factor = r.X_R_factor
 
+    # 🚀 [线程安全] 每个 solver 实例独立持有输出缓冲区，避免多实例共享导致数据竞争
+    _out_buf = np.empty(5, dtype=np.float64)
+
     def ode_func(t, y, args):
-        """ODE 包装器 — 拆包 args → 调用 JIT 核心 → 写入预分配缓冲区"""
+        """ODE 包装器 — 拆包 args → 调用 JIT 核心 → 写入独立缓冲区"""
         Q_in, V, S_S_in, S_NH_in, S_O_in, KLa, R = args
         S_S, S_NH, S_O, X_H, X_A = y[0], y[1], y[2], y[3], y[4]
 
@@ -107,12 +101,12 @@ def _make_ode_func(params, reactor):
             i_XB, S_O_sat, X_R_factor
         )
 
-        _OUT_BUF[0] = dS_S
-        _OUT_BUF[1] = dS_NH
-        _OUT_BUF[2] = dS_O
-        _OUT_BUF[3] = dX_H
-        _OUT_BUF[4] = dX_A
-        return _OUT_BUF
+        _out_buf[0] = dS_S
+        _out_buf[1] = dS_NH
+        _out_buf[2] = dS_O
+        _out_buf[3] = dX_H
+        _out_buf[4] = dX_A
+        return _out_buf
 
     return ode_func
 
@@ -192,8 +186,9 @@ class ASM1Solver:
         else:
             rtol, atol = 1e-4, 1e-5  # 严格: 推理精度保证
 
-        # 构建评估时间点
-        t_eval = np.arange(t_span_days[0], t_span_days[1] + dt_days / 2, dt_days)
+        # 🚀 使用 linspace 避免 np.arange 的浮点累加误差
+        n_steps = int(round((t_span_days[1] - t_span_days[0]) / dt_days)) + 1
+        t_eval = np.linspace(t_span_days[0], t_span_days[1], n_steps)
         args = (Q_in, V, S_S_in, S_NH_in, S_O_in, KLa, R)
 
         def _try_solve(solver_method):

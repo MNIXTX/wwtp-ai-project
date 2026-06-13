@@ -45,6 +45,10 @@ class FallbackWaterQualityPredictor:
             "inference_time_ms": 0.0,
         }
 
+    def get_feature_names(self) -> list:
+        """返回 TFT 模型需要的特征名列表（降级模式下返回默认值）"""
+        return ["inf_cod", "inf_nh3", "DO_reactor", "MLSS_reactor"]
+
 
 try:
     from predictor_gateway import WaterQualityPredictor as _RealWaterQualityPredictor

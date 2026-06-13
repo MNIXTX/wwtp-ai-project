@@ -20,13 +20,58 @@ set "PROJECT_ROOT=%~dp0"
 echo [Info] Project root: !PROJECT_ROOT!
 
 :: ============================================================
+:: 0. Check for mode override via command-line argument
+::    Usage: install.bat /offline   → force offline mode
+::           install.bat /online    → force online mode
+:: ============================================================
+set "FORCE_MODE="
+if /i "%~1"=="/offline" set "FORCE_MODE=OFFLINE"
+if /i "%~1"=="/online"  set "FORCE_MODE=ONLINE"
+if not "!FORCE_MODE!"=="" echo [Info] Mode override: !FORCE_MODE!
+
+:: ============================================================
+:: 1b. Early check for required files
+:: ============================================================
+if not exist "requirements.txt" (
+    echo.
+    echo ============================================================
+    echo [FATAL] requirements.txt not found!
+    echo ============================================================
+    pause
+    exit /b 1
+)
+
+:: ============================================================
 :: 2. Detect network connectivity
 :: ============================================================
 echo [1/7] Checking network...
-set "HAS_NET=0"
-ping -n 1 -w 3000 pypi.org >nul 2>&1 && set "HAS_NET=1"
-ping -n 2 -w 2000 pypi.org >nul 2>&1 && set "HAS_NET=1"
 
+if "!FORCE_MODE!"=="OFFLINE" (
+    set "HAS_NET=0"
+    echo [Info] Skipped (forced offline mode^)
+    goto :ModeSet
+)
+if "!FORCE_MODE!"=="ONLINE" (
+    set "HAS_NET=1"
+    echo [Info] Skipped (forced online mode^)
+    goto :ModeSet
+)
+
+set "HAS_NET=0"
+:: Tier 1: Fast ICMP ping to multiple hosts (some networks block pypi.org ICMP)
+for %%h in (pypi.org github.com baidu.com) do (
+    if "!HAS_NET!"=="0" ping -n 1 -w 2000 %%h >nul 2>&1 && set "HAS_NET=1"
+)
+:: Tier 2: HTTPS fallback — curl (built into Windows 10+)
+if "!HAS_NET!"=="0" (
+    curl -s --connect-timeout 5 https://pypi.org >nul 2>&1 && set "HAS_NET=1"
+)
+:: Tier 3: HTTPS fallback — PowerShell (always available on Windows 10+)
+if "!HAS_NET!"=="0" (
+    powershell -NoProfile -Command "try {(Invoke-WebRequest https://pypi.org -TimeoutSec 5).StatusCode; exit 0} catch {exit 1}" >nul 2>&1 && set "HAS_NET=1"
+)
+
+:ModeSet
 if "!HAS_NET!"=="1" (
     echo [OK] Network available - Online install mode
     set "MODE=ONLINE"
@@ -51,6 +96,7 @@ if "!MODE!"=="OFFLINE" (
         echo.
         echo Please either:
         echo   1. Connect to the internet and re-run this script
+        echo      (or: install.bat /online if ping was blocked^)
         echo   2. Copy the offline_packages\ folder from the original
         echo      distribution to this directory
         echo ============================================================
@@ -61,6 +107,16 @@ if "!MODE!"=="OFFLINE" (
 )
 
 :: ============================================================
+:: [Fix] Force UTF-8 mode for all Python subprocesses / pip
+:: This prevents GBK decode errors on Chinese Windows when reading
+:: requirements.txt or any other UTF-8 file.
+:: Set EARLY (before any python.exe invocation) to protect CP version
+:: detection and all subsequent calls.
+:: ============================================================
+set "PYTHONUTF8=1"
+set "PYTHONIOENCODING=utf-8"
+
+:: ============================================================
 :: 3. Find or install Python 3.10+
 :: ============================================================
 echo.
@@ -69,23 +125,67 @@ echo [2/7] Locating Python 3.10+...
 set "PYTHON_EXE="
 
 :: 3a. Check common install locations first (most reliable, no execution)
+:: In offline mode, prioritize Python versions that have matching .whl files
+:: (CP310 and CP314), so we don't pick a version with no offline packages.
+set "FOUND_CP="
 for %%d in (
+    "%LOCALAPPDATA%\Programs\Python\Python310"
     "%LOCALAPPDATA%\Programs\Python\Python314"
+    "%LOCALAPPDATA%\Programs\Python\Python315"
     "%LOCALAPPDATA%\Programs\Python\Python313"
     "%LOCALAPPDATA%\Programs\Python\Python312"
     "%LOCALAPPDATA%\Programs\Python\Python311"
-    "%LOCALAPPDATA%\Programs\Python\Python310"
+    "C:\Program Files\Python310"
     "C:\Program Files\Python314"
+    "C:\Program Files\Python315"
     "C:\Program Files\Python313"
     "C:\Program Files\Python312"
     "C:\Program Files\Python311"
-    "C:\Program Files\Python310"
-    "C:\Python314" "C:\Python313" "C:\Python312" "C:\Python311" "C:\Python310"
+    "C:\Python310" "C:\Python314" "C:\Python315" "C:\Python313" "C:\Python312" "C:\Python311"
 ) do (
     if exist "%%~d\python.exe" (
-        set "PYTHON_EXE=%%~d\python.exe"
-        echo [OK] Found Python at: !PYTHON_EXE!
-        goto :FoundPython
+        if "!MODE!"=="OFFLINE" (
+            :: Extract CP version before committing — skip versions without offline packages
+            call :GetCpVer "%%~d\python.exe"
+            if exist "offline_packages\numpy*cp!PY_VER_FULL!*.whl" (
+                set "PYTHON_EXE=%%~d\python.exe"
+                echo [OK] Found Python CP!PY_VER_FULL! (offline-compatible^): !PYTHON_EXE!
+                goto :CheckVenv
+            )
+            :: Not compatible — remember we found something and continue scanning
+            if "!FOUND_CP!"=="" set "FOUND_CP=!PY_VER_FULL! @ %%~d\python.exe"
+        ) else (
+            set "PYTHON_EXE=%%~d\python.exe"
+            echo [OK] Found Python at: !PYTHON_EXE!
+            goto :FoundPython
+        )
+    )
+)
+
+:: If we reach here in offline mode and found a Python (but not compatible),
+:: report clearly and offer solutions
+if "!MODE!"=="OFFLINE" (
+    if not "!FOUND_CP!"=="" (
+        echo.
+        echo ============================================================
+        echo [WARN] Found Python but version mismatch:
+        echo   !FOUND_CP!
+        echo.
+        echo   Available offline packages:
+        for %%w in (offline_packages\numpy*.whl) do echo     %%~nw
+        echo.
+        echo   Offline packages only cover CP310 and CP314.
+        echo.
+        echo   Solutions:
+        echo   1. Force online mode (if ping was blocked but web works^):
+        echo        install.bat /online
+        echo   2. Install Python 3.10 from offline_packages\:
+        echo        offline_packages\python-3.10.11-amd64.exe
+        echo      Then re-run install.bat
+        echo   3. Manually add matching .whl files to offline_packages\
+        echo ============================================================
+        pause
+        exit /b 1
     )
 )
 
@@ -96,9 +196,21 @@ for %%c in (python.exe python3.exe) do (
             REM Verify with --version (filters out Windows Store stubs)
             "%%p" --version >nul 2>&1
             if !errorlevel! equ 0 (
-                echo [OK] Found Python in PATH: %%p
-                set "PYTHON_EXE=%%p"
-                goto :FoundPython
+                if "!MODE!"=="OFFLINE" (
+                    :: Offline: verify CP compatibility before committing
+                    call :GetCpVer "%%p"
+                    if exist "offline_packages\numpy*cp!PY_VER_FULL!*.whl" (
+                        set "PYTHON_EXE=%%p"
+                        echo [OK] Found Python CP!PY_VER_FULL! in PATH (offline-compatible^): %%p
+                        goto :CheckVenv
+                    )
+                    :: Not compatible — track and continue scanning
+                    if "!FOUND_CP!"=="" set "FOUND_CP=!PY_VER_FULL! @ %%p"
+                ) else (
+                    set "PYTHON_EXE=%%p"
+                    echo [OK] Found Python in PATH: %%p
+                    goto :FoundPython
+                )
             )
         )
     )
@@ -146,12 +258,31 @@ exit /b 1
 
 :FoundPython
 echo [OK] Python: !PYTHON_EXE!
-
-:: Extract CP version tag (e.g. 310, 314) for offline package matching
-set "PY_VER_FULL=310"
-for /f "delims=" %%v in ('"!PYTHON_EXE!" -c "import sys; sys.stdout.write(str(sys.version_info.major)+str(sys.version_info.minor))" 2^>nul') do set "PY_VER_FULL=%%v"
-if "!PY_VER_FULL!"=="" set "PY_VER_FULL=310"
+call :GetCpVer "!PYTHON_EXE!"
 echo   Python CP tag: !PY_VER_FULL!
+goto :CheckVenv
+
+:: ============================================================
+::  Helpers: shared subroutines used by multiple sections
+:: ============================================================
+:GetCpVer
+REM Usage: call :GetCpVer "<python.exe>"
+REM Sets PY_VER_FULL to the detected CP tag (e.g. "310", "314").
+REM Defaults to "310" if detection fails.
+set "PY_VER_FULL=310"
+for /f "delims=" %%v in ('"%~1" -c "import sys; sys.stdout.write(str(sys.version_info.major)+str(sys.version_info.minor))" 2^>nul') do set "PY_VER_FULL=%%v"
+exit /b 0
+
+:RemoveVenv
+REM Forcefully removes the venv directory.
+REM Falls back to rename-and-delete if rmdir fails (locks, AV, etc.)
+rmdir /s /q "venv" >nul 2>&1
+if exist "venv" (
+    set "STALE=venv_stale_!RANDOM!"
+    ren "venv" "!STALE!" >nul 2>&1
+    rmdir /s /q "!STALE!" >nul 2>&1
+)
+exit /b 0
 
 :: ============================================================
 :: 4. Create virtual environment
@@ -164,23 +295,13 @@ echo [3/7] Setting up virtual environment...
 if exist "venv" (
     if not exist "venv\Scripts\activate.bat" (
         echo [Info] Incomplete venv found, cleaning up...
-        rmdir /s /q "venv" >nul 2>&1
-        if exist "venv" (
-            set "STALE=venv_stale_!RANDOM!"
-            ren "venv" "!STALE!" >nul 2>&1
-            rmdir /s /q "!STALE!" >nul 2>&1
-        )
+        call :RemoveVenv
     ) else (
         echo [OK] Existing venv found
         set /p "RECREATE=Recreate venv? (y/N, default=N): "
         if /i "!RECREATE!"=="Y" (
             echo [Info] Removing old venv...
-            rmdir /s /q "venv" >nul 2>&1
-            if exist "venv" (
-                set "STALE=venv_stale_!RANDOM!"
-                ren "venv" "!STALE!" >nul 2>&1
-                rmdir /s /q "!STALE!" >nul 2>&1
-            )
+            call :RemoveVenv
             goto :CreateVenv
         )
         echo [OK] Reusing existing venv
@@ -190,6 +311,38 @@ if exist "venv" (
 
 :CreateVenv
 echo [Info] Creating virtual environment (this may take 1-2 minutes)...
+
+:: [Fix] If PYTHON_EXE was set to a now-deleted venv python.exe
+:: (e.g. recreating after 3c path), fall back to scanning the system.
+if not exist "!PYTHON_EXE!" (
+    echo [Warn] PYTHON_EXE no longer exists, re-scanning for Python...
+    set "PYTHON_EXE="
+    for %%s in (
+        "%LOCALAPPDATA%\Programs\Python\Python314"
+        "%LOCALAPPDATA%\Programs\Python\Python310"
+        "%LOCALAPPDATA%\Programs\Python\Python313"
+        "%LOCALAPPDATA%\Programs\Python\Python312"
+        "%LOCALAPPDATA%\Programs\Python\Python311"
+        "C:\Program Files\Python314"
+        "C:\Program Files\Python310"
+        "C:\Program Files\Python313"
+        "C:\Program Files\Python312"
+        "C:\Program Files\Python311"
+    ) do (
+        if exist "%%~s\python.exe" (
+            set "PYTHON_EXE=%%~s\python.exe"
+            goto :CreateVenvGo
+        )
+    )
+    :: Still not found — scan PATH
+    for /f "delims=" %%p in ('where python.exe 2^>nul') do (
+        "%%p" --version >nul 2>&1 && set "PYTHON_EXE=%%p" && goto :CreateVenvGo
+    )
+    echo [FATAL] Cannot locate Python to recreate venv.
+    pause
+    exit /b 1
+)
+:CreateVenvGo
 
 :: [Fix] Always use --copies on Windows: avoids symlink permission errors
 :: that occur with Chinese usernames, OneDrive-synced folders, or restricted paths.
@@ -236,13 +389,8 @@ if not defined VIRTUAL_ENV (
 )
 echo [OK] Virtual environment active: !VIRTUAL_ENV!
 
-:: ============================================================
-:: [Fix] Force UTF-8 mode for all Python subprocesses / pip
-:: This prevents GBK decode errors on Chinese Windows when reading
-:: requirements.txt or any other UTF-8 file.
-:: ============================================================
-set PYTHONUTF8=1
-set PYTHONIOENCODING=utf-8
+:: Capture venv CP version now (used later for offline package matching)
+call :GetCpVer "venv\Scripts\python.exe"
 
 :: ============================================================
 :: 5. Install pip + upgrade
@@ -250,11 +398,8 @@ set PYTHONIOENCODING=utf-8
 echo.
 echo [4/7] Preparing pip...
 
-python -m pip --version >nul 2>&1
-if errorlevel 1 (
-    echo [Info] Bootstrapping pip...
-    python -m ensurepip --default-pip >nul 2>&1
-)
+:: [Fix] 强制修复损坏的 pip（某些精简 Python 发行版 pip 存在但无法正常工作）
+python -m ensurepip --default-pip >nul 2>&1
 
 :: [Fix] Flatten nested if/else to avoid CMD parser confusion
 if "!MODE!"=="ONLINE" goto :PipOnline
@@ -280,16 +425,7 @@ echo [OK] Pip ready
 echo.
 echo [5/7] Installing dependencies...
 
-if not exist "requirements.txt" (
-    echo [FATAL] requirements.txt not found!
-    pause
-    exit /b 1
-)
-
-:: --- Re-detect Python version from venv (may differ from system) ---
-set "PY_VER_FULL=310"
-for /f "delims=" %%v in ('venv\Scripts\python.exe -c "import sys; sys.stdout.write(str(sys.version_info.major)+str(sys.version_info.minor))" 2^>nul') do set "PY_VER_FULL=%%v"
-if "!PY_VER_FULL!"=="" set "PY_VER_FULL=310"
+:: CP version already detected after venv activation (step 3)
 
 echo   Python: CP!PY_VER_FULL!
 echo   Mode:   !MODE!
@@ -315,14 +451,12 @@ if "!OFFLINE_OK!"=="0" (
     echo   [FATAL] This Python version is NOT supported for offline install.
     echo.
     echo   Your Python:    CP!PY_VER_FULL!
-    echo   Offline covers: CP310 ^(Python 3.10^) and CP314 ^(Python 3.14^)
+    for %%w in (offline_packages\numpy*.whl) do echo     %%~nw
     echo.
-    echo   Available numpy wheels in offline_packages\:
-    dir /b offline_packages\numpy*.whl 2>nul
     echo.
     echo   Solutions:
-    echo   1. Connect to internet and re-run install.bat
-    echo      ^(online mode works with any Python 3.10-3.14^)
+    echo   1. Force online mode (if ping was blocked but web works^):
+    echo        install.bat /online
     echo   2. Install Python 3.10.11 from offline_packages\:
     echo      offline_packages\python-3.10.11-amd64.exe
     echo   3. Manually add matching cp!PY_VER_FULL! .whl files
@@ -331,14 +465,15 @@ if "!OFFLINE_OK!"=="0" (
     pause
     exit /b 1
 )
+:: Offline packages confirmed — proceed to offline install
+goto :DepOffline
 
 :DepOffline
 echo [Info] Installing from offline_packages\...
 echo     (This may take 3-8 minutes)
 echo.
-
 pip install --no-index --find-links=offline_packages -r requirements.txt
-if errorlevel 1 (
+if !errorlevel! neq 0 (
     echo.
     echo ============================================================
     echo [FATAL] Offline installation failed.
@@ -358,11 +493,11 @@ echo [Info] Installing from PyPI (online)...
 echo     (This may take 5-15 minutes depending on network speed)
 echo.
 pip install -r requirements.txt
-if errorlevel 1 (
+if !errorlevel! neq 0 (
     echo.
     echo [!]  Some packages failed from PyPI.
     echo     Attempting to fill missing from offline_packages...
-    pip install --no-index --find-links=offline_packages -r requirements.txt 2>nul
+    pip install --no-index --find-links=offline_packages -r requirements.txt
 )
 goto :DepDone
 
@@ -377,14 +512,14 @@ echo.
 echo [6/7] Verifying PyTorch installation...
 
 python -c "import torch" 2>nul
-if errorlevel 1 (
+if !errorlevel! neq 0 (
     echo [!]  PyTorch not found, installing separately...
     if "!MODE!"=="ONLINE" (
         pip install torch --index-url https://download.pytorch.org/whl/cpu
     ) else (
         pip install --no-index --find-links=offline_packages torch
     )
-    if errorlevel 1 (
+    if !errorlevel! neq 0 (
         echo [Warning] PyTorch install failed. TFT model will not work.
     ) else (
         echo [OK] PyTorch installed
@@ -406,21 +541,21 @@ for %%d in (logs outputs artifacts "models\lgbm") do (
 echo.
 echo   Verifying core modules...
 python -c "import numpy, pandas, scipy, sklearn, lightgbm, onnxruntime, onnx, onnxscript, yaml, ruamel.yaml, pydantic, loguru, joblib, matplotlib, streamlit, gymnasium" >nul 2>&1
-if errorlevel 1 (
+if !errorlevel! neq 0 (
     echo [WARN] Some core modules failed - run installer again
 ) else (
     echo [OK]   All core modules verified
 )
 
 python -c "import torch" >nul 2>&1
-if errorlevel 1 (
+if !errorlevel! neq 0 (
     echo [WARN] PyTorch missing - TFT training disabled
 ) else (
     echo [OK]   PyTorch
 )
 
 python -c "import stable_baselines3, psutil, numba" >nul 2>&1
-if errorlevel 1 (
+if !errorlevel! neq 0 (
     echo [WARN] Some optional modules missing
 ) else (
     echo [OK]   Optional modules (SB3, psutil, numba)
@@ -437,6 +572,10 @@ echo.
 echo   Mode: !MODE!
 echo   Python: !PYTHON_EXE!
 echo   Venv: !PROJECT_ROOT!venv
+echo.
+echo   Tips:
+echo     - Force offline: install.bat /offline
+echo     - Force online:  install.bat /online
 echo.
 echo   To launch:
 echo     Double-click: start.bat  (starts server silently, opens browser)

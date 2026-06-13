@@ -138,8 +138,6 @@ def read_log_tail(log_file: str, lines: int = 50) -> str:
 
 
 def render_training_tab(task_name_key: str, task_type: str, params_config: dict, warning_msg_key: str = None):
-    task_name_cn = {"lgbm_baseline": "LightGBM 基线模型", "tft_temporal": "TFT 时序预测", "ppo_rl": "PPO 强化学习"}
-    task_name = task_name_cn.get(task_name_key, task_name_key)
     task_display = t(task_name_key)
 
     if warning_msg_key:
@@ -186,7 +184,7 @@ def render_training_tab(task_name_key: str, task_type: str, params_config: dict,
         log_file = info.get("log_file", "")
         icon = {"running": "🔄", "completed": "✅", "failed": "❌"}.get(status, "❓")
         label = t(f"status_{status}")
-        display_name = task_name if get_lang_safe() == "zh" else task_display
+        display_name = task_display
 
         with st.expander(f"{icon} {display_name} | `{task_id}` | {label}", expanded=(status == "running")):
             c1, c2 = st.columns([1, 3])
@@ -209,14 +207,6 @@ def render_training_tab(task_name_key: str, task_type: str, params_config: dict,
                         st.code(read_log_tail(log_file, 100), language="log")
                 else:
                     st.warning(t("warn_status_unknown"))
-
-
-def get_lang_safe():
-    try:
-        from ui.i18n import get_lang
-        return get_lang()
-    except Exception:
-        return "zh"
 
 
 # ---- 三个训练 Tab ----

@@ -3,13 +3,19 @@
 """
 WWTP AI System - 一键卸载/重置工具
 功能：停止进程 → 删除 venv → 清理运行数据 → (可选)删除整个项目
+
+支持：
+  - CLI 交互式运行:  python uninstall.py
+  - 非交互模式:      python uninstall.py --yes --soft
+  - 作为模块导入:    from uninstall import clean_runtime_data, delete_venv
 """
 
 import os
 import sys
 import shutil
+import stat
 import subprocess
-import signal
+import argparse
 from pathlib import Path
 
 # ==================== 配置区域 ====================
@@ -32,7 +38,7 @@ HARD_CLEAN_DIRS = SOFT_CLEAN_DIRS + [
 ]
 
 # 核心代码文件（用于判断是否在项目根目录）
-CORE_FILES = ["launcher.py", "config.yaml", "predictor_gateway.py"]
+CORE_FILES = ["launcher.py", "config.yaml", "requirements.txt"]
 
 
 # ==================== 工具函数 ====================
@@ -68,6 +74,71 @@ def confirm(prompt):
             return False
 
 
+# ==================== 内置安全删除（无第三方依赖） ====================
+
+def _safe_delete_dir(path: Path) -> tuple:
+    """Standalone safe directory deletion using only stdlib.
+
+    Does NOT depend on config_manager, yaml, or any venv-installed packages.
+    Works even when the venv is broken or already deleted.
+
+    Returns (deleted_count, locked_count).
+    """
+    if not path.exists():
+        return 0, 0
+
+    deleted, locked = 0, 0
+
+    def _on_rm_error(func, failed_path, exc_info):
+        """Handle read-only files by chmod + retry."""
+        try:
+            os.chmod(failed_path, stat.S_IWRITE)
+            func(failed_path)
+        except Exception:
+            raise
+
+    # Special handling for logs directory: delete files individually
+    # to avoid "file in use" errors on Windows.
+    if path.name == "logs" and path.is_dir():
+        for item in sorted(path.iterdir(), key=lambda x: x.name, reverse=True):
+            try:
+                if item.is_file():
+                    item.unlink()
+                elif item.is_dir():
+                    shutil.rmtree(item, onerror=_on_rm_error)
+                deleted += 1
+            except (PermissionError, OSError):
+                locked += 1
+        try:
+            path.rmdir()
+            deleted += 1
+        except (PermissionError, OSError):
+            locked += 1
+        return deleted, locked
+
+    # General directory deletion
+    try:
+        shutil.rmtree(path, onerror=_on_rm_error)
+        return 1, 0
+    except PermissionError:
+        # Fallback: delete file by file
+        for item in sorted(path.iterdir(), key=lambda x: x.name, reverse=True):
+            try:
+                if item.is_file():
+                    item.unlink()
+                elif item.is_dir():
+                    shutil.rmtree(item, onerror=_on_rm_error)
+                deleted += 1
+            except (PermissionError, OSError):
+                locked += 1
+        try:
+            path.rmdir()
+            deleted += 1
+        except (PermissionError, OSError):
+            locked += 1
+        return deleted, locked
+
+
 # ==================== 卸载步骤 ====================
 
 def safety_check():
@@ -81,13 +152,13 @@ def safety_check():
 
 
 def stop_running_processes():
-    """停止所有与本项目相关的 Python 进程"""
+    """停止所有与本项目相关的 Python 进程（排除自身）"""
     print_step("Scanning and stopping related processes...")
     project_path_str = str(PROJECT_ROOT).lower()
+    self_pid = str(os.getpid())
 
     if sys.platform == "win32":
         # [Fix] 使用 PowerShell 获取含命令行参数的进程列表
-        # WMIC 已废弃且输出格式与代码解析逻辑不兼容
         ps_cmd = (
             'powershell -NoProfile -Command '
             '"Get-CimInstance Win32_Process -Filter \\"Name=\'python.exe\'\\" | '
@@ -100,21 +171,23 @@ def stop_running_processes():
                 if project_path_str in line.lower():
                     # CSV 格式: "12345","python ..."
                     parts = line.replace('"', '').split(',')
-                    if len(parts) >= 1 and parts[0].isdigit():
-                        pid = parts[0]
+                    if len(parts) >= 1 and parts[0].strip().isdigit():
+                        pid = parts[0].strip()
+                        if pid == self_pid:
+                            continue
+                        print(f"  [STOP] Terminating PID={pid}...")
                         run_command(f'taskkill /F /PID {pid}')
-                        print(f"  [STOP] Process PID={pid} terminated")
     else:
         # Linux/Mac
+        import signal
         success, stdout, _ = run_command(
-            f"ps aux | grep python | grep '{PROJECT_ROOT}' | grep -v grep",
+            f"pgrep -f 'python.*{PROJECT_ROOT}'",
             capture_output=True
         )
         if success and stdout.strip():
-            for line in stdout.strip().splitlines():
-                parts = line.split()
-                if len(parts) >= 2:
-                    pid = parts[1]
+            for pid in stdout.strip().splitlines():
+                pid = pid.strip()
+                if pid.isdigit() and pid != self_pid:
                     try:
                         os.kill(int(pid), signal.SIGTERM)
                         print(f"  [STOP] Process PID={pid} terminated")
@@ -124,45 +197,43 @@ def stop_running_processes():
     print("  Process cleanup done")
 
 
-def delete_venv():
-    """删除本地 venv 虚拟环境"""
-    print_step(f"Deleting virtual environment: {VENV_DIR}")
+def delete_venv(quiet=False):
+    """删除本地 venv 虚拟环境（使用 stdlib，无需 venv 依赖）"""
+    if not quiet:
+        print_step(f"Deleting virtual environment: {VENV_DIR}")
     if VENV_DIR.exists():
         try:
-            shutil.rmtree(VENV_DIR, onerror=_on_rm_error)
-            print(f"  [OK] Virtual environment deleted")
+            _safe_delete_dir(VENV_DIR)
+            if not quiet:
+                print(f"  [OK] Virtual environment deleted")
         except Exception as e:
-            print(f"  [WARN] Cannot delete {VENV_DIR}: {e}")
+            if not quiet:
+                print(f"  [WARN] Cannot delete {VENV_DIR}: {e}")
     else:
-        print(f"  [INFO] {VENV_DIR} not found, skip")
+        if not quiet:
+            print(f"  [INFO] {VENV_DIR} not found, skip")
 
 
-def _on_rm_error(func, path, exc_info):
-    """
-    shutil.rmtree 错误回调：处理 Windows 文件锁定问题。
-    对只读文件先改权限再重试；其他错误静默跳过。
-    """
-    import stat
-    try:
-        os.chmod(path, stat.S_IWRITE)
-        func(path)
-    except Exception:
-        pass  # 跳过无法删除的文件，不中断整体流程
-
-
-def clean_runtime_data(dirs_to_clean):
-    """清理运行时数据"""
-    print_step("Cleaning runtime data...")
+def clean_runtime_data(dirs_to_clean, quiet=False):
+    """清理运行时数据（使用 stdlib，处理 Windows 文件锁）"""
+    if not quiet:
+        print_step("Cleaning runtime data...")
     for dir_name in dirs_to_clean:
         path = PROJECT_ROOT / dir_name
-        if path.exists():
-            try:
-                shutil.rmtree(path, onerror=_on_rm_error)
-                print(f"  [OK] Deleted: {dir_name}/")
-            except Exception as e:
+        if not path.exists():
+            if not quiet:
+                print(f"  [INFO] Not found: {dir_name}/")
+            continue
+        try:
+            deleted, locked = _safe_delete_dir(path)
+            if not quiet:
+                status = f"  [OK] Deleted: {dir_name}/"
+                if locked:
+                    status += f" ({locked} files locked, skipped)"
+                print(status)
+        except Exception as e:
+            if not quiet:
                 print(f"  [WARN] Delete failed {dir_name}/: {e}")
-        else:
-            print(f"  [INFO] Not found: {dir_name}/")
 
 
 def full_uninstall_project():
@@ -175,7 +246,7 @@ def full_uninstall_project():
             continue
         try:
             if item.is_dir():
-                shutil.rmtree(item, onerror=_on_rm_error)
+                _safe_delete_dir(item)
             else:
                 item.unlink()
             print(f"    [DEL] {item.name}")
@@ -183,74 +254,92 @@ def full_uninstall_project():
             print(f"    [WARN] Delete failed {item.name}: {e}")
 
 
-def remove_env_variables():
-    """移除环境变量"""
-    print_step("Checking environment variables...")
-    vars_to_remove = ["SMART_DOSING_HOME", "PYTHONPATH"]
-    if sys.platform == "win32":
-        for var in vars_to_remove:
-            run_command(f'setx {var} ""', shell=True)
-            print(f"  [OK] Cleared {var} (set to empty)")
-    else:
-        print("  [INFO] Linux/Mac: manually check .bashrc or .zshrc for export variables")
-
-
 # ==================== 主程序 ====================
 def main():
+    parser = argparse.ArgumentParser(
+        description="WWTP AI System - Uninstall / Reset Wizard",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+Examples:
+  python uninstall.py              # Interactive mode
+  python uninstall.py --yes --soft # Non-interactive soft reset
+  python uninstall.py --yes --hard # Non-interactive full reset
+        """,
+    )
+    parser.add_argument("--yes", "-y", action="store_true", help="Skip all confirmation prompts")
+    parser.add_argument("--soft", action="store_true", help="Soft reset: logs + artifacts + outputs + venv (keep code/models/data)")
+    parser.add_argument("--hard", action="store_true", help="Full reset: soft + models + data + offline_packages")
+    parser.add_argument("--purge", action="store_true", help="[DANGER] Delete EVERYTHING including source code")
+    parser.add_argument("--choice", "-c", type=str, choices=["1", "2", "3"], help="Operation choice (1=soft, 2=hard, 3=purge)")
+    args = parser.parse_args()
+
     safety_check()
-    print_header("WWTP AI System - Uninstall / Reset Wizard")
 
-    print(f"\nProject path: {PROJECT_ROOT}")
-    print(f"Venv path:    {VENV_DIR}")
+    # Resolve mode
+    if args.choice:
+        choice = args.choice
+    elif args.purge:
+        choice = "3"
+    elif args.hard:
+        choice = "2"
+    elif args.soft:
+        choice = "1"
+    else:
+        # Interactive mode
+        print_header("WWTP AI System - Uninstall / Reset Wizard")
+        print(f"\nProject path: {PROJECT_ROOT}")
+        print(f"Venv path:    {VENV_DIR}")
+        print("\nSelect operation mode:")
+        print("  1. Soft reset: clean logs/temp/artifacts + delete venv (keep code, models, data)")
+        print("  2. Full reset: soft reset + delete models, data, offline packages (keep only code)")
+        print("  3. [DANGER] Hard purge: delete EVERYTHING including source code")
+        choice = input("\nEnter option (1/2/3): ").strip()
+        if choice not in ('1', '2', '3'):
+            print("Invalid input, exiting.")
+            return
+        if not confirm("\nThis operation is irreversible! Confirm?"):
+            print("Cancelled.")
+            return
 
-    print("\nSelect operation mode:")
-    print("  1. Soft reset: clean logs/temp/artifacts + delete venv (keep code, models, data)")
-    print("  2. Full reset: soft reset + delete models, data, offline packages (keep only code)")
-    print("  3. [DANGER] Hard purge: delete EVERYTHING including source code")
-
-    choice = input("\nEnter option (1/2/3): ").strip()
-
-    if choice not in ('1', '2', '3'):
-        print("Invalid input, exiting.")
-        return
-
-    if not confirm("\nThis operation is irreversible! Confirm?"):
-        print("Cancelled.")
-        return
-
-    # [Fix] 每步独立 try，一步失败不中断后续删除
+    # --yes implies non-interactive + skip confirmations
+    verbose = not args.yes
     errors = []
 
+    # Stop processes (always verbose — user should know what's being killed)
     try:
         stop_running_processes()
     except Exception as e:
         errors.append(f"Stop processes: {e}")
 
+    # Delete venv
     try:
-        delete_venv()
+        delete_venv(quiet=not verbose)
     except Exception as e:
         errors.append(f"Delete venv: {e}")
 
+    # Clean data
     try:
         if choice == '1':
-            clean_runtime_data(SOFT_CLEAN_DIRS)
-            print("\nSoft reset complete!")
-            print("Code, models, data, and offline packages are preserved.")
-            print("Run install.bat to rebuild the environment.")
+            clean_runtime_data(SOFT_CLEAN_DIRS, quiet=not verbose)
+            if verbose:
+                print("\nSoft reset complete!")
+                print("Code, models, data, and offline packages are preserved.")
+                print("Run install.bat to rebuild the environment.")
 
         elif choice == '2':
-            clean_runtime_data(HARD_CLEAN_DIRS)
-            print("\nFull reset complete!")
-            print("Code is preserved. Models, data, and offline packages are deleted.")
-            print("Run install.bat to rebuild the environment, then retrain models.")
+            clean_runtime_data(HARD_CLEAN_DIRS, quiet=not verbose)
+            if verbose:
+                print("\nFull reset complete!")
+                print("Code is preserved. Models, data, and offline packages are deleted.")
+                print("Run install.bat to rebuild the environment, then retrain models.")
 
         elif choice == '3':
-            if confirm("\nFINAL WARNING: This will delete ALL source code. Are you SURE?"):
-                clean_runtime_data(HARD_CLEAN_DIRS)
+            if args.yes or confirm("\nFINAL WARNING: This will delete ALL source code. Are you SURE?"):
+                clean_runtime_data(HARD_CLEAN_DIRS, quiet=not verbose)
                 full_uninstall_project()
-                remove_env_variables()
-                print("\nProject purged.")
-                print("TIP: Manually delete this uninstall.py script and the empty folder.")
+                if verbose:
+                    print("\nProject purged.")
+                    print("TIP: Manually delete this uninstall.py script and the empty folder.")
     except KeyboardInterrupt:
         print("\n\nOperation interrupted by user")
     except Exception as e:
@@ -261,9 +350,9 @@ def main():
         for err in errors:
             print(f"  - {err}")
 
-    # [Fix] 暂停等待用户查看结果，防止窗口瞬间关闭
-    print()
-    input("Press Enter to exit...")
+    if verbose:
+        print()
+        input("Press Enter to exit...")
 
 
 if __name__ == "__main__":

@@ -63,9 +63,15 @@ def _path_representer(dumper, data):
     """将 Path 对象统一转换为 POSIX 风格的字符串 (正斜杠 /)，确保跨平台兼容"""
     return dumper.represent_scalar('tag:yaml.org,2002:str', data.as_posix())
 
+# 🚀 全局注册 Path 序列化器。注意：这会修改 yaml 模块的全局状态。
+# PyYAML 按精确类型匹配（不遍历 MRO），因此需显式注册各平台的具体子类。
 yaml.add_representer(Path, _path_representer)
 yaml.add_representer(PurePosixPath, _path_representer)
 yaml.add_representer(PureWindowsPath, _path_representer)
+# 显式注册 Windows/Posix 具体类（PyYAML 不自动匹配父类）
+if hasattr(Path, '__subclasses__'):
+    for _cls in Path.__subclasses__():
+        yaml.add_representer(_cls, _path_representer)
 
 # ==========================================
 # 配置数据结构定义 (Pydantic)
@@ -201,14 +207,6 @@ class ModelConfig(BaseModel):
     model_fusion_weight_tft: float = 0.3
     lgbm_feature_order: List[int] = [6, 7, 8]
     pred_horizon: int = 24
-    @property
-    def lgbm_feature_names(self) -> List[str]:
-        from config_manager import CFG  # <--- 这个 import 绝对不能移到文件顶部！
-        return CFG.lgbm.features.feature_columns
-    @property
-    def lgbm_lag_times(self) -> List[int]:
-        from config_manager import CFG
-        return CFG.lgbm.features.lag_hours
 
 class TrainingConfig(BaseModel):
     tft_epochs: int = 50
@@ -346,30 +344,42 @@ else:
 # ==========================================
 # 🚀 全局日志句柄追踪器，防止热重载时文件句柄泄漏
 _file_log_handler_id = None
+_setup_logger_lock = None  # 延迟初始化，避免导入期线程问题
+
+
+def _get_logger_lock():
+    """延迟初始化日志锁，兼容所有 Python 版本"""
+    global _setup_logger_lock
+    if _setup_logger_lock is None:
+        import threading
+        _setup_logger_lock = threading.Lock()
+    return _setup_logger_lock
+
 
 def setup_logger(log_dir: Path):
-    """统一配置 loguru 日志系统 (带句柄生命周期管理)"""
+    """统一配置 loguru 日志系统 (带句柄生命周期管理 + 线程安全)"""
     global _file_log_handler_id
-    
-    # 1. 控制台日志防重入
-    if not hasattr(setup_logger, "_console_initialized"):
-        logger.remove()
-        logger.add(
-            sys.stderr, 
-            level="INFO", 
-            format="<green>{time:HH:mm:ss}</green> | <level>{level: <7}</level> | {message}", 
-            colorize=sys.stderr.isatty(),
-            encoding="utf-8"  # ✅ 强制使用 UTF-8 编码，防止 Windows 控制台 GBK 乱码
-        )
-        setup_logger._console_initialized = True
-        
+
+    with _get_logger_lock():
+        # 1. 控制台日志防重入
+        if not hasattr(setup_logger, "_console_initialized"):
+            logger.remove()
+            logger.add(
+                sys.stderr,
+                level="INFO",
+                format="<green>{time:HH:mm:ss}</green> | <level>{level: <7}</level> | {message}",
+                colorize=sys.stderr.isatty(),
+                encoding="utf-8"  # ✅ 强制使用 UTF-8 编码，防止 Windows 控制台 GBK 乱码
+            )
+            setup_logger._console_initialized = True
+
     # 2. 文件日志：先移除旧的 Handler，再添加新的，防止句柄泄漏和文件锁死
     if _file_log_handler_id is not None:
         try:
             logger.remove(_file_log_handler_id)
         except ValueError:
             pass  # Handler 可能已经失效，忽略
-            
+
     try:
         log_dir.mkdir(parents=True, exist_ok=True)
         # 写入测试，提前暴露权限问题
@@ -377,11 +387,11 @@ def setup_logger(log_dir: Path):
         with open(test_file, "w", encoding="utf-8") as f:
             f.write("test")
         os.remove(test_file)
-        
+
         _file_log_handler_id = logger.add(
-            log_dir / "app_{time:YYYY-MM-DD}.log", 
-            rotation="00:00", 
-            retention="30 days", 
+            log_dir / "app_{time:YYYY-MM-DD}.log",
+            rotation="00:00",
+            retention="30 days",
             level="DEBUG",
             encoding="utf-8"
         )
@@ -389,18 +399,112 @@ def setup_logger(log_dir: Path):
         logger.warning(f"⚠️ 无法在 {log_dir} 创建日志文件 (权限不足或磁盘满)，将仅输出到控制台。原因: {e}")
         _file_log_handler_id = None
 
+
+def release_log_handler():
+    """安全释放当前文件日志句柄（Windows 下删除日志前必须调用）"""
+    global _file_log_handler_id
+    if _file_log_handler_id is not None:
+        try:
+            logger.complete()  # 等待所有挂起的消息写入完成
+            logger.remove(_file_log_handler_id)
+        except ValueError:
+            pass
+        _file_log_handler_id = None
+
+
+def delete_log_files(log_dir: Path) -> tuple[int, int]:
+    """安全删除日志文件（处理 Windows 文件锁）。
+    返回 (deleted, locked) 计数。
+    """
+    import gc
+    release_log_handler()
+    gc.collect()  # 帮助释放 dangling 句柄
+    deleted, locked = 0, 0
+    for f in sorted(log_dir.iterdir(), key=lambda x: x.name, reverse=True):
+        try:
+            if f.is_file():
+                f.unlink()
+            else:
+                shutil.rmtree(f)
+            deleted += 1
+        except PermissionError:
+            # Windows rename trick: 移动已打开的文件到临时位置再删除
+            try:
+                import tempfile
+                tmp = Path(tempfile.mktemp(suffix=f.suffix, prefix=f.stem + "_"))
+                f.rename(tmp)
+                tmp.unlink()
+                deleted += 1
+            except (PermissionError, OSError):
+                locked += 1
+    return deleted, locked
+
+
+def reacquire_log_handler(log_dir: Path):
+    """重新初始化文件日志句柄（删除日志后恢复日志写入）"""
+    setup_logger(log_dir)
+
+
+def safe_rmtree(path: Path) -> tuple[int, int]:
+    """通用安全删除目录（处理 Windows 文件锁，适用于所有目录类型）。
+
+    对 logs 目录使用 delete_log_files（释放句柄+逐文件删除），
+    对其他目录使用 shutil.rmtree 配合 onerror 回调。
+
+    返回 (deleted, locked) 计数。非日志目录 locked 始终为 0
+    （删除失败直接抛异常，不静默跳过）。
+    """
+    if not path.exists():
+        return 0, 0
+
+    if path.name == "logs":
+        return delete_log_files(path)
+
+    # 其他目录：shutil.rmtree + 只读文件处理
+    def _on_rm_error(func, failed_path, exc_info):
+        import stat
+        try:
+            os.chmod(failed_path, stat.S_IWRITE)
+            func(failed_path)
+        except Exception:
+            raise  # 非日志目录不应静默跳过
+
+    try:
+        shutil.rmtree(path, onerror=_on_rm_error)
+        return 1, 0
+    except PermissionError:
+        # Windows 备选：逐文件删除
+        deleted, locked = 0, 0
+        for f in sorted(path.iterdir(), key=lambda x: x.name, reverse=True):
+            try:
+                if f.is_file():
+                    f.unlink()
+                else:
+                    shutil.rmtree(f, onerror=_on_rm_error)
+                deleted += 1
+            except PermissionError:
+                locked += 1
+        return deleted, locked
+
+
 def _resolve_paths(paths_cfg: PathsConfig) -> PathsConfig:
     """
     将 PathsConfig 中的相对路径强制转换为基于 PROJECT_ROOT 的绝对路径。
     🚀 【终极修复】引入“类型感知”，完美解决 str 与 Path 混合定义导致的 Pydantic V2 校验崩溃。
     """
     data = paths_cfg.model_dump() if PYDANTIC_V2 else paths_cfg.dict()
-    
-    # 动态获取模型字段的注解类型
-    if PYDANTIC_V2:
-        field_types = {name: field.annotation for name, field in PathsConfig.model_fields.items()}
-    else:
-        field_types = {name: field.outer_type_ for name, field in PathsConfig.__fields__.items()}
+
+    # 🚀 使用 typing.get_type_hints 获取字段类型注解，不依赖 Pydantic 内部 API
+    # 兼容 Pydantic V1/V2/V3，比 model_fields/__fields__ 更稳定
+    import typing as _typing
+    try:
+        field_types = _typing.get_type_hints(PathsConfig)
+    except Exception:
+        # 极端兜底：get_type_hints 失败时回退到 Pydantic 内部 API
+        if PYDANTIC_V2:
+            field_types = {name: field.annotation for name, field in PathsConfig.model_fields.items()}
+        else:
+            field_types = {name: field.outer_type_ for name, field in PathsConfig.__fields__.items()}
 
     for key, value in data.items():
         expected_type = field_types.get(key)

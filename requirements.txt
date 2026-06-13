@@ -14,7 +14,12 @@ psutil>=5.9.0
 numba>=0.58.0
 
 # ================= 2. Deep Learning (PyTorch Ecosystem) =================
-# IMPORTANT: torch must be installed offline via install.bat. DO NOT declare here!
+# PyTorch: install matching your system (CPU or CUDA).
+#   CPU-only:  pip install torch --index-url https://download.pytorch.org/whl/cpu
+#   CUDA 11.8: pip install torch --index-url https://download.pytorch.org/whl/cu118
+#   CUDA 12.4: pip install torch --index-url https://download.pytorch.org/whl/cu124
+# install.bat handles this automatically.
+torch>=2.0.0
 
 # ONNX model export & inference
 onnx>=1.16.0

@@ -2,7 +2,7 @@
 import numpy as np
 import gymnasium as gym
 from gymnasium import spaces
-from typing import Dict, Optional, Tuple, Callable, List, Union
+from typing import Any, Dict, Optional, Tuple, Callable, List
 from dataclasses import dataclass, field
 from loguru import logger
 
@@ -11,11 +11,15 @@ from loguru import logger
 # ==========================================
 @dataclass
 class RLConfig:
-    """RL 环境配置"""
+    """
+    RL 环境配置（训练/推理专用）。
+    注意：与 config_manager.py 中的 RLConfig(BaseModel) 不同——
+    后者仅用于 YAML rl: 段（启发式规则），此类包含完整 PPO 环境参数。
+    """
     # 物理边界
     volume: float = 5000.0
     cod_limit: float = 50.0
-    nh3n_limit: float = 5.0
+    nh3_limit: float = 5.0
     
     # 动作映射参数 (工程单位：KLa 为 1/h，R 为无量纲比例)
     kla_bounds: List[float] = field(default_factory=lambda: [10.0, 200.0])
@@ -79,7 +83,7 @@ class WWTPControlEnv(gym.Env):
     def __init__(
         self,
         config: RLConfig,
-        asm1_solver: any,
+        asm1_solver: Any,
         event_cb: Optional[EventCallback] = None,
         max_steps: int = 168,
         training_mode: bool = True  # 🚀 [优化] 训练模式传 True，ODE 用宽松容差加速
@@ -137,7 +141,7 @@ class WWTPControlEnv(gym.Env):
         # 🚀 [优化] 局部变量绑定，减少属性查找开销
         cfg = self.cfg
         cod_limit = cfg.cod_limit
-        nh3n_limit = cfg.nh3n_limit
+        nh3_limit = cfg.nh3_limit
         kla_bounds = cfg.kla_bounds
         kla_scale = cfg.kla_scale
         r_scale = cfg.r_scale
@@ -148,10 +152,10 @@ class WWTPControlEnv(gym.Env):
         cod_over = S_S - cod_limit
         if cod_over < 0.0:
             cod_over = 0.0
-        nh3n_over = S_NH - nh3n_limit
-        if nh3n_over < 0.0:
-            nh3n_over = 0.0
-        r_quality = -cfg.penalty_cod * (cod_over * cod_over) - cfg.penalty_nh3 * (nh3n_over * nh3n_over)
+        nh3_over = S_NH - nh3_limit
+        if nh3_over < 0.0:
+            nh3_over = 0.0
+        r_quality = -cfg.penalty_cod * (cod_over * cod_over) - cfg.penalty_nh3 * (nh3_over * nh3_over)
 
         # 能耗惩罚
         kla_norm = (Kla - kla_bounds[0]) / (kla_bounds[1] - kla_bounds[0] + 1e-6)

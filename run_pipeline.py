@@ -100,17 +100,17 @@ def check_disk_space(target_path: Path, min_free_gb: float = 2.0):
     """提前检测磁盘空间"""
     if not HAS_PSUTIL:
         return
-        
+
     try:
         usage = psutil.disk_usage(str(target_path))
         free_gb = usage.free / (1024**3)
         if free_gb < min_free_gb:
             raise RuntimeError(f"磁盘空间不足！{target_path} 所在磁盘仅剩 {free_gb:.1f}GB，需要至少 {min_free_gb}GB。")
+    except RuntimeError:
+        raise  # 磁盘空间不足是致命错误，直接上抛
     except Exception as e:
-        if "psutil" in str(type(e)).lower() or "disk_usage" in str(e):
-            logger.warning(f"⚠️ 磁盘空间检测失败: {e}")
-        else:
-            raise
+        # psutil 自身异常（权限不足、路径不存在等）降级为警告
+        logger.warning(f"⚠️ 磁盘空间检测失败: {e}")
 
 def check_write_permission(target_path: Path):
     """提前检测目录写入权限"""
@@ -221,9 +221,7 @@ def run_pipeline(
     gc.collect()
     
     report_progress(100, f"✅ 数据管道执行完毕! 产物已保存至: {output_meta['save_dir']}")
-    
 
-    
     # 🚀 【跨文件手术 3】增加训练调度钩子，防止数据管道跑完后模型未训练
     logger.info("\n" + "="*60)
     logger.info("📋 【下一步操作指引】数据特征已就绪，请启动模型训练：")
@@ -231,7 +229,6 @@ def run_pipeline(
     logger.info("   2. 训练 PPO 控制策略:      python train.py --model ppo")
     logger.info("   3. 启动实时推理引擎:       python inference.py")
     logger.info("="*60 + "\n")
-    
 
     return output_meta
 

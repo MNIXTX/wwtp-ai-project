@@ -21,7 +21,7 @@ from stable_baselines3.common.utils import get_linear_fn
 
 # 导入您的环境
 from asm1_ppo_env import WWTPControlEnv, RLConfig
-from asm1_ode_solver import ASM1Solver, ASM1Parameters
+from asm1_ode_solver import ASM1Solver, ASM1Parameters, ReactorConfig
 from config_manager import CFG
 
 # ==================== 0. 全局兼容性与路径基准 ====================
@@ -155,7 +155,7 @@ def make_wwtp_env(rank: int, seed: int = 0, training_mode: bool = True):
         rl_cfg = RLConfig(
             volume=CFG.asm1.volume,
             cod_limit=CFG.asm1.default_cod_limit,
-            nh3n_limit=CFG.asm1.default_nh3_limit,
+            nh3_limit=CFG.asm1.default_nh3_limit,
             kla_bounds=list(CFG.asm1.rl_kla_bounds),
             r_bounds=list(CFG.asm1.rl_r_bounds),
             kla_center=CFG.asm1.rl_kla_center,
@@ -173,9 +173,14 @@ def make_wwtp_env(rank: int, seed: int = 0, training_mode: bool = True):
             biomass_warn=CFG.asm1.rl_biomass_warn,
             biomass_crash=CFG.asm1.rl_biomass_crash,
         )
+        # 🚀 从配置文件注入反应器体积，与 config.yaml 保持一致
+        reactor_cfg = ReactorConfig(
+            volume=CFG.asm1.volume,
+            S_O_sat=CFG.asm1.saturation_do,
+        )
         env = WWTPControlEnv(
             config=rl_cfg,
-            asm1_solver=ASM1Solver(ASM1Parameters()),
+            asm1_solver=ASM1Solver(ASM1Parameters(), reactor=reactor_cfg),
             max_steps=CFG.model.ppo_episode_steps,
             training_mode=training_mode,  # 🚀 [优化] 训练用宽松容差
         )

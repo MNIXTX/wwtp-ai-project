@@ -214,6 +214,9 @@ class LGBMTrainEngine:
         cols_path = lgbm_model_dir / "lgbm_feature_cols.joblib"
         
         model.save_model(str(model_path), num_iteration=num_trees)
+        # 🚀 持久化特征列名，确保推理时能正确对齐特征维度
+        joblib.dump(feature_cols, cols_path)
+        logger.info(f"特征列名已保存至: {cols_path}")
         
         self.progress_cb(100.0, "训练完成！")
         return {

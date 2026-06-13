@@ -67,7 +67,7 @@ def _validate_joblib_file(filepath: Path) -> Optional[str]:
         return f"预检失败: {e}"
 
 
-def _safe_load_with_timeout(load_func, filepath: str, timeout: float = 15.0, label: str = "") -> Tuple[bool, any]:
+def _safe_load_with_timeout(load_func, filepath: str, timeout: float = 15.0, label: str = "") -> Tuple[bool, Any]:
     """
     在线程中执行加载函数，超时则放弃。
     返回 (success, result_or_error_string)。
@@ -125,6 +125,26 @@ def _infer_lgbm_base_columns_from_model(lgbm_model) -> Optional[List[str]]:
     except Exception as e:
         logger.warning(f"无法从 LGBM 模型反推基础列: {e}")
         return None
+
+
+def _make_lgbm_builder(base_columns: List[str]) -> LGBMFeatureBuilder:
+    """Create an LGBMFeatureBuilder from base column names with CFG-driven settings.
+
+    Centralises the repeated construction logic so training and error-recovery
+    paths always produce an identically configured builder.
+    """
+    roll_cols = list(CFG.lgbm.features.rolling_feature_columns)
+    if not roll_cols:
+        roll_cols = list(base_columns)
+
+    return LGBMFeatureBuilder(FeatureConfig(
+        feature_columns=list(base_columns),
+        rolling_feature_columns=roll_cols,
+        lag_hours=list(CFG.lgbm.features.lag_hours),
+        rolling_windows=list(CFG.lgbm.features.rolling_windows),
+        target_col=CFG.lgbm.features.target_column,
+    ))
+
 
 class WaterQualityPredictor:
     """
@@ -243,13 +263,7 @@ class WaterQualityPredictor:
                 logger.warning(f"Using TFT features as LGBM columns (fallback): {lgbm_cols}")
         self._lgbm_base_cols = lgbm_cols
 
-        self._lgbm_builder = LGBMFeatureBuilder(FeatureConfig(
-            feature_columns=lgbm_cols,
-            rolling_feature_columns=list(CFG.lgbm.features.rolling_feature_columns) if list(CFG.lgbm.features.rolling_feature_columns) else lgbm_cols,
-            lag_hours=list(CFG.lgbm.features.lag_hours),
-            rolling_windows=list(CFG.lgbm.features.rolling_windows),
-            target_col=CFG.lgbm.features.target_column,
-        ))
+        self._lgbm_builder = _make_lgbm_builder(lgbm_cols)
 
         logger.info(f"[OK] Predictor ready | TFT features: {self.num_features} | "
                     f"Seq: {self.seq_len}h | Divergence threshold: {self.divergence_threshold}")
@@ -406,13 +420,7 @@ class WaterQualityPredictor:
                 if inferred and inferred != self._lgbm_base_cols:
                     logger.info(f"自动修复：从模型反推 {len(inferred)} 个基础列，重建特征构建器")
                     self._lgbm_base_cols = inferred
-                    self._lgbm_builder = LGBMFeatureBuilder(FeatureConfig(
-                        feature_columns=inferred,
-                        rolling_feature_columns=list(CFG.lgbm.features.rolling_feature_columns) if list(CFG.lgbm.features.rolling_feature_columns) else inferred,
-                        lag_hours=list(CFG.lgbm.features.lag_hours),
-                        rolling_windows=list(CFG.lgbm.features.rolling_windows),
-                        target_col=CFG.lgbm.features.target_column,
-                    ))
+                    self._lgbm_builder = _make_lgbm_builder(inferred)
                     # 用修正后的 builder 重试
                     df_feat = self._lgbm_builder.build(df, is_inference=True)
                     df_aligned = self._lgbm_builder.align_columns(df_feat)

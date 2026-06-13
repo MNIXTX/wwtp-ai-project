@@ -226,8 +226,8 @@ class WWTPDataPipeline:
         try:
             td = pd.Timedelta(self.freq)
             dead_threshold = max(3, int(3 / td.total_seconds() * 3600))
-        except ValueError:
-            logger.error(f" 无法解析时间频率字符串: '{self.freq}'")
+        except ValueError as e:
+            logger.error(f" 无法解析时间频率字符串: '{self.freq}'，原因: {e}")
             raise
 
         for col in df.select_dtypes(include=[np.number]).columns:
@@ -250,10 +250,7 @@ class WWTPDataPipeline:
         df_resampled = df[valid_numeric_cols].resample(self.freq).mean()
         
         for col in df_resampled.columns:
-            nan_groups = df_resampled[col].isna().astype(int).groupby((df_resampled[col].notna()).cumsum())
-            gap_sizes = nan_groups.transform('sum')
-            valid_interp_mask = df_resampled[col].isna() & (gap_sizes <= self.max_interp_gap)
-            if valid_interp_mask.sum() > 0:
+            if df_resampled[col].isna().any():
                 df_resampled[col] = df_resampled[col].interpolate(method='linear', limit=self.max_interp_gap)
         
         df_clean = df_resampled.dropna(how='all')
@@ -291,8 +288,7 @@ class WWTPDataPipeline:
             self.scaler.fit(feature_values)  # 主 scaler 仅拟合特征
             # 初始化并拟合目标专用 Scaler
             if not hasattr(self, 'target_scaler') or self.target_scaler is None:
-                from sklearn.preprocessing import StandardScaler as SS
-                self.target_scaler = SS()
+                self.target_scaler = StandardScaler()
             self.target_scaler.fit(target_values)
             self.feature_names = list(tft_feature_cols)
             self.is_fitted = True
@@ -312,13 +308,14 @@ class WWTPDataPipeline:
         if n_samples <= 0:
             raise ValueError(f"数据长度{len(scaled)}不足以构建序列(需≥{seq_len})")
 
-        X_all, y_all = [], []
+        # 🚀 [优化] 预分配 numpy 数组，避免 list append + 最终转换导致的 2-3x 峰值内存
+        X_arr = np.empty((n_samples, self.lookback, n_features), dtype=np.float32)
+        y_arr = np.empty((n_samples, self.horizon), dtype=np.float32)
         for i in range(n_samples):
             window = scaled[i:i + seq_len]
-            X_all.append(window[:self.lookback, :n_features])      # 仅特征列
-            y_all.append(window[self.lookback:, target_idx_in_scaled])  # 目标列 (标准化后)
+            X_arr[i] = window[:self.lookback, :n_features]
+            y_arr[i] = window[self.lookback:, target_idx_in_scaled]
 
-        X_arr, y_arr = np.array(X_all), np.array(y_all)
         split_idx = int(n_samples * (1 - self.test_ratio))
 
         self._emit("TFT", 60, f"TFT序列构建完成 | 训练:{split_idx} | 测试:{n_samples-split_idx}")
@@ -338,8 +335,6 @@ class WWTPDataPipeline:
         if time_col:
             df_work[time_col] = pd.to_datetime(df_work[time_col])
             df_work = df_work.set_index(time_col)
-            
-        from config_manager import CFG  # 确保已导入配置管理器
 
         feature_builder = LGBMFeatureBuilder(config=CFG.lgbm.features)
         combined_feat = feature_builder.build(df_work, is_inference=False)
@@ -435,7 +430,6 @@ class WWTPDataPipeline:
         if target_scaler_path.exists():
             pipeline.target_scaler = joblib.load(target_scaler_path)
         else:
-            from sklearn.preprocessing import StandardScaler
             pipeline.target_scaler = StandardScaler()
             logger.warning("target_scaler.pkl not found, created empty scaler")
 
