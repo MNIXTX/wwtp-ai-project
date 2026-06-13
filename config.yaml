@@ -1,0 +1,214 @@
+# ==========================================
+# 工业级 WWTP 智能控制系统 - 全局配置文件 (最终完美对齐版)
+# ==========================================
+
+# ---------------- 1. 数据与产物路径配置 ----------------
+paths:
+  # 核心数据文件路径
+  scada_data_csv: "data/scada_data.csv"
+  
+  # 基础目录配置 (去掉了 ./ 前缀，防止 Windows 路径解析异常)
+  data_dir: "data"
+  model_dir: "models"
+  artifacts_dir: "artifacts"      
+  
+  # LGBM 模型专属路径 (建议由 config_manager 基于 model_dir 动态拼接，此处作为覆盖项)
+  lgbm_model_dir: "models/lgbm"
+  lgbm_model_file: "lgbm_wwtp.txt"
+
+# ---------------- 2. 数据管道与时间序列配置 ----------------
+pipeline:
+  freq: "1h"
+  lookback: 24                    # 历史回溯窗口 (小时)
+  horizon: 24                     # 预测未来窗口 (小时)
+  max_interp_gap: 6               # 最大允许插值间隙 (小时)
+  test_ratio: 0.2                 # 时序测试集划分比例
+
+  # 传感器数据物理限幅 (防止 SCADA 飞点污染模型)
+  # 必须与 config_manager.py 中的 PipelineConfig.physical_limits 严格对齐
+  physical_limits:
+    flow: [0.0, 100000.0]         # 进水流量物理上下限 (m³/h)
+    inf_cod: [0.0, 2000.0]        # 进水 COD 物理上下限 (mg/L)
+    eff_cod: [0.0, 500.0]         # 出水 COD 物理上下限 (mg/L)
+    inf_nh3: [0.0, 100.0]         # 进水氨氮物理上下限 (mg/L)
+    eff_nh3: [0.0, 50.0]          # 出水氨氮物理上下限 (mg/L)
+    do_meas: [0.0, 15.0]          # 溶解氧测量值物理上下限 (mg/L)
+    DO_reactor: [0.0, 12.0]       # 反应器溶解氧物理上下限 (mg/L)
+    MLSS_reactor: [0.0, 10000.0]  # 反应器污泥浓度物理上下限 (mg/L)
+    ph: [4.0, 10.0]               # pH 值物理上下限
+    temp: [0.0, 45.0]             # 水温物理上下限 (℃)
+
+# ---------------- 3. 模型架构与融合配置 ----------------
+model:
+  # 硬件与导出配置
+  device: "cpu"                   # 训练设备: "cpu" 或 "cuda"
+  onnx_opset_version: 18          # ONNX 算子集版本 (PyTorch 2.5+ 最低要求 18)
+  
+  # 模型融合权重 (ASM1 + LGBM + TFT) -> 总和必须为 1.0
+  model_fusion_weight_asm1: 0.4
+  model_fusion_weight_lgbm: 0.3
+  model_fusion_weight_tft: 0.3
+  
+  # TFT 模型核心维度参数
+  tft_num_features: 4             # 输入特征数量 (必须与 tft_feature_names 长度一致)
+  tft_hidden_size: 64             # 隐层维度 (推荐 32, 64, 128)
+  tft_seq_len: 24                 # 输入序列长度 (通常与 pipeline.lookback 一致)
+  tft_lstm_layers: 2              # LSTM 堆叠层数
+  tft_dropout: 0.1                # Dropout 概率
+  
+  # 【新增】TFT 训练 Batch Size (与 tft_pure_pytorch.py 中的 TrainConfig.batch_size 严格对齐)
+  tft_batch_size: 128
+  
+  # 修复数据穿越：严禁使用出水/反应器总 COD 作为输入！
+  # 必须使用进水特征与内部状态，确保 TFT 学习的是“动力学演化”而非“抄答案”
+  tft_feature_names: 
+    - "inf_cod"         # 进水 COD (外部扰动)
+    - "inf_nh3"         # 进水氨氮 (外部扰动)
+    - "DO_reactor"      # 反应器溶解氧 (内部控制变量)
+    - "MLSS_reactor"    # 反应器污泥浓度 (内部状态)
+
+# ---------------- 4. LGBM 特征工程配置 ----------------
+lgbm:
+  demo_samples: 8760              
+  features:
+    target_column: "eff_cod"      # 统一使用 SCADA 标准列名 (原 outflow_cod)
+    
+    #  【核心修改】注释掉硬编码，改为空列表以启用“动态推断 (Schema-on-Read)”
+    # 构建器会自动从数据管道中提取所有有效数值列（自动排除 target_column 和非数值列）
+    # feature_columns: ["inf_cod", "flow", "do_meas"] 
+    feature_columns: []
+    
+    #  【核心修改】滚动特征列也改为空，默认对所有推断出的基础列进行滚动计算
+    # rolling_feature_columns: ["inf_cod", "do_meas"]
+    rolling_feature_columns: []
+    
+    lag_hours: [1, 3, 6, 12, 24]
+    rolling_windows: [6, 12, 24]
+  
+  # 同步更新模拟数据生成器的列名映射，防止生成假数据时列名错位
+  demo_data_columns:
+    inf_cod: "inf_cod"
+    flow: "flow"                  # 原 inf_flow
+    do_meas: "do_meas"            # 原 aeration_do
+    eff_cod: "eff_cod"            # 原 outflow_cod
+
+# ---------------- 5. 传感器与 ASM1 状态映射 ----------------
+sensors:
+  # 修复提取断层：与 tft_feature_names 严格对齐，确保数据管道能正确提取这 4 列历史序列
+  history_fields: ["inf_cod", "inf_nh3", "DO_reactor", "MLSS_reactor"]
+  
+  state_mapping:
+    # S_S 是溶解性 COD，绝不能直接等于总 COD_reactor！
+    # 这里映射到出水溶解性 COD (在代码层用 eff_cod * fraction 估算)
+    S_S: "eff_cod"       
+    S_NH: "NH3_reactor"
+    S_O: "DO_reactor"
+    X_H: "MLSS_reactor"
+    X_A: "X_A_reactor"
+  
+  # 物理转换系数：解决 SCADA 只有总 COD，没有溶解性 COD 
+  # 经验法则：出水溶解性 COD (S_S) 约占出水总 COD (eff_cod) 的 10% ~ 20%
+  S_S_fraction_of_eff_cod: 0.15 
+
+# ---------------- 6. 强化学习 (RL) 启发式规则 ----------------
+rl:
+  heuristic_rules:
+    high_cod_threshold: 500.0
+    action_high: [0.6, 0.3]
+    action_normal: [0.0, 0.0]
+
+# ---------------- 7. 模型训练超参数 (现场调参核心) ----------------
+training:
+  
+  # TFT 训练参数
+  tft_epochs: 50
+  tft_lr: 0.001
+  
+  # PPO 外部调度与奖励参数 (控制训练脚本的外部循环)
+  ppo_timesteps: 500000           # PPO 训练步数 (兼容旧版代码调用)
+  ppo_n_envs: 4                   # PPO 并行向量化环境数量 (SubprocVecEnv)
+  ppo_total_timesteps: 500000     # PPO 总训练步数 (交互总次数)
+  ppo_eval_freq: 1000             # 每 N 步在评估环境中测试一次模型
+  ppo_energy_weight: 10.0         # PPO 奖励函数中的能耗惩罚权重
+  
+  # LGBM 训练参数
+  lgbm_n_estimators: 1000         # 最大树数量
+  lgbm_early_stop_rounds: 50      # 连续 N 轮不下降则停止
+  lgbm_log_every: 100             # 每 N 轮打印一次日志
+  
+  # 修复量纲错位：双模型预测目标已转为溶解性 COD (值域 5~15)
+  # 原 15.0 的阈值会让共识验证器彻底失效，现下调至符合物理区间的 3.0 mg/L
+  divergence_threshold: 3.0       # 双模型交叉验证：预测分歧阈值 (mg/L)
+  
+  # PPO 算法实例化参数 (内部结构，传给 PPO 构造函数)
+  ppo_params:
+    policy: "MlpPolicy"
+    learning_rate_start: 0.0003   # 学习率线性衰减起点
+    learning_rate_end: 0.000003   # 学习率线性衰减终点
+    clip_range_start: 0.2         # PPO 截断范围起点
+    clip_range_end: 0.05          # PPO 截断范围终点
+    n_steps: 2048                 # 每次更新前收集的步数
+    batch_size: 256               # PPO 梯度下降 Mini-batch 大小 (Stable Baselines3 标准参数)
+    n_epochs: 10                  # 每次更新的 Epoch 数
+    gamma: 0.99                   # 折扣因子
+    gae_lambda: 0.95              # GAE 优势估计 lambda
+    ent_coef: 0.01                # 熵正则化系数 (鼓励探索)
+    vf_coef: 0.5                  # 价值函数损失系数
+    max_grad_norm: 0.5            # 梯度裁剪最大范数
+    device: "auto"                # 训练设备
+
+  # LGBM 算法参数
+  lgbm_params:
+    objective: "regression"
+    metric: "mae"
+    boosting_type: "gbdt"
+    learning_rate: 0.05
+    num_leaves: 31
+    max_depth: -1
+    min_child_samples: 20
+    feature_fraction: 0.8
+    bagging_fraction: 0.8
+    bagging_freq: 5
+    verbose: -1
+
+# ---------------- 8. ASM1 仿真动力学与 RL 环境参数 ----------------
+# 确保 UI 层的高级开发者选项能够真正控制底层 PPO 仿真环境
+asm1:
+  # 反应器默认物理状态
+  volume: 5000.0                  # 反应器体积 (m³)
+  default_kla: 80.0               # 默认氧传质系数 (1/d)
+  default_flow: 10000.0           # 默认进水流量 (m³/d)
+  default_cod_in: 300.0           # 默认进水 COD (mg/L)
+  default_nh3_in: 30.0            # 默认进水氨氮 (mg/L)
+  default_do_in: 1.5              # 默认进水溶解氧 (mg/L)
+  
+  # 出水指标限制 (用于 RL 奖励函数计算)
+  default_cod_limit: 50.0         # COD 排放限值 (mg/L)
+  default_nh3_limit: 5.0          # 氨氮排放限值 (mg/L)
+  saturation_do: 9.0              # 饱和溶解氧浓度 (mg/L)
+  
+  # 核心动力学参数 (活性污泥 1 号模型)
+  Y_H: 0.67                       # 异养菌产率系数
+  Y_A: 0.24                       # 自养菌产率系数
+  i_XB: 0.086                     # 生物量中氮的质量分数
+  mu_h: 4.0                       # 异养菌最大比生长速率 (1/d)
+  k_s: 20.0                       # 异养菌半饱和系数 (mg COD/L)
+  k_oh: 0.5                       # 异养菌氧半饱和系数 (mg O2/L)
+  k_no: 0.5                       # 异养菌硝酸盐半饱和系数 (mg N/L)
+  b_h: 0.3                        # 异养菌衰减系数 (1/d)
+  mu_a: 0.8                       # 自养菌最大比生长速率 (1/d)
+  k_nh: 1.5                       # 自养菌氨氮半饱和系数 (mg N/L)
+  k_oa: 0.8                       # 自养菌氧半饱和系数 (mg O2/L)
+  b_a: 0.05                       # 自养菌衰减系数 (1/d)
+  
+  # 状态初始猜测值 (供校准算法使用)
+  X_H_guess: 2500.0               # 异养菌浓度初始猜测 (mg/L)
+  X_A_guess: 100.0                # 自养菌浓度初始猜测 (mg/L)
+
+  # 强化学习 (RL) 环境边界与惩罚权重
+  rl_kla_bounds: [10.0, 200.0]    # KLA 动作空间边界
+  rl_w_aeration: 2.0              # 曝气能耗惩罚权重
+  rl_w_smooth: 1.0                # 动作平滑度惩罚权重
+  rl_penalty_cod: 5.0             # COD 超标惩罚系数
+  rl_penalty_nh3: 8.0             # 氨氮超标惩罚系数
+  rl_reward_clip: 100.0           # 奖励截断阈值
