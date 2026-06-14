@@ -134,6 +134,9 @@ class IndustrialTFT(nn.Module):
         lstm_dropout = dropout if lstm_layers > 1 else 0.0
         self.lstm = nn.LSTM(hidden_size, hidden_size, lstm_layers,
                             batch_first=True, dropout=lstm_dropout)
+        # [Fix] Pre-flatten LSTM weights to prevent ONNX dynamo export warning:
+        # "The tensor attributes self.lstm._flat_weights[...] were assigned during export"
+        self.lstm.flatten_parameters()
 
         # Multi-Head Self-Attention (core TFT component)
         self.attn = nn.MultiheadAttention(
@@ -352,12 +355,15 @@ class TFTEngine:
         self.model.eval()
         dummy_input = torch.randn(1, self.cfg.seq_len, self.cfg.num_features).to(self.device)
 
-        # [修复] 只将 batch_size 声明为动态维度，seq_len 和 num_features 保持静态
-        # 因为模型在 trace 时已经固定了序列长度和特征数，声明动态会导致冲突
-        dynamic_axes = {
-            'input_data': {0: 'batch_size'},
-            'prediction': {0: 'batch_size'},
-            'feature_weights': {0: 'batch_size'}
+        # [Fix] Use dynamic_shapes instead of deprecated dynamic_axes (PyTorch 2.5+)
+        # dynamic_axes with dynamo=True causes: "UserWarning: 'dynamic_axes' is not
+        # recommended when dynamo=True, and may lead to Constraints violated."
+        from torch.export import Dim
+        batch_dim = Dim("batch_size", min=1, max=128)
+        dynamic_shapes = {
+            'input_data': {0: batch_dim},
+            'prediction': {0: batch_dim},
+            'feature_weights': {0: batch_dim}
         }
 
         # [修复] Windows 控制台 GBK 编码兼容：临时将 stdout 切换为 UTF-8
@@ -396,8 +402,7 @@ class TFTEngine:
                     opset_version=_opset,
                     input_names=['input_data'],
                     output_names=['prediction', 'feature_weights'],
-                    dynamic_axes=dynamic_axes,
-                    do_constant_folding=True
+                    dynamic_shapes=dynamic_shapes,
                 )
         finally:
             # 恢复原始 stdout

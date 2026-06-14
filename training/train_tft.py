@@ -101,6 +101,13 @@ def train_tft():
         y_train_np = y_train_np.mean(axis=1)   # (N, horizon, 1) -> (N, 1)
     elif y_train_np.ndim == 2 and y_train_np.shape[1] > 1:
         y_train_np = y_train_np.mean(axis=1, keepdims=True)  # (N, horizon) -> (N, 1)
+    elif y_train_np.ndim == 1:
+        y_train_np = y_train_np.reshape(-1, 1)  # (N,) -> (N, 1)
+    elif y_train_np.ndim > 3:
+        raise ValueError(
+            f"Unexpected y shape: {y_train_np.shape} (ndim={y_train_np.ndim}). "
+            f"Expected 1D/2D/3D array from build_tft_sequences."
+        )
 
     # [验证] X 特征维度必须与模型配置一致
     expected_features = train_config.num_features
@@ -177,6 +184,7 @@ def train_tft():
 
     # --- 4. 模型导出 ---
     logger.info("📦 正在导出 ONNX 模型...")
+    onnx_ok = False
     try:
         model_dir = paths_cfg.model_dir
         if not model_dir.exists():
@@ -190,6 +198,7 @@ def train_tft():
             num_features=model_cfg.tft_num_features
         )
         logger.success(f"🎉 ONNX 验证通过 | 示例预测: {verification['prediction']:.4f}")
+        onnx_ok = True
 
     except (ImportError, ModuleNotFoundError) as e:
         logger.error(f"❌ ONNX 导出缺少依赖: {e}")
@@ -200,10 +209,13 @@ def train_tft():
         logger.error(f"❌ ONNX 导出失败: {e}")
         import traceback
         traceback.print_exc()
-        logger.warning("模型权重已训练完成，但 ONNX 导出未完成。")
 
     logger.info("=" * 60)
-    logger.info("💾 流程结束")
+    if onnx_ok:
+        logger.success("💾 TFT 训练 + ONNX 导出完成")
+    else:
+        logger.warning("⚠️  训练完成但 ONNX 导出失败，start.bat 将仅使用 LGBM 推理")
+        logger.info("   可重试: venv\\Scripts\\python.exe training\\train_tft.py")
     logger.info("=" * 60)
 
 if __name__ == "__main__":

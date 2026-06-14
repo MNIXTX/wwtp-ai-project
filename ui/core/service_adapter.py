@@ -56,6 +56,28 @@ except ImportError:
     pass
 
 
+# ---- Module-level cached factory (st.cache_resource can't decorate classmethods) ----
+@st.cache_resource(show_spinner=False)
+def _load_gateway_cached():
+    """Create and cache the WaterQualityPredictor across all Streamlit reruns.
+
+    The predictor loads ONNX + LGBM models which takes ~2-5 seconds.
+    Caching avoids reloading on every page refresh or widget interaction.
+    Cache is invalidated when reset_all_instances() is called.
+    """
+    if WaterQualityPredictor is None:
+        raise RuntimeError("WaterQualityPredictor module not found")
+    return WaterQualityPredictor()
+
+
+@st.cache_resource(show_spinner=False)
+def _load_pipeline_cached():
+    """Create and cache WWTPDataPipeline across Streamlit reruns."""
+    if WWTPDataPipeline is None:
+        raise RuntimeError("WWTPDataPipeline module not found")
+    return WWTPDataPipeline()
+
+
 # ============================================================
 class SystemAdapter:
     """
@@ -63,30 +85,18 @@ class SystemAdapter:
     所有方法均为 @classmethod，作为全局统一网关。
     """
 
-    # ---- 单例缓存 ----
-    _gateway_instance = None
-    _pipeline_instance = None
-
     # ==========================================
-    # 1. 单例管理
+    # 1. 单例管理 (backed by st.cache_resource)
     # ==========================================
     @classmethod
     def get_gateway(cls):
-        """获取预测网关单例 (线程安全由 GIL 保证)"""
-        if cls._gateway_instance is None:
-            if WaterQualityPredictor is None:
-                raise RuntimeError("WaterQualityPredictor module not found")
-            cls._gateway_instance = WaterQualityPredictor()
-        return cls._gateway_instance
+        """获取预测网关 — 由 st.cache_resource 保证跨 rerun 复用"""
+        return _load_gateway_cached()
 
     @classmethod
     def get_pipeline(cls):
-        """获取数据管道单例"""
-        if cls._pipeline_instance is None:
-            if WWTPDataPipeline is None:
-                raise RuntimeError("WWTPDataPipeline module not found")
-            cls._pipeline_instance = WWTPDataPipeline()
-        return cls._pipeline_instance
+        """获取数据管道 — 由 st.cache_resource 保证跨 rerun 复用"""
+        return _load_pipeline_cached()
 
     # ==========================================
     # 2. 系统健康检查 (纯数据，无 Streamlit 副作用)
@@ -261,8 +271,8 @@ class SystemAdapter:
 
     @classmethod
     def reset_all_instances(cls):
-        cls._gateway_instance = None
-        cls._pipeline_instance = None
+        _load_gateway_cached.clear()
+        _load_pipeline_cached.clear()
         cls.get_current_config.clear()
         cls.get_dashboard_data.clear()
 
@@ -278,8 +288,8 @@ class SystemAdapter:
     @classmethod
     def _invalidate_caches(cls):
         """内部：重置单例与 Streamlit 缓存"""
-        cls._gateway_instance = None
-        cls._pipeline_instance = None
+        _load_gateway_cached.clear()
+        _load_pipeline_cached.clear()
         cls.get_current_config.clear()
 
     # ==========================================
@@ -383,5 +393,9 @@ class SystemAdapter:
             task_info["error"] = log_content
         else:
             task_info["output"] = log_content
+            # [Fix] Training completed successfully — reset gateway so newly
+            # trained models (ONNX, LGBM) are picked up without restarting Streamlit.
+            cls.reset_all_instances()
+            task_info["info"] = "模型已自动重载，无需重启应用。"
 
         return task_info

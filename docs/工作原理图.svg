@@ -1,0 +1,287 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1700" font-family="'Microsoft YaHei', 'SimHei', 'Segoe UI', Arial, sans-serif">
+  <defs>
+    <filter id="sh" x="-5%" y="-5%" width="115%" height="120%">
+      <feDropShadow dx="1" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.10"/>
+    </filter>
+    <filter id="sh2" x="-5%" y="-5%" width="115%" height="120%">
+      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-color="#000" flood-opacity="0.06"/>
+    </filter>
+    <marker id="aData" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#1e88e5"/></marker>
+    <marker id="aPipe" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#00897b"/></marker>
+    <marker id="aASM"  markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#43a047"/></marker>
+    <marker id="aTFT"  markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#8e24aa"/></marker>
+    <marker id="aLGBM" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#fb8c00"/></marker>
+    <marker id="aFusion" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#e53935"/></marker>
+    <marker id="aDec" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#ff7043"/></marker>
+    <marker id="aOut" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#039be5"/></marker>
+  </defs>
+
+  <!-- 白色背景 -->
+  <rect width="1200" height="1700" fill="#ffffff"/>
+
+  <!-- ====== 顶部标题栏 ====== -->
+  <rect x="0" y="0" width="1200" height="72" fill="#1565c0"/>
+  <text x="600" y="33" text-anchor="middle" fill="#ffffff" font-size="22" font-weight="bold" letter-spacing="3">WWTP AI 智慧水务管控平台 — 系统工作原理</text>
+  <text x="600" y="55" text-anchor="middle" fill="#bbdefb" font-size="12" letter-spacing="1">ASM1 机理模型 + TFT 时序预测 + LightGBM 基线 + PPO 强化学习</text>
+
+  <!-- ====== ① 数据采集层 ====== -->
+  <rect x="30" y="88" width="1140" height="105" rx="10" fill="#e3f2fd" stroke="#90caf9" stroke-width="1.5"/>
+  <rect x="30" y="88" width="140" height="26" rx="10" fill="#1e88e5"/>
+  <text x="100" y="106" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">① 数据采集层</text>
+
+  <rect x="55" y="124" width="330" height="55" rx="8" fill="#ffffff" filter="url(#sh2)" stroke="#bbdefb" stroke-width="1"/>
+  <text x="220" y="147" text-anchor="middle" fill="#1565c0" font-size="13" font-weight="bold">📄 CSV 数据文件</text>
+  <text x="220" y="166" text-anchor="middle" fill="#546e7a" font-size="10">时序 SCADA 数据 · data/scada_data.csv</text>
+
+  <rect x="435" y="124" width="330" height="55" rx="8" fill="#ffffff" filter="url(#sh2)" stroke="#bbdefb" stroke-width="1"/>
+  <text x="600" y="147" text-anchor="middle" fill="#1565c0" font-size="13" font-weight="bold">⌨️ 手动输入 / API</text>
+  <text x="600" y="166" text-anchor="middle" fill="#546e7a" font-size="10">Web UI · FastAPI POST /predict · CLI</text>
+
+  <rect x="815" y="124" width="330" height="55" rx="8" fill="#ffffff" filter="url(#sh2)" stroke="#bbdefb" stroke-width="1"/>
+  <text x="980" y="147" text-anchor="middle" fill="#1565c0" font-size="13" font-weight="bold">🔀 数据源选择器</text>
+  <text x="980" y="166" text-anchor="middle" fill="#546e7a" font-size="10">下拉选取 · 拖拽上传 · 自定义路径</text>
+
+  <!-- 数据源 → 管道 箭头 -->
+  <line x1="220" y1="179" x2="220" y2="208" stroke="#1e88e5" stroke-width="2" marker-end="url(#aData)"/>
+  <line x1="600" y1="179" x2="600" y2="208" stroke="#1e88e5" stroke-width="2" marker-end="url(#aData)"/>
+  <line x1="980" y1="179" x2="980" y2="200" stroke="#1e88e5" stroke-width="1.5"/>
+  <line x1="980" y1="200" x2="600" y2="200" stroke="#1e88e5" stroke-width="1.5"/>
+  <line x1="600" y1="200" x2="600" y2="208" stroke="#1e88e5" stroke-width="2" marker-end="url(#aData)"/>
+
+  <!-- ====== ② ETL 数据管道 ====== -->
+  <rect x="200" y="213" width="800" height="100" rx="10" fill="#e0f2f1" filter="url(#sh)" stroke="#4db6ac" stroke-width="1.5"/>
+  <rect x="200" y="213" width="200" height="26" rx="10" fill="#00897b"/>
+  <text x="300" y="231" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">② 数据管道 (ETL)</text>
+
+  <rect x="220" y="248" width="175" height="50" rx="6" fill="#ffffff" stroke="#80cbc4" stroke-width="0.8"/>
+  <text x="307" y="268" text-anchor="middle" fill="#00695c" font-size="10" font-weight="bold">列名自动映射</text>
+  <text x="307" y="285" text-anchor="middle" fill="#78909c" font-size="9">30+ 别名兼容</text>
+
+  <rect x="410" y="248" width="175" height="50" rx="6" fill="#ffffff" stroke="#80cbc4" stroke-width="0.8"/>
+  <text x="497" y="268" text-anchor="middle" fill="#00695c" font-size="10" font-weight="bold">物理限幅清洗</text>
+  <text x="497" y="285" text-anchor="middle" fill="#78909c" font-size="9">飞点过滤 + 插值</text>
+
+  <rect x="600" y="248" width="175" height="50" rx="6" fill="#ffffff" stroke="#80cbc4" stroke-width="0.8"/>
+  <text x="687" y="268" text-anchor="middle" fill="#00695c" font-size="10" font-weight="bold">滑动窗口构建</text>
+  <text x="687" y="285" text-anchor="middle" fill="#78909c" font-size="9">lookback = 24h</text>
+
+  <rect x="790" y="248" width="190" height="50" rx="6" fill="#ffffff" stroke="#80cbc4" stroke-width="0.8"/>
+  <text x="885" y="268" text-anchor="middle" fill="#00695c" font-size="10" font-weight="bold">双 Scaler 归一化</text>
+  <text x="885" y="285" text-anchor="middle" fill="#78909c" font-size="9">StandardScaler</text>
+
+  <line x1="395" y1="274" x2="407" y2="274" stroke="#00897b" stroke-width="1" marker-end="url(#aPipe)"/>
+  <line x1="585" y1="274" x2="597" y2="274" stroke="#00897b" stroke-width="1" marker-end="url(#aPipe)"/>
+  <line x1="775" y1="274" x2="787" y2="274" stroke="#00897b" stroke-width="1" marker-end="url(#aPipe)"/>
+
+  <!-- 管道 → 三路分发 -->
+  <path d="M600,313 L600,345" stroke="#455a64" stroke-width="2.5"/>
+  <path d="M600,345 L260,345 L260,372" stroke="#43a047" stroke-width="2" fill="none" marker-end="url(#aASM)"/>
+  <path d="M600,345 L600,372" stroke="#8e24aa" stroke-width="2" fill="none" marker-end="url(#aTFT)"/>
+  <path d="M600,345 L940,345 L940,372" stroke="#fb8c00" stroke-width="2" fill="none" marker-end="url(#aLGBM)"/>
+  <text x="600" y="340" text-anchor="middle" fill="#455a64" font-size="10" font-weight="bold">三路并行分发</text>
+
+  <!-- ====== ③ 三模型并行 ====== -->
+
+  <!-- ASM1 -->
+  <rect x="50" y="378" width="350" height="235" rx="10" fill="#e8f5e9" filter="url(#sh)" stroke="#66bb6a" stroke-width="1.5"/>
+  <rect x="50" y="378" width="350" height="30" rx="10" fill="#43a047"/><rect x="50" y="398" width="350" height="10" fill="#43a047"/>
+  <text x="225" y="399" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold">🧬 ASM1 活性污泥机理模型</text>
+
+  <rect x="65" y="418" width="320" height="38" rx="5" fill="#ffffff" stroke="#a5d6a7" stroke-width="0.7"/>
+  <text x="225" y="434" text-anchor="middle" fill="#2e7d32" font-size="10" font-weight="bold">📐 ODE 常微分方程求解器 (numba JIT)</text>
+  <text x="225" y="449" text-anchor="middle" fill="#78909c" font-size="8">13组分 · 温度校正 (Arrhenius) · 10⁻⁶ 容差自适应步长</text>
+
+  <rect x="65" y="462" width="320" height="38" rx="5" fill="#ffffff" stroke="#a5d6a7" stroke-width="0.7"/>
+  <text x="225" y="478" text-anchor="middle" fill="#2e7d32" font-size="10" font-weight="bold">🔬 动力学参数 (19参数)</text>
+  <text x="225" y="493" text-anchor="middle" fill="#78909c" font-size="8">μ_H · K_S · K_OH · b_H · Y_H · μ_A · K_NH · K_OA · b_A · Y_A ...</text>
+
+  <rect x="65" y="506" width="320" height="38" rx="5" fill="#ffffff" stroke="#a5d6a7" stroke-width="0.7"/>
+  <text x="225" y="522" text-anchor="middle" fill="#2e7d32" font-size="10" font-weight="bold">🔧 差分进化自动校准</text>
+  <text x="225" y="537" text-anchor="middle" fill="#78909c" font-size="8">popsize=15 · maxiter=50 · 容差 10⁻⁴ · COD+NH₃ 双目标</text>
+
+  <rect x="65" y="550" width="155" height="50" rx="5" fill="#f1f8e9" stroke="#a5d6a7" stroke-width="0.7"/>
+  <text x="142" y="570" text-anchor="middle" fill="#33691e" font-size="9" font-weight="bold">反应器配置</text>
+  <text x="142" y="587" text-anchor="middle" fill="#558b2f" font-size="8">V=5000m³ · S_O_sat=9mg/L</text>
+  <rect x="230" y="550" width="155" height="50" rx="5" fill="#f1f8e9" stroke="#a5d6a7" stroke-width="0.7"/>
+  <text x="307" y="570" text-anchor="middle" fill="#33691e" font-size="9" font-weight="bold">进水边界条件</text>
+  <text x="307" y="587" text-anchor="middle" fill="#558b2f" font-size="8">Q_in · S_S_in · S_NH_in · S_O_in</text>
+
+  <!-- TFT -->
+  <rect x="425" y="378" width="350" height="235" rx="10" fill="#f3e5f5" filter="url(#sh)" stroke="#ab47bc" stroke-width="1.5"/>
+  <rect x="425" y="378" width="350" height="30" rx="10" fill="#8e24aa"/><rect x="425" y="398" width="350" height="10" fill="#8e24aa"/>
+  <text x="600" y="399" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold">⏳ TFT 时序预测模型 (PyTorch→ONNX)</text>
+
+  <rect x="440" y="418" width="320" height="38" rx="5" fill="#ffffff" stroke="#ce93d8" stroke-width="0.7"/>
+  <text x="600" y="434" text-anchor="middle" fill="#6a1b9a" font-size="10" font-weight="bold">🔮 Variable Selection Network (VSN)</text>
+  <text x="600" y="449" text-anchor="middle" fill="#78909c" font-size="8">7 输入特征自适应加权 · 软注意力门控</text>
+
+  <rect x="440" y="462" width="320" height="38" rx="5" fill="#ffffff" stroke="#ce93d8" stroke-width="0.7"/>
+  <text x="600" y="478" text-anchor="middle" fill="#6a1b9a" font-size="10" font-weight="bold">🧠 LSTM 编码器-解码器</text>
+  <text x="600" y="493" text-anchor="middle" fill="#78909c" font-size="8">hidden=128 · num_layers=2 · dropout=0.15 · seq_len=24h</text>
+
+  <rect x="440" y="506" width="320" height="38" rx="5" fill="#ffffff" stroke="#ce93d8" stroke-width="0.7"/>
+  <text x="600" y="522" text-anchor="middle" fill="#6a1b9a" font-size="10" font-weight="bold">🎯 Multi-Head Attention (4头) + GLU</text>
+  <text x="600" y="537" text-anchor="middle" fill="#78909c" font-size="8">长期依赖捕获 · 门控线性单元非线性变换</text>
+
+  <rect x="440" y="550" width="155" height="50" rx="5" fill="#faf5fc" stroke="#ce93d8" stroke-width="0.7"/>
+  <text x="517" y="570" text-anchor="middle" fill="#4a148c" font-size="9" font-weight="bold">ONNX 导出</text>
+  <text x="517" y="587" text-anchor="middle" fill="#7b1fa2" font-size="8">opset≥18 · CPU 推理</text>
+  <rect x="605" y="550" width="155" height="50" rx="5" fill="#faf5fc" stroke="#ce93d8" stroke-width="0.7"/>
+  <text x="682" y="570" text-anchor="middle" fill="#4a148c" font-size="9" font-weight="bold">训练配置</text>
+  <text x="682" y="587" text-anchor="middle" fill="#7b1fa2" font-size="8">50 epochs · lr=0.001 · bs=128</text>
+
+  <!-- LightGBM -->
+  <rect x="800" y="378" width="350" height="235" rx="10" fill="#fff8e1" filter="url(#sh)" stroke="#ffa726" stroke-width="1.5"/>
+  <rect x="800" y="378" width="350" height="30" rx="10" fill="#fb8c00"/><rect x="800" y="398" width="350" height="10" fill="#fb8c00"/>
+  <text x="975" y="399" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold">🌲 LightGBM 梯度提升基线</text>
+
+  <rect x="815" y="418" width="320" height="38" rx="5" fill="#ffffff" stroke="#ffe0b2" stroke-width="0.7"/>
+  <text x="975" y="434" text-anchor="middle" fill="#e65100" font-size="10" font-weight="bold">🏗️ 特征工程 (LGBMFeatureBuilder)</text>
+  <text x="975" y="449" text-anchor="middle" fill="#78909c" font-size="8">滞后特征 [1,3,6,12,24]h · 滚动窗口 [6,12,24]h · 循环编码</text>
+
+  <rect x="815" y="462" width="320" height="38" rx="5" fill="#ffffff" stroke="#ffe0b2" stroke-width="0.7"/>
+  <text x="975" y="478" text-anchor="middle" fill="#e65100" font-size="10" font-weight="bold">🌳 GBDT 梯度提升决策树</text>
+  <text x="975" y="493" text-anchor="middle" fill="#78909c" font-size="8">n_estimators=2000 · lr=0.03 · max_depth=7 · leaves=63</text>
+
+  <rect x="815" y="506" width="320" height="38" rx="5" fill="#ffffff" stroke="#ffe0b2" stroke-width="0.7"/>
+  <text x="975" y="522" text-anchor="middle" fill="#e65100" font-size="10" font-weight="bold">📊 时间序列交叉验证 (5折)</text>
+  <text x="975" y="537" text-anchor="middle" fill="#78909c" font-size="8">TimeSeriesSplit · 早停=100轮 · L1+L2 正则化 · 列/行采样 70%</text>
+
+  <rect x="815" y="550" width="155" height="50" rx="5" fill="#fffde7" stroke="#ffe0b2" stroke-width="0.7"/>
+  <text x="892" y="570" text-anchor="middle" fill="#bf360c" font-size="9" font-weight="bold">模型文件</text>
+  <text x="892" y="587" text-anchor="middle" fill="#e64a19" font-size="8">.txt · Booster API</text>
+  <rect x="980" y="550" width="155" height="50" rx="5" fill="#fffde7" stroke="#ffe0b2" stroke-width="0.7"/>
+  <text x="1057" y="570" text-anchor="middle" fill="#bf360c" font-size="9" font-weight="bold">特征维度</text>
+  <text x="1057" y="587" text-anchor="middle" fill="#e64a19" font-size="8">动态推断 ~101 维</text>
+
+  <!-- 模型 → 融合引擎 -->
+  <path d="M225,613 L225,655 L530,655 L530,680" stroke="#43a047" stroke-width="2" fill="none" marker-end="url(#aASM)"/>
+  <path d="M600,613 L600,680" stroke="#8e24aa" stroke-width="2" fill="none" marker-end="url(#aTFT)"/>
+  <path d="M975,613 L975,655 L670,655 L670,680" stroke="#fb8c00" stroke-width="2" fill="none" marker-end="url(#aLGBM)"/>
+
+  <!-- ====== ④ 融合推理引擎 ====== -->
+  <rect x="185" y="685" width="830" height="115" rx="12" fill="#fce4ec" filter="url(#sh)" stroke="#ef5350" stroke-width="2"/>
+  <rect x="185" y="685" width="220" height="28" rx="12" fill="#e53935"/>
+  <text x="295" y="704" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold">④ 融合推理引擎</text>
+
+  <rect x="210" y="722" width="230" height="46" rx="7" fill="#ffffff" stroke="#ef9a9a" stroke-width="0.8"/>
+  <text x="325" y="741" text-anchor="middle" fill="#b71c1c" font-size="11" font-weight="bold">ASM1 机理预测</text>
+  <text x="325" y="758" text-anchor="middle" fill="#78909c" font-size="9">5维状态向量 · ODE 1h步长</text>
+
+  <text x="465" y="749" text-anchor="middle" fill="#e53935" font-size="20" font-weight="bold">+</text>
+
+  <rect x="485" y="722" width="230" height="46" rx="7" fill="#ffffff" stroke="#ef9a9a" stroke-width="0.8"/>
+  <text x="600" y="741" text-anchor="middle" fill="#b71c1c" font-size="11" font-weight="bold">ML 残差补偿 (加权融合)</text>
+  <text x="600" y="758" text-anchor="middle" fill="#78909c" font-size="9">w_lgbm × LGBM + w_tft × TFT</text>
+
+  <text x="740" y="749" text-anchor="middle" fill="#e53935" font-size="20" font-weight="bold">→</text>
+
+  <rect x="760" y="722" width="230" height="46" rx="7" fill="#ffffff" stroke="#ef9a9a" stroke-width="0.8"/>
+  <text x="875" y="741" text-anchor="middle" fill="#b71c1c" font-size="11" font-weight="bold">融合状态向量</text>
+  <text x="875" y="758" text-anchor="middle" fill="#78909c" font-size="9">机理 + 数据 · 双重校验</text>
+
+  <text x="600" y="790" text-anchor="middle" fill="#c62828" font-size="9" opacity="0.7">w_asm1 = 0.4  ·  w_lgbm = 0.3  ·  w_tft = 0.3  ·  divergence_threshold = 3.0</text>
+
+  <path d="M600,800 L600,835" stroke="#455a64" stroke-width="3" fill="none" marker-end="url(#aFusion)"/>
+
+  <!-- ====== ⑤ 智能决策层 ====== -->
+  <rect x="300" y="840" width="600" height="85" rx="12" fill="#fff3e0" filter="url(#sh)" stroke="#ff8a65" stroke-width="1.5"/>
+  <rect x="300" y="840" width="280" height="28" rx="12" fill="#ff7043"/>
+  <text x="440" y="859" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold">⑤ 智能决策层 (Policy)</text>
+
+  <rect x="320" y="878" width="170" height="35" rx="6" fill="#ffffff" stroke="#ffab91" stroke-width="0.8"/>
+  <text x="405" y="893" text-anchor="middle" fill="#bf360c" font-size="10" font-weight="bold">🤖 PPO 强化学习</text>
+  <text x="405" y="906" text-anchor="middle" fill="#78909c" font-size="8">SB3 · deterministic=True</text>
+
+  <rect x="505" y="878" width="170" height="35" rx="6" fill="#ffffff" stroke="#ffab91" stroke-width="0.8"/>
+  <text x="590" y="893" text-anchor="middle" fill="#bf360c" font-size="10" font-weight="bold">📋 启发式规则</text>
+  <text x="590" y="906" text-anchor="middle" fill="#78909c" font-size="8">COD_in &gt; 500 触发</text>
+
+  <rect x="690" y="878" width="190" height="35" rx="6" fill="#ffffff" stroke="#ffab91" stroke-width="0.8"/>
+  <text x="785" y="893" text-anchor="middle" fill="#b71c1c" font-size="10" font-weight="bold">🛡️ Fail-Safe 安全兜底</text>
+  <text x="785" y="906" text-anchor="middle" fill="#78909c" font-size="8">三级降级 · 保守指令</text>
+
+  <path d="M600,925 L600,955" stroke="#455a64" stroke-width="3" fill="none" marker-end="url(#aDec)"/>
+
+  <!-- ====== ⑥ 控制输出 ====== -->
+  <rect x="200" y="960" width="800" height="45" rx="10" fill="#e1f5fe" filter="url(#sh)" stroke="#29b6f6" stroke-width="1.5"/>
+  <text x="600" y="978" text-anchor="middle" fill="#01579b" font-size="13" font-weight="bold">⑥ 控制输出: KLa (曝气量) · R_ratio (回流比) · blower_freq (鼓风机频率) · pump_flow (泵流量)</text>
+  <text x="600" y="995" text-anchor="middle" fill="#0277bd" font-size="9">目标: 出水 COD ≤ 50 mg/L · 出水 NH₃ ≤ 5 mg/L · 最低能耗</text>
+
+  <!-- ====== 分隔线 ====== -->
+  <line x1="100" y1="1030" x2="1100" y2="1030" stroke="#bdbdbd" stroke-width="0.8" stroke-dasharray="6,4"/>
+
+  <!-- ====== ⑦ Web 应用层 ====== -->
+  <text x="600" y="1060" text-anchor="middle" fill="#37474f" font-size="16" font-weight="bold">⑦ Web 应用层 (Streamlit UI + FastAPI)</text>
+
+  <!-- Streamlit UI -->
+  <rect x="60" y="1075" width="660" height="200" rx="10" fill="#ede7f6" filter="url(#sh)" stroke="#7986cb" stroke-width="1.5"/>
+  <rect x="60" y="1075" width="200" height="28" rx="10" fill="#5c6bc0"/>
+  <text x="160" y="1094" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">🖥️ Streamlit UI :8501</text>
+
+  <rect x="80" y="1115" width="140" height="65" rx="6" fill="#ffffff" stroke="#c5cae9" stroke-width="0.8"/>
+  <text x="150" y="1138" text-anchor="middle" fill="#283593" font-size="10" font-weight="bold">📊 数据浏览与看板</text>
+  <text x="150" y="1155" text-anchor="middle" fill="#78909c" font-size="8">SCADA 趋势 · AI 预测</text>
+  <text x="150" y="1169" text-anchor="middle" fill="#78909c" font-size="8">实时图表展示</text>
+
+  <rect x="235" y="1115" width="140" height="65" rx="6" fill="#ffffff" stroke="#c5cae9" stroke-width="0.8"/>
+  <text x="305" y="1138" text-anchor="middle" fill="#283593" font-size="10" font-weight="bold">🎯 模型训练与校准</text>
+  <text x="305" y="1155" text-anchor="middle" fill="#78909c" font-size="8">一键训练 · 日志追踪</text>
+  <text x="305" y="1169" text-anchor="middle" fill="#78909c" font-size="8">ASM1参数自动校准</text>
+
+  <rect x="390" y="1115" width="140" height="65" rx="6" fill="#ffffff" stroke="#c5cae9" stroke-width="0.8"/>
+  <text x="460" y="1138" text-anchor="middle" fill="#283593" font-size="10" font-weight="bold">⚙️ 系统配置管理</text>
+  <text x="460" y="1155" text-anchor="middle" fill="#78909c" font-size="8">YAML 在线编辑器</text>
+  <text x="460" y="1169" text-anchor="middle" fill="#78909c" font-size="8">热重载 · 系统清理</text>
+
+  <rect x="545" y="1115" width="155" height="65" rx="6" fill="#ffffff" stroke="#c5cae9" stroke-width="0.8"/>
+  <text x="622" y="1138" text-anchor="middle" fill="#283593" font-size="10" font-weight="bold">🔮 手动预测</text>
+  <text x="622" y="1155" text-anchor="middle" fill="#78909c" font-size="8">双模型交叉验证</text>
+  <text x="622" y="1169" text-anchor="middle" fill="#78909c" font-size="8">COD 预测</text>
+
+  <text x="390" y="1205" text-anchor="middle" fill="#5c6bc0" font-size="10">🌐 中英双语切换  ·  📁 数据源选择 (下拉/拖拽/自定义)  ·  📡 后台训练不阻塞UI</text>
+
+  <!-- FastAPI 推理服务 -->
+  <rect x="760" y="1075" width="380" height="200" rx="10" fill="#fce4ec" filter="url(#sh)" stroke="#e57373" stroke-width="1.5"/>
+  <rect x="760" y="1075" width="260" height="28" rx="10" fill="#d32f2f"/>
+  <text x="890" y="1094" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">⚡ FastAPI 推理服务 :8502</text>
+
+  <rect x="780" y="1115" width="340" height="40" rx="6" fill="#ffffff" stroke="#ef9a9a" stroke-width="0.8"/>
+  <text x="950" y="1133" text-anchor="middle" fill="#c62828" font-size="10" font-weight="bold">POST /predict</text>
+  <text x="950" y="1148" text-anchor="middle" fill="#78909c" font-size="8">JSON 输入 → 融合推理 → 控制指令返回</text>
+
+  <rect x="780" y="1165" width="340" height="40" rx="6" fill="#ffffff" stroke="#ef9a9a" stroke-width="0.8"/>
+  <text x="950" y="1183" text-anchor="middle" fill="#c62828" font-size="10" font-weight="bold">GET /health · GET /docs</text>
+  <text x="950" y="1198" text-anchor="middle" fill="#78909c" font-size="8">健康检查 · 自动生成 Swagger 文档</text>
+
+  <text x="950" y="1230" text-anchor="middle" fill="#c62828" font-size="10">模型常驻内存 · 避免 Streamlit 重载</text>
+  <text x="950" y="1248" text-anchor="middle" fill="#c62828" font-size="10">独立扩展 · 支持 --reload 热更新</text>
+
+  <!-- UI ↔ FastAPI 箭头 -->
+  <line x1="720" y1="1160" x2="757" y2="1160" stroke="#5c6bc0" stroke-width="2" marker-end="url(#aOut)" stroke-dasharray="5,3"/>
+  <text x="738" y="1150" text-anchor="middle" fill="#5c6bc0" font-size="8">HTTP</text>
+
+  <!-- FastAPI → 模型 虚线 -->
+  <path d="M860,1075 L860,1055 L740,1055 L740,800" stroke="#d32f2f" stroke-width="1" fill="none" stroke-dasharray="4,4" opacity="0.4"/>
+  <text x="800" y="1048" fill="#d32f2f" font-size="8" opacity="0.5">模型调用</text>
+
+  <!-- ====== ⑧ 安全机制 ====== -->
+  <rect x="60" y="1300" width="1080" height="55" rx="10" fill="#f5f5f5" filter="url(#sh2)" stroke="#e0e0e0" stroke-width="1"/>
+  <rect x="60" y="1300" width="120" height="26" rx="10" fill="#757575"/>
+  <text x="120" y="1318" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold">⑧ 安全机制</text>
+  <text x="600" y="1320" text-anchor="middle" fill="#424242" font-size="11" font-weight="bold">模型魔数校验 (txt/onnx/pkl)  ·  15秒超时保护  ·  损坏文件自动降级  ·  特征维度自动修复</text>
+  <text x="600" y="1340" text-anchor="middle" fill="#616161" font-size="10">ONNX CPU 推理  ·  Fail-Safe 安全兜底  ·  线程锁并发保护</text>
+
+  <!-- ====== 图例 ====== -->
+  <rect x="200" y="1375" width="800" height="36" rx="6" fill="#fafafa" stroke="#e0e0e0" stroke-width="0.5"/>
+  <rect x="225" y="1385" width="13" height="13" rx="3" fill="#1e88e5"/><text x="243" y="1396" fill="#546e7a" font-size="9">数据流</text>
+  <rect x="300" y="1385" width="13" height="13" rx="3" fill="#43a047"/><text x="318" y="1396" fill="#546e7a" font-size="9">ASM1 机理</text>
+  <rect x="405" y="1385" width="13" height="13" rx="3" fill="#8e24aa"/><text x="423" y="1396" fill="#546e7a" font-size="9">TFT 时序</text>
+  <rect x="510" y="1385" width="13" height="13" rx="3" fill="#fb8c00"/><text x="528" y="1396" fill="#546e7a" font-size="9">LightGBM</text>
+  <rect x="620" y="1385" width="13" height="13" rx="3" fill="#e53935"/><text x="638" y="1396" fill="#546e7a" font-size="9">融合+决策</text>
+  <rect x="730" y="1385" width="13" height="13" rx="3" fill="#5c6bc0"/><text x="748" y="1396" fill="#546e7a" font-size="9">Streamlit UI</text>
+  <rect x="840" y="1385" width="13" height="13" rx="3" fill="#d32f2f"/><text x="858" y="1396" fill="#546e7a" font-size="9">FastAPI</text>
+
+  <text x="600" y="1440" text-anchor="middle" fill="#bdbdbd" font-size="9">WWTP AI System — 污水处理厂智能优化控制系统</text>
+
+</svg>

@@ -153,6 +153,8 @@ TRANSLATIONS = {
     "success_task_submitted":        {"zh": "任务已提交: `{}`",            "en": "Task submitted: `{}`"},
     "err_launch_failed":             {"zh": "启动失败: {}",                 "en": "Launch failed: {}"},
     "training_history":              {"zh": "训练历史",                    "en": "Training History"},
+    "label_pid":                     {"zh": "进程 ID: {}",                  "en": "Process ID: {}"},
+    "label_task_type":               {"zh": "任务类型: {}",                  "en": "Task Type: {}"},
     "no_history":                    {"zh": "暂无历史任务",                "en": "No history"},
     "status_running":                {"zh": "运行中",                      "en": "Running"},
     "status_completed":              {"zh": "已完成",                      "en": "Completed"},
