@@ -1,0 +1,60 @@
+{
+  "feature_names": [
+    "inf_cod",
+    "inf_nh3",
+    "flow",
+    "DO_reactor",
+    "MLSS_reactor",
+    "temp",
+    "pH"
+  ],
+  "target_names": [
+    "eff_cod"
+  ],
+  "freq": "1h",
+  "lookback": 24,
+  "horizon": 24,
+  "physical_limits": {
+    "flow": [
+      0.0,
+      100000.0
+    ],
+    "inf_cod": [
+      0.0,
+      2000.0
+    ],
+    "eff_cod": [
+      0.0,
+      500.0
+    ],
+    "inf_nh3": [
+      0.0,
+      100.0
+    ],
+    "eff_nh3": [
+      0.0,
+      50.0
+    ],
+    "do_meas": [
+      0.0,
+      15.0
+    ],
+    "DO_reactor": [
+      0.0,
+      12.0
+    ],
+    "MLSS_reactor": [
+      0.0,
+      10000.0
+    ],
+    "ph": [
+      4.0,
+      10.0
+    ],
+    "temp": [
+      0.0,
+      45.0
+    ]
+  },
+  "lgbm_base_columns_for_inference": null
+}

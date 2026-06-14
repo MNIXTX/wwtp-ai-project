@@ -171,9 +171,8 @@ TRANSLATIONS = {
     "warn_ppo_slow":                 {"zh": "PPO 训练耗时极长 (>2小时)，提交后请确保机器不关机。",
                                           "en": "PPO training takes >2 hours. Do not shut down the machine."},
     "lgbm_baseline":                 {"zh": "LightGBM 基线模型",           "en": "LightGBM Baseline Model"},
-    "tft_temporal":                  {"zh": "TFT 时序预测",                "en": "TFT Forecasting"},
+    "tft_temporal":                  {"zh": "TFT 时序预测",                "en": "TFT Temporal Forecasting"},
     "ppo_rl":                        {"zh": "PPO 强化学习",                "en": "PPO Reinforcement Learning"},
-    "label_pid":                     {"zh": "PID: `{}`",                   "en": "PID: `{}`"},
 
     # ==================== 3-系统配置管理.py ====================
     "config_header":                 {"zh": "系统配置管理 (热重载)",       "en": "System Config Management (Hot Reload)"},
@@ -218,8 +217,8 @@ TRANSLATIONS = {
     "info_logs_not_exist":           {"zh": "logs/ 目录不存在",            "en": "logs/ directory not found"},
     "btn_clean_models":              {"zh": "清理模型缓存 (models/)",      "en": "Clean Model Cache (models/)"},
     "success_models_deleted":        {"zh": "已删除: models/",             "en": "Deleted: models/"},
-    "warn_models_need_retrain":      {"zh": "模型已删除，需要重新训练：TFT → train_tft.py | LGBM → run_lgbm.py",
-                                          "en": "Models deleted. Retrain: TFT → train_tft.py | LGBM → run_lgbm.py"},
+    "warn_models_need_retrain":      {"zh": "模型已删除，需要重新训练：TFT → training/train_tft.py | LGBM → training/train_lgbm.py",
+                                          "en": "Models deleted. Retrain: TFT → training/train_tft.py | LGBM → training/train_lgbm.py"},
     "info_models_not_exist":         {"zh": "models/ 目录不存在",          "en": "models/ directory not found"},
     "btn_clean_outputs":             {"zh": "清理输出结果 (outputs/)",     "en": "Clean Outputs (outputs/)"},
     "success_outputs_deleted":       {"zh": "已删除: outputs/",            "en": "Deleted: outputs/"},
@@ -273,13 +272,25 @@ TRANSLATIONS = {
     "usage_guide_text":              {"zh": "- 填写当前时刻的工艺参数快照值\n- 系统会自动将快照值扩展为 {} 小时的历史序列用于 TFT 预测\n- 点击 **执行预测** 后，双模型将分别推理并交叉验证",
                                           "en": "- Fill in current process parameter snapshot\n- System auto-extends to {}h history for TFT prediction\n- Click **Predict** for dual-model inference with cross-validation"},
     "feat_inf_cod":                  {"zh": "进水 COD",                    "en": "Inlet COD"},
+    "feat_inf_cod_desc":             {"zh": "进水化学需氧量，反映有机污染物负荷", "en": "Inlet chemical oxygen demand, reflects organic load"},
     "feat_inf_nh3":                  {"zh": "进水 氨氮",                   "en": "Inlet NH3"},
+    "feat_inf_nh3_desc":             {"zh": "进水氨氮浓度，影响硝化反应负荷", "en": "Inlet ammonia concentration, affects nitrification load"},
     "feat_do_reactor":               {"zh": "好氧池 DO",                   "en": "Aeration DO"},
+    "feat_do_reactor_desc":          {"zh": "好氧区溶解氧浓度，影响 COD 去除与硝化效率", "en": "Aerobic zone dissolved oxygen, affects COD removal and nitrification"},
     "feat_mlss_reactor":             {"zh": "好氧池 MLSS",                 "en": "Aeration MLSS"},
+    "feat_mlss_reactor_desc":        {"zh": "混合液悬浮固体浓度，代表活性污泥微生物量", "en": "Mixed liquor suspended solids, represents biomass concentration"},
     "feat_flow":                     {"zh": "进水流量",                    "en": "Inlet Flow"},
+    "feat_flow_desc":                {"zh": "单位时间进入厂区的污水体积",   "en": "Wastewater volume entering plant per unit time"},
     "feat_do_meas":                  {"zh": "DO 测量值",                   "en": "DO Measured"},
+    "feat_do_meas_desc":             {"zh": "溶解氧仪表在线测量值",        "en": "Online DO meter reading"},
+    "feat_temp":                     {"zh": "水温",                        "en": "Water Temp"},
+    "feat_temp_desc":                {"zh": "反应器水温，影响微生物反应速率 (Arrhenius 效应)", "en": "Reactor water temperature, affects microbial kinetics (Arrhenius)"},
+    "feat_pH":                       {"zh": "pH 值",                       "en": "pH"},
+    "feat_pH_desc":                  {"zh": "反应器 pH 值，偏离 7.5-8.5 会抑制硝化菌活性", "en": "Reactor pH; deviation from 7.5-8.5 inhibits nitrifiers"},
     "feat_eff_cod":                  {"zh": "出水 COD",                    "en": "Effluent COD"},
+    "feat_eff_cod_desc":             {"zh": "处理后出水的化学需氧量 (输出/参考值)", "en": "Treated effluent COD (output/reference)"},
     "feat_eff_nh3":                  {"zh": "出水 氨氮",                   "en": "Effluent NH3"},
+    "feat_eff_nh3_desc":             {"zh": "处理后出水的氨氮浓度 (输出/参考值)", "en": "Treated effluent ammonia (output/reference)"},
     "unit_mg_l":                     {"zh": "mg/L",                        "en": "mg/L"},
     "unit_m3_h":                     {"zh": "m³/h",                        "en": "m³/h"},
     "btn_predict":                   {"zh": "执行预测",                    "en": "Predict"},
@@ -322,6 +333,19 @@ TRANSLATIONS = {
     "not_configured":                {"zh": "未配置",                      "en": "Not configured"},
     "not_loaded":                    {"zh": "未加载",                      "en": "Not loaded"},
     "select_language":               {"zh": "🌐 语言 / Language",         "en": "🌐 Language / 语言"},
+    "model_status_label":            {"zh": "模型状态",                    "en": "Model Status"},
+    "no_model":                      {"zh": "无模型",                      "en": "No Model"},
+    "locked_files_skipped":          {"zh": "{} 个文件被占用，跳过",       "en": "{} file(s) locked, skipped"},
+    "all_files_locked":              {"zh": "全部 {} 个文件被占用，请关闭其他程序后重试", "en": "All {} file(s) locked. Close other programs and retry."},
+    "soft_reset_caption":            {"zh": "以下操作将清理临时文件和缓存，释放磁盘空间", "en": "These operations clean temp files and cache to free disk space."},
+    "btn_soft_reset":                {"zh": "🔄 软重置（日志 + 临时文件 + 缓存）", "en": "🔄 Soft Reset (Logs + Temp + Cache)"},
+    "spinner_cleaning":              {"zh": "正在清理...",                  "en": "Cleaning..."},
+    "delete_dir_failed":             {"zh": "删除 {}/ 失败: {}",           "en": "Failed to delete {}/: {}"},
+    "cleanup_done":                  {"zh": "已清理 {} 个项目",            "en": "Cleaned {} item(s)"},
+    "partial_cleanup_locked":        {"zh": "部分文件被占用。请先关闭占用进程后重试。", "en": "Some files are locked. Close blocking processes and retry."},
+    "no_files_to_clean":             {"zh": "没有需要清理的文件",          "en": "No files to clean."},
+    "venv_broken_error":             {"zh": "⚠️ 虚拟环境已损坏（缺少 pyvenv.cfg）\n\n这通常是因为清理操作误删了 venv 目录中的文件。\n\n**修复方法：** 关闭 Streamlit → 删除 venv 文件夹 → 重新运行 `install.bat`\n\n```\nrmdir /s /q venv\ninstall.bat\n```",
+                                          "en": "⚠️ Virtual environment is broken (missing pyvenv.cfg)\n\nThis is usually caused by accidentally deleting files in the venv directory.\n\n**Fix:** Close Streamlit → Delete the venv folder → Re-run `install.bat`\n\n```\nrmdir /s /q venv\ninstall.bat\n```"},
 }
 
 
@@ -360,12 +384,12 @@ def lang_selector():
     current = get_lang()
     cols = st.columns(2)
     with cols[0]:
-        if st.button("中文", type="primary" if current == "zh" else "secondary",
+        if st.button(LANGUAGES["zh"], type="primary" if current == "zh" else "secondary",
                      use_container_width=True, key="lang_zh"):
             set_lang("zh")
             st.rerun()
     with cols[1]:
-        if st.button("English", type="primary" if current == "en" else "secondary",
+        if st.button(LANGUAGES["en"], type="primary" if current == "en" else "secondary",
                      use_container_width=True, key="lang_en"):
             set_lang("en")
             st.rerun()

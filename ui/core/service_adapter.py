@@ -37,20 +37,20 @@ WaterQualityPredictor = None
 WWTPDataPipeline = None
 
 try:
-    from config_manager import CFG, load_config as _load_cfg, reload_config as _reload_cfg
+    from config.manager import CFG, load_config as _load_cfg, reload_config as _reload_cfg
     load_config = _load_cfg
     reload_config = _reload_cfg
 except ImportError:
     pass
 
 try:
-    from predictor_adapter import WaterQualityPredictor as _WQP
+    from pipeline.adapter import WaterQualityPredictor as _WQP
     WaterQualityPredictor = _WQP
 except ImportError:
     pass
 
 try:
-    from data_pipeline import WWTPDataPipeline as _DP
+    from pipeline.data import WWTPDataPipeline as _DP
     WWTPDataPipeline = _DP
 except ImportError:
     pass
@@ -289,12 +289,12 @@ class SystemAdapter:
     def trigger_training_task(cls, task_type: str, params: Dict[str, Any]) -> str:
         """
         启动后台训练进程。
-        [Fix] 根据 task_type 选择正确的训练脚本 (而非统一用 run_pipeline.py)
+        [Fix] 根据 task_type 选择正确的训练脚本 (而非统一用 training/run_pipeline.py)
         """
         script_map = {
-            "lgbm": "run_lgbm.py",
-            "tft": "train_tft.py",
-            "ppo": "train.py",
+            "lgbm": "training/train_lgbm.py",
+            "tft": "training/train_tft.py",
+            "ppo": "training/train_ppo.py",
         }
         script_name = script_map.get(task_type)
         if not script_name:

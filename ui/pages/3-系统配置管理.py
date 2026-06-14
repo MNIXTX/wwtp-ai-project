@@ -4,29 +4,22 @@ import sys
 import subprocess
 import shutil
 from pathlib import Path
+from ui.init import setup_page, t, get_adapter
+PROJECT_ROOT = setup_page()
 
-# 确保项目根目录在 sys.path 中
-PROJECT_ROOT = Path(__file__).parent.parent.parent.resolve()
-if str(PROJECT_ROOT) not in sys.path:
-    sys.path.insert(0, str(PROJECT_ROOT))
-
-from ui.core.service_adapter import SystemAdapter
-
-# [Fix] 移除 st.set_page_config — 页面文件中不应调用，仅在主 app.py 调用
-
-st.header("系统配置管理 (热重载)")
-st.caption("修改底层 config.yaml。保存后系统将执行原子级写入、清除缓存并触发热重载，无需重启服务。")
+st.header(t("config_header"))
+st.caption(t("config_caption"))
 
 # ==========================================
 # 1. 通过 Adapter 获取当前配置
 # ==========================================
 try:
-    current_config = SystemAdapter.get_current_config()
+    current_config = get_adapter().get_current_config()
     if not current_config:
-        st.warning("配置文件为空或不存在，将使用默认值。")
+        st.warning(t("config_empty_warn"))
         current_config = {}
 except Exception as e:
-    st.error(f"读取配置文件失败: {e}")
+    st.error(t("config_read_err", e))
     st.stop()
 
 # 提取真实配置
@@ -44,53 +37,53 @@ FORM_KEYS = [
 # 2. 结构化配置修改表单
 # ==========================================
 with st.form("config_form"):
-    st.subheader("数据管道与时序配置 (Pipeline)")
+    st.subheader(t("config_pipeline_section"))
     col1, col2 = st.columns(2)
     with col1:
         lookback = st.number_input(
-            "历史回溯窗口 (小时)",
+            t("config_lookback"),
             value=int(pipeline_cfg.get('lookback', 24)), step=1, key="cfg_lookback"
         )
         max_gap = st.number_input(
-            "最大允许插值间隙 (小时)",
+            t("config_max_interp"),
             value=int(pipeline_cfg.get('max_interp_gap', 6)), step=1, key="cfg_max_gap"
         )
     with col2:
         horizon = st.number_input(
-            "预测未来窗口 (小时)",
+            t("config_horizon"),
             value=int(pipeline_cfg.get('horizon', 24)), step=1, key="cfg_horizon"
         )
         test_ratio = st.number_input(
-            "时序测试集划分比例",
+            t("config_test_ratio"),
             value=float(pipeline_cfg.get('test_ratio', 0.2)),
             step=0.05, format="%.2f", key="cfg_test_ratio"
         )
 
     st.divider()
-    st.subheader("核心模型与训练超参 (Model & Training)")
+    st.subheader(t("config_model_section"))
     col3, col4 = st.columns(2)
     with col3:
         tft_hidden = st.number_input(
-            "TFT 隐层维度",
+            t("config_tft_hidden"),
             value=int(model_cfg.get('tft_hidden_size', 64)), step=32, key="cfg_tft_hidden"
         )
         tft_epochs = st.number_input(
-            "TFT 训练轮数 (Epochs)",
+            t("config_tft_epochs"),
             value=int(training_cfg.get('tft_epochs', 50)), step=10, key="cfg_tft_epochs"
         )
     with col4:
         lgbm_trees = st.number_input(
-            "LGBM 最大树数量",
+            t("config_lgbm_trees"),
             value=int(training_cfg.get('lgbm_n_estimators', 1000)), step=100, key="cfg_lgbm_trees"
         )
         div_thresh = st.number_input(
-            "双模型分歧阈值 (mg/L)",
+            t("config_divergence"),
             value=float(training_cfg.get('divergence_threshold', 3.0)),
             step=0.5, format="%.1f", key="cfg_div_thresh"
         )
 
     st.divider()
-    submitted = st.form_submit_button("保存配置并无损热重载", type="primary", use_container_width=True)
+    submitted = st.form_submit_button(t("btn_save_config"), type="primary", use_container_width=True)
 
     if submitted:
         updates_pipeline = {
@@ -105,10 +98,10 @@ with st.form("config_form"):
         }
 
         try:
-            SystemAdapter.update_and_reload_config("pipeline", updates_pipeline)
-            SystemAdapter.update_and_reload_config("model", updates_model)
-            SystemAdapter.update_and_reload_config("training", updates_training)
-            st.success("配置已无损保存！所有工程注释已保留，底层实例已重置。")
+            get_adapter().update_and_reload_config("pipeline", updates_pipeline)
+            get_adapter().update_and_reload_config("model", updates_model)
+            get_adapter().update_and_reload_config("training", updates_training)
+            st.success(t("success_config_saved"))
 
             # 同步更新高级选项的文本框内容
             config_path = PROJECT_ROOT / "config.yaml"
@@ -116,14 +109,14 @@ with st.form("config_form"):
                 with open(config_path, 'r', encoding='utf-8') as f:
                     st.session_state.raw_yaml_input = f.read()
         except Exception as e:
-            st.error(f"保存失败: {e}")
+            st.error(t("err_config_save", e))
 
 # ==========================================
 # 3. 高级开发者选项 (危险区域)
 # ==========================================
 st.divider()
-with st.expander("高级开发者选项 (直接编辑 YAML)", expanded=False):
-    st.warning("直接编辑原始 YAML 文本。语法错误将导致系统崩溃！修改后请务必点击下方的强制覆盖按钮。")
+with st.expander(t("advanced_expander"), expanded=False):
+    st.warning(t("advanced_warn"))
 
     if "raw_yaml_input" not in st.session_state:
         config_path = PROJECT_ROOT / "config.yaml"
@@ -133,146 +126,195 @@ with st.expander("高级开发者选项 (直接编辑 YAML)", expanded=False):
         else:
             st.session_state.raw_yaml_input = ""
 
-    st.text_area("原始 config.yaml", height=400, key="raw_yaml_input")
+    st.text_area(t("yaml_editor_label"), height=400, key="raw_yaml_input")
 
-    if st.button("强制覆盖写入并重置系统", type="secondary"):
+    if st.button(t("btn_force_overwrite"), type="secondary"):
         raw_yaml_str = st.session_state.raw_yaml_input
         if not raw_yaml_str or not raw_yaml_str.strip():
-            st.error("拒绝执行：YAML 内容为空！")
+            st.error(t("err_yaml_empty"))
         else:
             try:
-                SystemAdapter.force_overwrite_config(raw_yaml_str)
+                get_adapter().force_overwrite_config(raw_yaml_str)
                 for key in FORM_KEYS:
                     if key in st.session_state:
                         del st.session_state[key]
-                st.success("强制覆盖成功！所有底层单例与缓存已重置。")
+                st.success(t("success_yaml_overwritten"))
                 st.rerun()
             except Exception as e:
                 # [Fix] 捕获所有异常（ruamel.yaml.YAMLError 是 ImportError 的子类，包含在 Exception 中）
-                st.error(f"写入失败: {e}")
+                st.error(t("err_yaml_write", e))
 
 # ==========================================
 # 4. 环境维护与卸载工具
 # ==========================================
 st.divider()
-st.header("环境维护与卸载工具")
-st.caption("危险操作：以下功能将删除运行数据或卸载依赖，请谨慎使用。")
+st.header(t("maintenance_header"))
+st.caption(t("maintenance_caption"))
 
-with st.expander("点击展开：系统清理与维护面板", expanded=False):
-    tab_maintain, tab_uninstall = st.tabs(["运行数据清理", "依赖卸载与环境重置"])
+with st.expander(t("cleanup_expander"), expanded=False):
+    tab_maintain, tab_uninstall = st.tabs([t("tab_cleanup"), t("tab_uninstall")])
 
     # ---- Tab 1: 运行数据清理 ----
     with tab_maintain:
-        st.info("此操作仅删除运行时生成的临时文件，不会删除核心代码和配置文件。")
+        st.info(t("cleanup_info"))
 
         col_m1, col_m2 = st.columns(2)
         with col_m1:
-            if st.button("清理所有日志 (logs/)", type="secondary", key="btn_clean_logs"):
+            if st.button(t("btn_clean_logs"), type="secondary", key="btn_clean_logs"):
                 log_dir = PROJECT_ROOT / "logs"
                 if log_dir.exists():
-                    shutil.rmtree(log_dir)
-                    st.success(f"已删除: logs/")
+                    from config.manager import delete_log_files, reacquire_log_handler
+                    deleted, locked = delete_log_files(log_dir)
+                    if deleted:
+                        st.success(t("success_logs_deleted") + (" " + t("locked_files_skipped", locked) if locked else ""))
+                    elif locked:
+                        st.warning(t("all_files_locked", locked))
+                    reacquire_log_handler(log_dir)
                 else:
-                    st.info("logs/ 目录不存在")
+                    st.info(t("info_logs_not_exist"))
 
-            if st.button("清理模型缓存 (models/)", type="secondary", key="btn_clean_models"):
+            if st.button(t("btn_clean_models"), type="secondary", key="btn_clean_models"):
                 model_dir = PROJECT_ROOT / "models"
                 if model_dir.exists():
-                    shutil.rmtree(model_dir)
-                    st.success(f"已删除: models/")
-                    st.warning("模型已删除，需要重新训练：TFT → train_tft.py | LGBM → run_lgbm.py")
+                    from config.manager import safe_rmtree
+                    deleted, locked = safe_rmtree(model_dir)
+                    if deleted:
+                        st.success(t("success_models_deleted") + (" " + t("locked_files_skipped", locked) if locked else ""))
+                        st.warning(t("warn_models_need_retrain"))
+                    elif locked:
+                        st.warning(t("all_files_locked", locked))
                 else:
-                    st.info("models/ 目录不存在")
+                    st.info(t("info_models_not_exist"))
 
         with col_m2:
-            if st.button("清理输出结果 (outputs/)", type="secondary", key="btn_clean_outputs"):
+            if st.button(t("btn_clean_outputs"), type="secondary", key="btn_clean_outputs"):
                 out_dir = PROJECT_ROOT / "outputs"
                 if out_dir.exists():
-                    shutil.rmtree(out_dir)
-                    st.success(f"已删除: outputs/")
+                    from config.manager import safe_rmtree
+                    deleted, locked = safe_rmtree(out_dir)
+                    if deleted:
+                        st.success(t("success_outputs_deleted") + (" " + t("locked_files_skipped", locked) if locked else ""))
+                    elif locked:
+                        st.warning(t("all_files_locked", locked))
                 else:
-                    st.info("outputs/ 目录不存在")
+                    st.info(t("info_outputs_not_exist"))
 
-            if st.button("清理构建产物 (build/dist/)", type="secondary", key="btn_clean_build"):
+            if st.button(t("btn_clean_build"), type="secondary", key="btn_clean_build"):
+                from config.manager import safe_rmtree
+                cleaned = 0
                 for d in ["build", "dist"]:
                     dd = PROJECT_ROOT / d
                     if dd.exists():
-                        shutil.rmtree(dd)
-                        st.success(f"已删除: {d}/")
+                        safe_rmtree(dd)
+                        cleaned += 1
+                        st.success(t("success_build_deleted", d))
                 spec_files = list(PROJECT_ROOT.glob("*.spec"))
                 for sf in spec_files:
                     sf.unlink()
-                    st.success(f"已删除: {sf.name}")
-                if not any((PROJECT_ROOT / d).exists() for d in ["build", "dist"]) and not spec_files:
-                    st.info("没有构建产物")
+                    st.success(t("success_build_deleted", sf.name))
+                    cleaned += 1
+                if cleaned == 0:
+                    st.info(t("info_no_build"))
 
-            if st.button("重置配置文件为默认", type="secondary", key="btn_reset_config"):
+            if st.button(t("btn_reset_config"), type="secondary", key="btn_reset_config"):
                 # [Fix] 删除 config.yaml → 系统自动重新生成完整默认配置
                 config_path = PROJECT_ROOT / "config.yaml"
                 if config_path.exists():
                     backup_path = config_path.with_suffix(".yaml.bak")
                     shutil.copy2(config_path, backup_path)
                     config_path.unlink()
-                    st.success(f"原配置已备份为 config.yaml.bak，默认配置已生成。")
+                    st.success(t("success_config_reset"))
                 else:
-                    st.info("配置文件不存在，无需重置。")
+                    st.info(t("info_config_not_exist"))
 
                 # 清除所有缓存并触发热重载
-                SystemAdapter.reset_all_instances()
-                from config_manager import reload_config
+                get_adapter().reset_all_instances()
+                from config.manager import reload_config
                 reload_config()
                 st.rerun()
 
+        # Soft reset section
+        st.divider()
+        st.caption(t("soft_reset_caption"))
+        if st.button(t("btn_soft_reset"), type="secondary", key="btn_soft_reset"):
+            from config.manager import safe_rmtree
+            with st.spinner(t("spinner_cleaning")):
+                deleted_total, locked_total = 0, 0
+                # 仅清理临时/缓存目录，不碰 venv（运行中无法删除自身）
+                for d in ["logs", "artifacts", "outputs", "__pycache__", "build", "dist"]:
+                    path = PROJECT_ROOT / d
+                    if path.exists():
+                        try:
+                            dl, lk = safe_rmtree(path)
+                            deleted_total += dl
+                            locked_total += lk
+                        except Exception as e:
+                            st.warning(t("delete_dir_failed", d, str(e)))
+                # 清理 .spec 文件
+                for sf in PROJECT_ROOT.glob("*.spec"):
+                    try:
+                        sf.unlink()
+                        deleted_total += 1
+                    except Exception:
+                        pass
+                if deleted_total:
+                    msg = t("cleanup_done", deleted_total)
+                    if locked_total:
+                        msg += " " + t("locked_files_skipped", locked_total)
+                    st.success(msg)
+                elif locked_total:
+                    st.warning(t("partial_cleanup_locked"))
+                else:
+                    st.info(t("no_files_to_clean"))
+
     # ---- Tab 2: 依赖卸载 ----
     with tab_uninstall:
-        st.error("卸载操作不可逆！这将删除 Python 依赖包，系统将无法运行。")
-        st.write("建议仅在需要彻底重装或迁移环境时使用。")
+        st.error(t("uninstall_warn"))
+        st.write(t("uninstall_hint"))
 
-        # [Fix] 检查是否在虚拟环境中
+        # 全面的 venv 健康检查
         in_venv = hasattr(sys, 'real_prefix') or (
             hasattr(sys, 'base_prefix') and sys.base_prefix != sys.prefix
         )
+        venv_cfg = Path(sys.prefix) / "pyvenv.cfg" if in_venv else None
+        venv_healthy = in_venv and venv_cfg and venv_cfg.exists()
 
         if not in_venv:
-            st.error(
-                "**未检测到虚拟环境！**\n\n"
-                "当前 Python 是系统级安装。执行卸载将删除全局 Python 包，"
-                "可能影响本机其他项目。\n\n"
-                "请先在终端运行:\n```bash\nvenv\\Scripts\\activate\n```\n"
-                "然后在 venv 中重启 Streamlit。"
-            )
+            st.error(t("no_venv_error"))
+        elif not venv_healthy:
+            st.error(t("venv_broken_error"))
         else:
-            st.success(f"已检测到虚拟环境: {sys.prefix}")
+            st.success(t("venv_detected", sys.prefix))
 
         req_file = PROJECT_ROOT / "requirements.txt"
-        uninstall_disabled = not in_venv
+        uninstall_disabled = not venv_healthy
 
         if st.button(
-            "卸载所有项目依赖包",
+            t("btn_uninstall_deps"),
             type="primary",
             disabled=uninstall_disabled,
             key="btn_uninstall_deps"
         ):
             if not req_file.exists():
-                st.error("未找到 requirements.txt，无法执行卸载。")
+                st.error(t("err_no_requirements"))
             else:
-                with st.spinner("正在卸载依赖... (可能需要几分钟)"):
+                with st.spinner(t("spinner_uninstalling")):
                     try:
                         result = subprocess.run(
                             [sys.executable, "-m", "pip", "uninstall", "-y", "-r", str(req_file)],
                             capture_output=True, text=True, cwd=str(PROJECT_ROOT), timeout=120
                         )
                         if result.returncode == 0:
-                            st.success("依赖卸载完成！请重启 Streamlit 服务。")
-                            with st.expander("查看卸载日志"):
+                            st.success(t("success_uninstall_done"))
+                            with st.expander(t("uninstall_log_expander")):
                                 st.code(result.stdout[-2000:] if len(result.stdout) > 2000 else result.stdout)
                         else:
-                            st.error("卸载过程中出现错误:")
+                            st.error(t("uninstall_err"))
                             st.code(result.stderr[-2000:] if len(result.stderr) > 2000 else result.stderr)
                     except subprocess.TimeoutExpired:
-                        st.error("卸载命令超时（120秒），请手动在终端执行: pip uninstall -y -r requirements.txt")
+                        st.error(t("uninstall_timeout"))
                     except Exception as e:
-                        st.error(f"执行卸载命令失败: {e}")
+                        st.error(t("uninstall_cmd_fail", e))
 
         st.divider()
-        st.caption("如需删除整个项目文件夹，请在文件资源管理器中手动删除 `WWTP_AI_System` 文件夹。")
+        st.caption(t("manual_delete_hint"))

@@ -1,0 +1,45 @@
+2026-06-14 00:02:19.192 | INFO     | config.manager:load_config:591 - ✅ 配置文件 'config.yaml' 加载成功，日志与目录已就绪。
+2026-06-14 00:02:19.193 | DEBUG    | config.manager:load_config:592 - 📂 项目根目录锚定为: D:\water_project\WWTP_AI_System
+2026-06-14 00:02:19.202 | INFO     | pipeline.gateway:__init__:178 - [DIAG] 模型搜索路径 (绝对路径):
+2026-06-14 00:02:19.202 | INFO     | pipeline.gateway:__init__:179 -   -> TFT  : D:\water_project\WWTP_AI_System\models\industrial_tft.onnx
+2026-06-14 00:02:19.203 | INFO     | pipeline.gateway:__init__:180 -   -> LGBM : D:\water_project\WWTP_AI_System\models\lgbm\lgbm_wwtp.txt
+2026-06-14 00:02:19.437 | INFO     | pipeline.gateway:__init__:199 - [OK] TFT (ONNX) 模型加载成功: D:\water_project\WWTP_AI_System\models\industrial_tft.onnx
+2026-06-14 00:02:19.481 | INFO     | pipeline.gateway:__init__:224 - [OK] LGBM 模型加载成功: D:\water_project\WWTP_AI_System\models\lgbm\lgbm_wwtp.txt
+2026-06-14 00:02:19.484 | INFO     | pipeline.gateway:_load_scalers:304 - [OK] Feature scaler loaded (7 features)
+2026-06-14 00:02:19.491 | INFO     | pipeline.gateway:_load_scalers:321 - [OK] Target scaler loaded (mean=66.03, std=13.20)
+2026-06-14 00:02:19.496 | INFO     | pipeline.gateway:_infer_lgbm_base_columns_from_model:125 - 从 LGBM 模型反推基础列: 12 列 → ['flow', 'inf_cod', 'inf_nh3', 'eff_nh3', 'do_meas', 'DO_reactor', 'MLSS_reactor', 'temp', 'pH', 'NH3_reactor', 'X_A_REACTOR', 'MLSS']
+2026-06-14 00:02:19.497 | INFO     | pipeline.gateway:__init__:262 - LGBM columns inferred from model: 12 columns
+2026-06-14 00:02:19.497 | INFO     | models.lgbm_features:__init__:111 - ✅ 特征构建器初始化 (静态模式) | 预期特征维度: 309
+2026-06-14 00:02:19.500 | INFO     | pipeline.gateway:__init__:279 - LGBM columns loaded from training artifacts: 284 columns
+2026-06-14 00:02:19.500 | INFO     | pipeline.gateway:__init__:283 - [OK] Predictor ready | TFT features: 7 | Seq: 24h | Divergence threshold: 3.0
+2026-06-14 00:02:19.748 | WARNING  | pipeline.gateway:predict:532 - [WARN] 模型分歧过大 (绝对差值:4.57)，建议切换人工复核模式，已拦截自动控制指令！
+2026-06-14 00:13:45.934 | INFO     | config.manager:load_config:591 - ✅ 配置文件 'config.yaml' 加载成功，日志与目录已就绪。
+2026-06-14 00:13:45.936 | DEBUG    | config.manager:load_config:592 - 📂 项目根目录锚定为: D:\water_project\WWTP_AI_System
+2026-06-14 00:13:56.534 | INFO     | models.asm1.ode:<module>:22 - 🚀 Numba JIT 已启用，ODE 函数将获得 10-50x 加速
+2026-06-14 00:15:52.433 | INFO     | config.manager:load_config:591 - ✅ 配置文件 'config.yaml' 加载成功，日志与目录已就绪。
+2026-06-14 00:15:52.433 | DEBUG    | config.manager:load_config:592 - 📂 项目根目录锚定为: D:\water_project\WWTP_AI_System
+2026-06-14 00:15:55.368 | INFO     | pipeline.gateway:__init__:178 - [DIAG] 模型搜索路径 (绝对路径):
+2026-06-14 00:15:55.368 | INFO     | pipeline.gateway:__init__:179 -   -> TFT  : D:\water_project\WWTP_AI_System\models\industrial_tft.onnx
+2026-06-14 00:15:55.368 | INFO     | pipeline.gateway:__init__:180 -   -> LGBM : D:\water_project\WWTP_AI_System\models\lgbm\lgbm_wwtp.txt
+2026-06-14 00:15:55.622 | INFO     | pipeline.gateway:__init__:199 - [OK] TFT (ONNX) 模型加载成功: D:\water_project\WWTP_AI_System\models\industrial_tft.onnx
+2026-06-14 00:15:55.654 | INFO     | pipeline.gateway:__init__:224 - [OK] LGBM 模型加载成功: D:\water_project\WWTP_AI_System\models\lgbm\lgbm_wwtp.txt
+2026-06-14 00:15:55.658 | INFO     | pipeline.gateway:_load_scalers:304 - [OK] Feature scaler loaded (7 features)
+2026-06-14 00:15:55.662 | INFO     | pipeline.gateway:_load_scalers:321 - [OK] Target scaler loaded (mean=66.03, std=13.20)
+2026-06-14 00:15:55.666 | INFO     | pipeline.gateway:_infer_lgbm_base_columns_from_model:125 - 从 LGBM 模型反推基础列: 12 列 → ['flow', 'inf_cod', 'inf_nh3', 'eff_nh3', 'do_meas', 'DO_reactor', 'MLSS_reactor', 'temp', 'pH', 'NH3_reactor', 'X_A_REACTOR', 'MLSS']
+2026-06-14 00:15:55.666 | INFO     | pipeline.gateway:__init__:262 - LGBM columns inferred from model: 12 columns
+2026-06-14 00:15:55.666 | INFO     | models.lgbm_features:__init__:111 - ✅ 特征构建器初始化 (静态模式) | 预期特征维度: 309
+2026-06-14 00:15:55.668 | INFO     | pipeline.gateway:__init__:279 - LGBM columns loaded from training artifacts: 284 columns
+2026-06-14 00:15:55.668 | INFO     | pipeline.gateway:__init__:283 - [OK] Predictor ready | TFT features: 7 | Seq: 24h | Divergence threshold: 3.0
+2026-06-14 00:15:55.898 | WARNING  | pipeline.gateway:predict:532 - [WARN] 模型分歧过大 (绝对差值:4.57)，建议切换人工复核模式，已拦截自动控制指令！
+2026-06-14 00:16:07.987 | INFO     | config.manager:load_config:591 - ✅ 配置文件 'config.yaml' 加载成功，日志与目录已就绪。
+2026-06-14 00:16:07.988 | DEBUG    | config.manager:load_config:592 - 📂 项目根目录锚定为: D:\water_project\WWTP_AI_System
+2026-06-14 00:16:07.992 | INFO     | pipeline.data:__init__:108 -  管道初始化完成 | 频率:1h | 回溯:24h | 预测:24h
+2026-06-14 00:16:08.041 | INFO     | pipeline.data:_emit:127 - [LOAD] (20%) 数据加载成功 | 形状:(8640, 13) | 时间范围:2024-01-01 00:00:00 ~ 2024-12-25 23:00:00
+2026-06-14 00:16:08.073 | INFO     | pipeline.data:_emit:127 - [CLEAN] (40%) 清洗完成 | 重采样至 1h | 有效样本:8640
+2026-06-14 00:16:08.077 | INFO     | pipeline.data:build_tft_sequences:314 -  Scaler 拟合完成 | 特征: 7维, 目标均值=66.03, 目标标准差=13.20
+2026-06-14 00:16:08.080 | INFO     | pipeline.data:_emit:127 - [TFT] (60%) TFT序列构建完成 | 训练:6874 | 测试:1719
+2026-06-14 00:16:08.087 | INFO     | models.lgbm_features:__init__:114 - ✅ 特征构建器初始化 (动态推断模式) | 等待首次 build() 以锁定特征维度...
+2026-06-14 00:16:08.088 | INFO     | models.lgbm_features:_infer_base_columns:172 - 💡 [动态推断] 配置为空，自动从数据中提取了 11 个基础特征: ['flow', 'inf_cod', 'inf_nh3', 'eff_nh3', 'do_meas', 'DO_reactor', 'MLSS_reactor', 'temp', 'pH', 'NH3_reactor', 'X_A_REACTOR']
+2026-06-14 00:16:31.838 | INFO     | models.lgbm_features:build:271 - 🔒 [维度锁定] 动态推断完成，已锁定预期特征维度: 284
+2026-06-14 00:16:31.844 | INFO     | models.lgbm_features:_infer_base_columns:172 - 💡 [动态推断] 配置为空，自动从数据中提取了 11 个基础特征: ['flow', 'inf_cod', 'inf_nh3', 'eff_nh3', 'do_meas', 'DO_reactor', 'MLSS_reactor', 'temp', 'pH', 'NH3_reactor', 'X_A_REACTOR']
+2026-06-14 00:16:31.857 | INFO     | pipeline.data:_emit:127 - [LGBM] (80%) LGBM特征构建完成 | 总样本:8616 | 特征维度:284

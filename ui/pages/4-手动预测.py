@@ -2,28 +2,22 @@
 
 import streamlit as st
 import pandas as pd
-import sys
 from pathlib import Path
-
-PROJECT_ROOT = Path(__file__).parent.parent.parent.resolve()
-if str(PROJECT_ROOT) not in sys.path:
-    sys.path.insert(0, str(PROJECT_ROOT))
-
-from ui.i18n import t
+from ui.init import setup_page, t, get_adapter
+PROJECT_ROOT = setup_page()
 
 st.title(t("predict_title"))
 
 # --- 导入依赖 ---
 try:
-    from ui.core.service_adapter import SystemAdapter
-    from config_manager import CFG
+    from config.manager import CFG
 except ImportError as e:
     st.error(t("err_import_failed", e))
     st.stop()
 
 # --- 模型状态检查 ---
 try:
-    predictor = SystemAdapter.get_gateway()
+    predictor = get_adapter().get_gateway()
     tft_loaded = getattr(predictor, 'tft_session', None) is not None
     lgbm_loaded = getattr(predictor, 'lgbm_model', None) is not None
     tft_file_ok = False
@@ -48,19 +42,22 @@ except Exception:
     FEATURE_NAMES = ["inf_cod", "inf_nh3", "DO_reactor", "MLSS_reactor"]
 
 FEATURE_META = {
-    "inf_cod":       (t("feat_inf_cod"),     "mg/L", "化学需氧量，反映进水有机污染物浓度"),
-    "inf_nh3":       (t("feat_inf_nh3"),     "mg/L", "进水氨氮浓度，影响硝化反应负荷"),
-    "DO_reactor":    (t("feat_do_reactor"),  "mg/L", "好氧区溶解氧浓度，影响COD去除与硝化效率"),
-    "MLSS_reactor":  (t("feat_mlss_reactor"),"mg/L", "混合液悬浮固体浓度，代表活性污泥微生物量"),
-    "flow":          (t("feat_flow"),         "m³/h","单位时间进入厂区的污水体积"),
-    "do_meas":       (t("feat_do_meas"),     "mg/L", "溶解氧仪表在线测量值"),
-    "eff_cod":       (t("feat_eff_cod"),     "mg/L", "处理后出水的化学需氧量"),
-    "eff_nh3":       (t("feat_eff_nh3"),     "mg/L", "处理后出水的氨氮浓度"),
+    "inf_cod":       (t("feat_inf_cod"),     "mg/L", t("feat_inf_cod_desc")),
+    "inf_nh3":       (t("feat_inf_nh3"),     "mg/L", t("feat_inf_nh3_desc")),
+    "DO_reactor":    (t("feat_do_reactor"),  "mg/L", t("feat_do_reactor_desc")),
+    "MLSS_reactor":  (t("feat_mlss_reactor"),"mg/L", t("feat_mlss_reactor_desc")),
+    "flow":          (t("feat_flow"),         "m3/h", t("feat_flow_desc")),
+    "do_meas":       (t("feat_do_meas"),     "mg/L", t("feat_do_meas_desc")),
+    "temp":          (t("feat_temp"),         "C",    t("feat_temp_desc")),
+    "pH":            (t("feat_pH"),           "",     t("feat_pH_desc")),
+    "eff_cod":       (t("feat_eff_cod"),     "mg/L", t("feat_eff_cod_desc")),
+    "eff_nh3":       (t("feat_eff_nh3"),     "mg/L", t("feat_eff_nh3_desc")),
 }
 
 DEFAULTS = {
     "inf_cod": 300.0, "inf_nh3": 30.0, "DO_reactor": 2.0, "MLSS_reactor": 3000.0,
-    "flow": 10000.0, "do_meas": 2.0, "eff_cod": 40.0, "eff_nh3": 3.0,
+    "flow": 10000.0, "do_meas": 2.0, "temp": 15.0, "pH": 7.3,
+    "eff_cod": 40.0, "eff_nh3": 3.0,
 }
 
 LIMITS = {
@@ -70,6 +67,8 @@ LIMITS = {
     "MLSS_reactor": (500, 15000,t("feat_mlss_reactor")),
     "flow":         (0, 100000, t("feat_flow")),
     "do_meas":      (0, 15,     t("feat_do_meas")),
+    "temp":         (0, 40,     t("feat_temp")),
+    "pH":           (5.0, 9.0,  t("feat_pH")),
 }
 
 # ---- 模型状态卡片 ----

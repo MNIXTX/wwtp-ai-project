@@ -1,0 +1,1219 @@
+2026-06-13 21:37:01.217 | INFO     | config.manager:load_config:591 - ✅ 配置文件 'config.yaml' 加载成功，日志与目录已就绪。
+2026-06-13 21:37:01.218 | DEBUG    | config.manager:load_config:592 - 📂 项目根目录锚定为: D:\water_project\WWTP_AI_System
+2026-06-13 21:37:07.662 | INFO     | models.asm1.ode:<module>:22 - 🚀 Numba JIT 已启用，ODE 函数将获得 10-50x 加速
+2026-06-13 21:38:02.555 | INFO     | config.manager:load_config:591 - ✅ 配置文件 'config.yaml' 加载成功，日志与目录已就绪。
+2026-06-13 21:38:02.557 | DEBUG    | config.manager:load_config:592 - 📂 项目根目录锚定为: D:\water_project\WWTP_AI_System
+2026-06-13 21:38:22.759 | INFO     | config.manager:load_config:591 - ✅ 配置文件 'config.yaml' 加载成功，日志与目录已就绪。
+2026-06-13 21:38:22.760 | DEBUG    | config.manager:load_config:592 - 📂 项目根目录锚定为: D:\water_project\WWTP_AI_System
+2026-06-13 21:38:28.685 | INFO     | models.asm1.ode:<module>:22 - 🚀 Numba JIT 已启用，ODE 函数将获得 10-50x 加速
+2026-06-13 21:41:02.228 | INFO     | config.manager:load_config:591 - ✅ 配置文件 'config.yaml' 加载成功，日志与目录已就绪。
+2026-06-13 21:41:02.229 | DEBUG    | config.manager:load_config:592 - 📂 项目根目录锚定为: D:\water_project\WWTP_AI_System
+2026-06-13 21:41:09.202 | INFO     | models.asm1.ode:<module>:22 - 🚀 Numba JIT 已启用，ODE 函数将获得 10-50x 加速
+2026-06-13 21:43:43.258 | INFO     | config.manager:load_config:591 - ✅ 配置文件 'config.yaml' 加载成功，日志与目录已就绪。
+2026-06-13 21:43:43.260 | DEBUG    | config.manager:load_config:592 - 📂 项目根目录锚定为: D:\water_project\WWTP_AI_System
+2026-06-13 21:43:54.732 | INFO     | config.manager:load_config:591 - ✅ 配置文件 'config.yaml' 加载成功，日志与目录已就绪。
+2026-06-13 21:43:54.733 | DEBUG    | config.manager:load_config:592 - 📂 项目根目录锚定为: D:\water_project\WWTP_AI_System
+2026-06-13 21:44:03.937 | INFO     | models.asm1.ode:<module>:22 - 🚀 Numba JIT 已启用，ODE 函数将获得 10-50x 加速
+2026-06-13 21:53:40.124 | INFO     | config.manager:load_config:591 - ✅ 配置文件 'config.yaml' 加载成功，日志与目录已就绪。
+2026-06-13 21:53:40.124 | DEBUG    | config.manager:load_config:592 - 📂 项目根目录锚定为: D:\water_project\WWTP_AI_System
+2026-06-13 21:53:40.132 | INFO     | pipeline.data:__init__:106 -  管道初始化完成 | 频率:1h | 回溯:24h | 预测:24h
+2026-06-13 21:53:40.132 | INFO     | pipeline.data:__init__:106 -  管道初始化完成 | 频率:30min | 回溯:12h | 预测:6h
+2026-06-13 21:53:40.170 | INFO     | pipeline.data:_emit:125 - [LOAD] (20%) 数据加载成功 | 形状:(8760, 13) | 时间范围:2024-01-01 00:00:00 ~ 2024-12-30 23:00:00
+2026-06-13 21:54:59.344 | INFO     | config.manager:load_config:591 - ✅ 配置文件 'config.yaml' 加载成功，日志与目录已就绪。
+2026-06-13 21:54:59.345 | DEBUG    | config.manager:load_config:592 - 📂 项目根目录锚定为: D:\water_project\WWTP_AI_System
+2026-06-13 21:54:59.350 | INFO     | pipeline.data:__init__:106 -  管道初始化完成 | 频率:1h | 回溯:24h | 预测:24h
+2026-06-13 21:54:59.376 | INFO     | pipeline.data:_emit:125 - [LOAD] (20%) 数据加载成功 | 形状:(8760, 13) | 时间范围:2024-01-01 00:00:00 ~ 2024-12-30 23:00:00
+2026-06-13 21:54:59.392 | DEBUG    | pipeline.data:clean_and_resample:257 - 剔除 [eff_nh3] 死值: 11条
+2026-06-13 21:54:59.412 | INFO     | pipeline.data:_emit:125 - [CLEAN] (40%) 清洗完成 | 重采样至 1h | 有效样本:8760
+2026-06-13 21:54:59.419 | WARNING  | pipeline.data:build_tft_sequences:296 -  数据中缺少 TFT 特征: {'temp'}，将使用 0 填充
+2026-06-13 21:54:59.422 | INFO     | pipeline.data:build_tft_sequences:316 -  Scaler 拟合完成 | 特征: 7维, 目标均值=60.12, 目标标准差=21.07
+2026-06-13 21:54:59.423 | INFO     | pipeline.data:_emit:125 - [TFT] (60%) TFT序列构建完成 | 训练:6970 | 测试:1743
+2026-06-13 21:54:59.423 | INFO     | models.lgbm_features:__init__:69 - ✅ 特征构建器初始化 (动态推断模式) | 等待首次 build() 以锁定特征维度...
+2026-06-13 21:54:59.423 | INFO     | models.lgbm_features:_infer_base_columns:121 - 💡 [动态推断] 配置为空，自动从数据中提取了 11 个基础特征: ['flow', 'inf_cod', 'inf_nh3', 'eff_nh3', 'do_meas', 'DO_reactor', 'MLSS_reactor', 'pH', 'TEMP', 'NH3_reactor', 'X_A_REACTOR']
+2026-06-13 21:56:27.465 | INFO     | config.manager:load_config:591 - ✅ 配置文件 'config.yaml' 加载成功，日志与目录已就绪。
+2026-06-13 21:56:27.467 | DEBUG    | config.manager:load_config:592 - 📂 项目根目录锚定为: D:\water_project\WWTP_AI_System
+2026-06-13 21:56:27.533 | INFO     | pipeline.data:__init__:108 -  管道初始化完成 | 频率:1h | 回溯:24h | 预测:24h
+2026-06-13 21:57:22.737 | INFO     | config.manager:load_config:591 - ✅ 配置文件 'config.yaml' 加载成功，日志与目录已就绪。
+2026-06-13 21:57:22.738 | DEBUG    | config.manager:load_config:592 - 📂 项目根目录锚定为: D:\water_project\WWTP_AI_System
+2026-06-13 21:57:22.759 | INFO     | pipeline.data:__init__:108 -  管道初始化完成 | 频率:1h | 回溯:24h | 预测:24h
+2026-06-13 22:00:39.822 | INFO     | config.manager:load_config:591 - ✅ 配置文件 'config.yaml' 加载成功，日志与目录已就绪。
+2026-06-13 22:00:39.822 | DEBUG    | config.manager:load_config:592 - 📂 项目根目录锚定为: D:\water_project\WWTP_AI_System
+2026-06-13 22:00:39.830 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:57.836 | INFO     | config.manager:load_config:591 - ✅ 配置文件 'config.yaml' 加载成功，日志与目录已就绪。
+2026-06-13 22:00:57.838 | DEBUG    | config.manager:load_config:592 - 📂 项目根目录锚定为: D:\water_project\WWTP_AI_System
+2026-06-13 22:00:57.841 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:57.841 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.941 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.941 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.941 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.941 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.941 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.941 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.941 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.941 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.941 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.950 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.950 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.951 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.952 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.952 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.952 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.953 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.954 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.954 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.957 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.957 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.959 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.959 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.960 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.961 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.961 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.961 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.963 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.963 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.963 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.963 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.965 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.965 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.965 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.965 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.965 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.965 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.970 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.971 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.971 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.971 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.971 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.971 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.971 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.971 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.971 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.971 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.971 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.971 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.971 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.971 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.980 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.980 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.981 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.982 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.982 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.982 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.982 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.982 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.982 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.985 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.985 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.985 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.985 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.985 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.990 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.990 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.991 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.991 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.991 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.991 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.991 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.994 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.994 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.994 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.994 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.994 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.994 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.994 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.994 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:58.994 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.000 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.002 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.003 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.003 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.005 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.006 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.007 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.007 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.007 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.007 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.010 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.011 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.011 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.011 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.011 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.011 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.011 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.011 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.016 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.016 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.016 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.016 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.016 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.016 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.016 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.021 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.021 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.022 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.023 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.024 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.024 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.025 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.026 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.027 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.028 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.029 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.030 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.031 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.032 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.032 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.033 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.034 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.035 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.035 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.036 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.037 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.038 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.039 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.040 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.041 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.042 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.042 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.042 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.044 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.045 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.045 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.046 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.047 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.047 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.048 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.049 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.049 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.049 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.050 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.051 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.052 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.053 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.053 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.055 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.055 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.056 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.056 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.057 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.058 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.058 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.059 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.060 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.061 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.062 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.062 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.062 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.063 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.064 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.065 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.065 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.066 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.067 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.067 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.069 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.070 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.070 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.071 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.072 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.072 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.072 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.072 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.072 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.072 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.072 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.072 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.072 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.078 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.078 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.078 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.080 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.081 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.081 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.082 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.082 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.082 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.082 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.082 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.082 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.082 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.087 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.087 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.087 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.087 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.090 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.091 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.091 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.091 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.091 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.091 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.095 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.095 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.095 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.095 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.095 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.095 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.095 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.095 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.100 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.101 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.101 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.102 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.103 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.105 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.105 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.105 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.105 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.105 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.105 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.105 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.105 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.111 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.111 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.111 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.113 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.113 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.113 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.113 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.113 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.113 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.113 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.113 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.120 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.121 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.122 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.124 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.125 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.125 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.125 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.127 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.127 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.127 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.130 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.130 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.131 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.131 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.133 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.133 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.133 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.135 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.135 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.135 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.137 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.137 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.138 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.140 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.141 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.142 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.143 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.143 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.144 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.145 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.146 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.146 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.147 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.148 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.149 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.149 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.149 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.151 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.151 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.152 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.152 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.154 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.155 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.155 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.157 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.158 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.159 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.159 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.160 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.161 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.162 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.163 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.163 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.164 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.164 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.165 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.166 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.167 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.167 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.168 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.169 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.170 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.171 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.172 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.172 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.174 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.174 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.174 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.176 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.176 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.178 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.178 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.178 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.181 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.181 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.181 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.183 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.183 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.185 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.185 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.185 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.187 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.187 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.187 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.190 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.191 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.192 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.192 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.194 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.194 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.195 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.195 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.195 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.195 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.195 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.200 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.201 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.201 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.203 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.205 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.205 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.206 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.206 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.207 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.208 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.209 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.210 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.211 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.212 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.213 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.214 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.215 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.215 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.216 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.216 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.217 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.218 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.219 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.222 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.223 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.224 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.225 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.225 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.226 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.228 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.229 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.230 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.231 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.231 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.232 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.233 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.235 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.235 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.235 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.238 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.238 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.240 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.241 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.242 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.243 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.244 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.245 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.245 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.246 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.247 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.248 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.249 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.249 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.252 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.252 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.254 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.254 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.255 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.256 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.257 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.258 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.258 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.259 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.260 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.261 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.262 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.263 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.264 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.265 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.266 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.267 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.268 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.269 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.270 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.271 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.272 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.272 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.273 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.273 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.273 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.273 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.277 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.277 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.277 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.280 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.280 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.281 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.281 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.281 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.281 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.281 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.285 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.285 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.285 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.289 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.289 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.290 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.291 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.291 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.291 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.291 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.291 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.295 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.295 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.295 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.295 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.295 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.301 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.302 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.302 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.302 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.305 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.305 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.305 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.305 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.305 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.310 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.311 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.311 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.311 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.311 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.311 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.316 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.316 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.316 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.316 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.316 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.320 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.322 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.322 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.322 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.322 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.322 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.322 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.322 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.322 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.322 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.322 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.331 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.331 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.331 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.331 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.331 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.331 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.331 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.331 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.331 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.331 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.340 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.342 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.342 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.342 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.342 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.342 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.342 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.342 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.342 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.342 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.350 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.351 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.351 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.351 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.351 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.351 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.356 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.357 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.358 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.359 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.361 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.361 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.362 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.362 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.362 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.362 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.366 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.366 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.366 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.366 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.370 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.371 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.372 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.373 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.374 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.375 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.376 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.377 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.378 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.380 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.381 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.382 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.382 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.383 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.384 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.385 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.386 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.387 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.388 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.389 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.390 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.391 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.392 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.393 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.394 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.396 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.397 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.398 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.399 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.399 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.401 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.401 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.403 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.404 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.405 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.405 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.405 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.405 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.405 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.405 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.410 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.412 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.412 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.412 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.412 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.412 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.412 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.412 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.412 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.412 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.420 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.421 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.421 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.421 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.421 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.421 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.421 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.421 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.421 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.421 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.421 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.431 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.431 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.431 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.431 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.431 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.436 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.438 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.438 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.440 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.441 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.442 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.442 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.445 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.447 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.449 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.449 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.450 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.451 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.451 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.455 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.455 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.457 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.457 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.459 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.459 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.460 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.461 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.461 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.461 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.461 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.461 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.461 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.468 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.470 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.471 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.471 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.473 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.473 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.473 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.473 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.473 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.478 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.478 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.480 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.480 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.481 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.481 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.484 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.484 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.486 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.486 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.488 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.488 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.490 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.492 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.492 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.494 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.494 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.495 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.495 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.495 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.499 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.500 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.501 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.501 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.501 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.504 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.505 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.505 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.505 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.505 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.505 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.510 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.511 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.512 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.512 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.512 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.516 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.517 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.518 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.519 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.520 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.521 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.522 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.523 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.524 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.525 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.526 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.527 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.528 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.529 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.530 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.532 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.533 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.534 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.535 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.536 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.537 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.538 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.538 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.540 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.541 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.541 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.541 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.541 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.541 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.545 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.545 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.545 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.545 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.545 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.551 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.552 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.552 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.554 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.555 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.555 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.555 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.555 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.560 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.560 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.561 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.561 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.561 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.561 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.565 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.565 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.565 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.565 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.565 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.572 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.572 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.574 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.574 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.574 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.574 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.574 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.574 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.574 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.581 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.581 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.581 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.581 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.581 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.581 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.586 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.586 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.586 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:00:59.590 | DEBUG    | models.asm1.ode:__init__:162 - ASM1Solver 初始化完成 | 体积:5000m³ | Numba:ON
+2026-06-13 22:06:38.862 | INFO     | config.manager:load_config:591 - ✅ 配置文件 'config.yaml' 加载成功，日志与目录已就绪。
+2026-06-13 22:06:38.863 | DEBUG    | config.manager:load_config:592 - 📂 项目根目录锚定为: D:\water_project\WWTP_AI_System
+2026-06-13 22:08:45.782 | INFO     | config.manager:load_config:591 - ✅ 配置文件 'config.yaml' 加载成功，日志与目录已就绪。
+2026-06-13 22:08:45.783 | DEBUG    | config.manager:load_config:592 - 📂 项目根目录锚定为: D:\water_project\WWTP_AI_System
+2026-06-13 22:08:47.292 | INFO     | pipeline.data:__init__:108 -  管道初始化完成 | 频率:1h | 回溯:24h | 预测:24h
+2026-06-13 22:08:47.334 | INFO     | pipeline.data:_emit:127 - [LOAD] (20%) 数据加载成功 | 形状:(8640, 13) | 时间范围:2024-01-01 00:00:00 ~ 2024-12-25 23:00:00
+2026-06-13 22:08:47.363 | INFO     | pipeline.data:_emit:127 - [CLEAN] (40%) 清洗完成 | 重采样至 1h | 有效样本:8640
+2026-06-13 22:08:47.370 | INFO     | pipeline.data:build_tft_sequences:314 -  Scaler 拟合完成 | 特征: 7维, 目标均值=66.03, 目标标准差=13.20
+2026-06-13 22:08:47.371 | INFO     | pipeline.data:_emit:127 - [TFT] (60%) TFT序列构建完成 | 训练:6874 | 测试:1719
+2026-06-13 22:08:47.379 | INFO     | models.lgbm_features:__init__:114 - ✅ 特征构建器初始化 (动态推断模式) | 等待首次 build() 以锁定特征维度...
+2026-06-13 22:08:47.380 | INFO     | models.lgbm_features:_infer_base_columns:172 - 💡 [动态推断] 配置为空，自动从数据中提取了 11 个基础特征: ['flow', 'inf_cod', 'inf_nh3', 'eff_nh3', 'do_meas', 'DO_reactor', 'MLSS_reactor', 'temp', 'pH', 'NH3_reactor', 'X_A_REACTOR']
+2026-06-13 22:09:10.904 | INFO     | models.lgbm_features:build:271 - 🔒 [维度锁定] 动态推断完成，已锁定预期特征维度: 284
+2026-06-13 22:09:10.906 | INFO     | models.lgbm_features:_infer_base_columns:172 - 💡 [动态推断] 配置为空，自动从数据中提取了 11 个基础特征: ['flow', 'inf_cod', 'inf_nh3', 'eff_nh3', 'do_meas', 'DO_reactor', 'MLSS_reactor', 'temp', 'pH', 'NH3_reactor', 'X_A_REACTOR']
+2026-06-13 22:09:10.916 | INFO     | pipeline.data:_emit:127 - [LGBM] (80%) LGBM特征构建完成 | 总样本:8616 | 特征维度:284
+2026-06-13 22:09:38.782 | INFO     | config.manager:load_config:591 - ✅ 配置文件 'config.yaml' 加载成功，日志与目录已就绪。
+2026-06-13 22:09:38.782 | DEBUG    | config.manager:load_config:592 - 📂 项目根目录锚定为: D:\water_project\WWTP_AI_System
+2026-06-13 22:09:41.040 | INFO     | pipeline.data:__init__:108 -  管道初始化完成 | 频率:1h | 回溯:24h | 预测:24h
+2026-06-13 22:09:41.071 | INFO     | pipeline.data:_emit:127 - [LOAD] (20%) 数据加载成功 | 形状:(8640, 13) | 时间范围:2024-01-01 00:00:00 ~ 2024-12-25 23:00:00
+2026-06-13 22:09:41.099 | INFO     | pipeline.data:_emit:127 - [CLEAN] (40%) 清洗完成 | 重采样至 1h | 有效样本:8640
+2026-06-13 22:09:57.307 | INFO     | config.manager:load_config:591 - ✅ 配置文件 'config.yaml' 加载成功，日志与目录已就绪。
+2026-06-13 22:09:57.309 | DEBUG    | config.manager:load_config:592 - 📂 项目根目录锚定为: D:\water_project\WWTP_AI_System
+2026-06-13 22:09:57.313 | INFO     | pipeline.data:__init__:108 -  管道初始化完成 | 频率:1h | 回溯:24h | 预测:24h
+2026-06-13 22:09:57.346 | INFO     | pipeline.data:_emit:127 - [LOAD] (20%) 数据加载成功 | 形状:(8640, 13) | 时间范围:2024-01-01 00:00:00 ~ 2024-12-25 23:00:00
+2026-06-13 22:09:57.371 | INFO     | pipeline.data:_emit:127 - [CLEAN] (40%) 清洗完成 | 重采样至 1h | 有效样本:8640
+2026-06-13 22:09:57.376 | INFO     | pipeline.data:build_tft_sequences:314 -  Scaler 拟合完成 | 特征: 7维, 目标均值=66.03, 目标标准差=13.20
+2026-06-13 22:09:57.378 | INFO     | pipeline.data:_emit:127 - [TFT] (60%) TFT序列构建完成 | 训练:6874 | 测试:1719
+2026-06-13 22:10:24.724 | INFO     | config.manager:load_config:591 - ✅ 配置文件 'config.yaml' 加载成功，日志与目录已就绪。
+2026-06-13 22:10:24.725 | DEBUG    | config.manager:load_config:592 - 📂 项目根目录锚定为: D:\water_project\WWTP_AI_System
+2026-06-13 22:10:24.730 | INFO     | pipeline.data:__init__:108 -  管道初始化完成 | 频率:1h | 回溯:24h | 预测:24h
+2026-06-13 22:10:24.761 | INFO     | pipeline.data:_emit:127 - [LOAD] (20%) 数据加载成功 | 形状:(8640, 13) | 时间范围:2024-01-01 00:00:00 ~ 2024-12-25 23:00:00
+2026-06-13 22:10:24.787 | INFO     | pipeline.data:_emit:127 - [CLEAN] (40%) 清洗完成 | 重采样至 1h | 有效样本:8640
+2026-06-13 22:10:24.791 | INFO     | pipeline.data:build_tft_sequences:314 -  Scaler 拟合完成 | 特征: 7维, 目标均值=66.03, 目标标准差=13.20
+2026-06-13 22:10:24.794 | INFO     | pipeline.data:_emit:127 - [TFT] (60%) TFT序列构建完成 | 训练:6874 | 测试:1719
+2026-06-13 22:10:40.681 | INFO     | config.manager:load_config:591 - ✅ 配置文件 'config.yaml' 加载成功，日志与目录已就绪。
+2026-06-13 22:10:40.683 | DEBUG    | config.manager:load_config:592 - 📂 项目根目录锚定为: D:\water_project\WWTP_AI_System
+2026-06-13 22:10:40.687 | INFO     | pipeline.data:__init__:108 -  管道初始化完成 | 频率:1h | 回溯:24h | 预测:24h
+2026-06-13 22:10:40.721 | INFO     | pipeline.data:_emit:127 - [LOAD] (20%) 数据加载成功 | 形状:(8640, 13) | 时间范围:2024-01-01 00:00:00 ~ 2024-12-25 23:00:00
+2026-06-13 22:10:40.745 | INFO     | pipeline.data:_emit:127 - [CLEAN] (40%) 清洗完成 | 重采样至 1h | 有效样本:8640
+2026-06-13 22:10:40.749 | INFO     | pipeline.data:build_tft_sequences:314 -  Scaler 拟合完成 | 特征: 7维, 目标均值=66.03, 目标标准差=13.20
+2026-06-13 22:10:40.752 | INFO     | pipeline.data:_emit:127 - [TFT] (60%) TFT序列构建完成 | 训练:6874 | 测试:1719
+2026-06-13 22:10:40.757 | INFO     | models.lgbm_features:__init__:114 - ✅ 特征构建器初始化 (动态推断模式) | 等待首次 build() 以锁定特征维度...
+2026-06-13 22:10:40.757 | INFO     | models.lgbm_features:_infer_base_columns:172 - 💡 [动态推断] 配置为空，自动从数据中提取了 11 个基础特征: ['flow', 'inf_cod', 'inf_nh3', 'eff_nh3', 'do_meas', 'DO_reactor', 'MLSS_reactor', 'temp', 'pH', 'NH3_reactor', 'X_A_REACTOR']
+2026-06-13 22:11:03.637 | INFO     | models.lgbm_features:build:271 - 🔒 [维度锁定] 动态推断完成，已锁定预期特征维度: 284
+2026-06-13 22:11:03.642 | INFO     | models.lgbm_features:_infer_base_columns:172 - 💡 [动态推断] 配置为空，自动从数据中提取了 11 个基础特征: ['flow', 'inf_cod', 'inf_nh3', 'eff_nh3', 'do_meas', 'DO_reactor', 'MLSS_reactor', 'temp', 'pH', 'NH3_reactor', 'X_A_REACTOR']
+2026-06-13 22:11:03.651 | INFO     | pipeline.data:_emit:127 - [LGBM] (80%) LGBM特征构建完成 | 总样本:8616 | 特征维度:284
+2026-06-13 22:11:07.770 | INFO     | models.tft:<lambda>:236 - 🚀 引擎初始化 | 使用设备: cpu
+2026-06-13 22:11:13.491 | INFO     | models.tft:<lambda>:236 - --- 开始训练 TFT (1 Epochs) ---
+2026-06-13 22:12:16.642 | INFO     | config.manager:load_config:591 - ✅ 配置文件 'config.yaml' 加载成功，日志与目录已就绪。
+2026-06-13 22:12:16.642 | DEBUG    | config.manager:load_config:592 - 📂 项目根目录锚定为: D:\water_project\WWTP_AI_System
+2026-06-13 22:12:16.650 | INFO     | pipeline.data:__init__:108 -  管道初始化完成 | 频率:1h | 回溯:24h | 预测:24h
+2026-06-13 22:12:16.682 | INFO     | pipeline.data:_emit:127 - [LOAD] (20%) 数据加载成功 | 形状:(8640, 13) | 时间范围:2024-01-01 00:00:00 ~ 2024-12-25 23:00:00
+2026-06-13 22:12:16.707 | INFO     | pipeline.data:_emit:127 - [CLEAN] (40%) 清洗完成 | 重采样至 1h | 有效样本:8640
+2026-06-13 22:12:16.711 | INFO     | pipeline.data:build_tft_sequences:314 -  Scaler 拟合完成 | 特征: 7维, 目标均值=66.03, 目标标准差=13.20
+2026-06-13 22:12:16.714 | INFO     | pipeline.data:_emit:127 - [TFT] (60%) TFT序列构建完成 | 训练:6874 | 测试:1719
+2026-06-13 22:12:16.719 | INFO     | models.lgbm_features:__init__:114 - ✅ 特征构建器初始化 (动态推断模式) | 等待首次 build() 以锁定特征维度...
+2026-06-13 22:12:16.719 | INFO     | models.lgbm_features:_infer_base_columns:172 - 💡 [动态推断] 配置为空，自动从数据中提取了 11 个基础特征: ['flow', 'inf_cod', 'inf_nh3', 'eff_nh3', 'do_meas', 'DO_reactor', 'MLSS_reactor', 'temp', 'pH', 'NH3_reactor', 'X_A_REACTOR']
+2026-06-13 22:12:38.344 | INFO     | models.lgbm_features:build:271 - 🔒 [维度锁定] 动态推断完成，已锁定预期特征维度: 284
+2026-06-13 22:12:38.348 | INFO     | models.lgbm_features:_infer_base_columns:172 - 💡 [动态推断] 配置为空，自动从数据中提取了 11 个基础特征: ['flow', 'inf_cod', 'inf_nh3', 'eff_nh3', 'do_meas', 'DO_reactor', 'MLSS_reactor', 'temp', 'pH', 'NH3_reactor', 'X_A_REACTOR']
+2026-06-13 22:12:38.357 | INFO     | pipeline.data:_emit:127 - [LGBM] (80%) LGBM特征构建完成 | 总样本:8616 | 特征维度:284
+2026-06-13 22:12:42.781 | INFO     | models.tft:<lambda>:236 - 🚀 引擎初始化 | 使用设备: cpu
+2026-06-13 22:12:45.433 | INFO     | models.tft:<lambda>:236 - --- 开始训练 TFT (1 Epochs) ---
+2026-06-13 22:12:45.715 | SUCCESS  | models.tft:<lambda>:236 - Training complete | Best loss: 0.0117
+2026-06-13 22:18:10.899 | INFO     | config.manager:load_config:591 - ✅ 配置文件 'config.yaml' 加载成功，日志与目录已就绪。
+2026-06-13 22:18:10.899 | DEBUG    | config.manager:load_config:592 - 📂 项目根目录锚定为: D:\water_project\WWTP_AI_System
+2026-06-13 22:19:42.291 | INFO     | config.manager:load_config:591 - ✅ 配置文件 'config.yaml' 加载成功，日志与目录已就绪。
+2026-06-13 22:19:42.293 | DEBUG    | config.manager:load_config:592 - 📂 项目根目录锚定为: D:\water_project\WWTP_AI_System
+2026-06-13 22:19:48.410 | INFO     | models.asm1.ode:<module>:22 - 🚀 Numba JIT 已启用，ODE 函数将获得 10-50x 加速
+2026-06-13 22:20:28.742 | INFO     | config.manager:load_config:591 - ✅ 配置文件 'config.yaml' 加载成功，日志与目录已就绪。
+2026-06-13 22:20:28.744 | DEBUG    | config.manager:load_config:592 - 📂 项目根目录锚定为: D:\water_project\WWTP_AI_System
+2026-06-13 22:21:24.534 | INFO     | config.manager:load_config:591 - ✅ 配置文件 'config.yaml' 加载成功，日志与目录已就绪。
+2026-06-13 22:21:24.536 | DEBUG    | config.manager:load_config:592 - 📂 项目根目录锚定为: D:\water_project\WWTP_AI_System
+2026-06-13 22:21:30.538 | INFO     | models.asm1.ode:<module>:22 - 🚀 Numba JIT 已启用，ODE 函数将获得 10-50x 加速
+2026-06-13 22:23:23.238 | INFO     | config.manager:load_config:591 - ✅ 配置文件 'config.yaml' 加载成功，日志与目录已就绪。
+2026-06-13 22:23:23.242 | DEBUG    | config.manager:load_config:592 - 📂 项目根目录锚定为: D:\water_project\WWTP_AI_System
+2026-06-13 22:23:25.676 | INFO     | pipeline.gateway:__init__:175 - [DIAG] 模型搜索路径 (绝对路径):
+2026-06-13 22:23:25.676 | INFO     | pipeline.gateway:__init__:176 -   -> TFT  : D:\water_project\WWTP_AI_System\models\industrial_tft.onnx
+2026-06-13 22:23:25.677 | INFO     | pipeline.gateway:__init__:177 -   -> LGBM : D:\water_project\WWTP_AI_System\models\lgbm\lgbm_wwtp.txt
+2026-06-13 22:23:25.677 | WARNING  | pipeline.gateway:__init__:202 - [WARN] TFT 模型文件未找到: D:\water_project\WWTP_AI_System\models\industrial_tft.onnx，将仅使用 LGBM 推理
+2026-06-13 22:23:25.678 | WARNING  | pipeline.gateway:__init__:227 - [WARN] LGBM 模型文件未找到: D:\water_project\WWTP_AI_System\models\lgbm\lgbm_wwtp.txt，将仅使用 TFT 推理
+2026-06-13 22:23:25.678 | WARNING  | pipeline.gateway:_load_scalers:293 - [WARN] Feature scaler not found at D:\water_project\WWTP_AI_System\artifacts\scaler.pkl — TFT input will NOT be normalized
+2026-06-13 22:23:25.679 | WARNING  | pipeline.gateway:_load_scalers:310 - [WARN] Target scaler not found at D:\water_project\WWTP_AI_System\artifacts\target_scaler.pkl — TFT output will NOT be inverse-transformed
+2026-06-13 22:23:25.679 | WARNING  | pipeline.gateway:__init__:263 - Using TFT features as LGBM columns (fallback): ['inf_cod', 'inf_nh3', 'flow', 'DO_reactor', 'MLSS_reactor', 'temp', 'pH']
+2026-06-13 22:23:25.680 | INFO     | models.lgbm_features:__init__:111 - ✅ 特征构建器初始化 (静态模式) | 预期特征维度: 184
+2026-06-13 22:23:25.680 | INFO     | pipeline.gateway:__init__:268 - [OK] Predictor ready | TFT features: 7 | Seq: 24h | Divergence threshold: 3.0
+2026-06-13 22:23:25.680 | INFO     | pipeline.data:__init__:108 -  管道初始化完成 | 频率:1h | 回溯:24h | 预测:24h
+2026-06-13 22:23:34.373 | WARNING  | pipeline.gateway:predict:477 - [WARN] TFT 模型未加载，跳过推理
+2026-06-13 22:23:51.932 | WARNING  | pipeline.gateway:predict:477 - [WARN] TFT 模型未加载，跳过推理
+2026-06-13 22:26:20.005 | INFO     | config.manager:load_config:591 - ✅ 配置文件 'config.yaml' 加载成功，日志与目录已就绪。
+2026-06-13 22:26:20.005 | DEBUG    | config.manager:load_config:592 - 📂 项目根目录锚定为: D:\water_project\WWTP_AI_System
+2026-06-13 22:26:22.330 | INFO     | __main__:main:32 - 🚀 启动 WWTP LGBM 真实数据训练流水线...
+2026-06-13 22:26:22.330 | INFO     | __main__:main:63 - 🍳 正在运行数据管道清洗真实 SCADA 数据...
+2026-06-13 22:26:22.330 | INFO     | pipeline.data:__init__:108 -  管道初始化完成 | 频率:1h | 回溯:24h | 预测:24h
+2026-06-13 22:26:22.331 | INFO     | pipeline.data:_emit:127 - [INIT] (0%) 开始执行完整数据处理管道
+2026-06-13 22:26:22.364 | INFO     | pipeline.data:_emit:127 - [LOAD] (20%) 数据加载成功 | 形状:(8640, 13) | 时间范围:2024-01-01 00:00:00 ~ 2024-12-25 23:00:00
+2026-06-13 22:26:22.389 | INFO     | pipeline.data:_emit:127 - [CLEAN] (40%) 清洗完成 | 重采样至 1h | 有效样本:8640
+2026-06-13 22:26:22.400 | INFO     | pipeline.data:build_tft_sequences:314 -  Scaler 拟合完成 | 特征: 7维, 目标均值=66.03, 目标标准差=13.20
+2026-06-13 22:26:22.403 | INFO     | pipeline.data:_emit:127 - [TFT] (60%) TFT序列构建完成 | 训练:6874 | 测试:1719
+2026-06-13 22:26:22.410 | INFO     | models.lgbm_features:__init__:114 - ✅ 特征构建器初始化 (动态推断模式) | 等待首次 build() 以锁定特征维度...
+2026-06-13 22:26:22.410 | INFO     | models.lgbm_features:_infer_base_columns:172 - 💡 [动态推断] 配置为空，自动从数据中提取了 11 个基础特征: ['flow', 'inf_cod', 'inf_nh3', 'eff_nh3', 'do_meas', 'DO_reactor', 'MLSS_reactor', 'temp', 'pH', 'NH3_reactor', 'X_A_REACTOR']
+2026-06-13 22:26:50.405 | INFO     | models.lgbm_features:build:271 - 🔒 [维度锁定] 动态推断完成，已锁定预期特征维度: 284
+2026-06-13 22:26:50.410 | INFO     | models.lgbm_features:_infer_base_columns:172 - 💡 [动态推断] 配置为空，自动从数据中提取了 11 个基础特征: ['flow', 'inf_cod', 'inf_nh3', 'eff_nh3', 'do_meas', 'DO_reactor', 'MLSS_reactor', 'temp', 'pH', 'NH3_reactor', 'X_A_REACTOR']
+2026-06-13 22:26:50.420 | INFO     | pipeline.data:_emit:127 - [LGBM] (80%) LGBM特征构建完成 | 总样本:8616 | 特征维度:284
+2026-06-13 22:26:50.443 | INFO     | pipeline.data:save_artifacts:436 - Pipeline artifacts saved to: D:\water_project\WWTP_AI_System\artifacts
+2026-06-13 22:26:50.443 | INFO     | pipeline.data:_emit:127 - [DONE] (100%)  完整管道执行成功!
+2026-06-13 22:26:50.460 | SUCCESS  | __main__:main:71 - 💾 纯净特征矩阵已缓存至: D:\water_project\WWTP_AI_System\artifacts\lgbm_feature_cache.joblib
+2026-06-13 22:26:50.460 | INFO     | __main__:main:75 - 🔍 数据交接诊断 | X_train矩阵: (6892, 284) | feature_names数量: 284
+2026-06-13 22:26:50.460 | INFO     | models.lgbm_features:__init__:114 - ✅ 特征构建器初始化 (动态推断模式) | 等待首次 build() 以锁定特征维度...
+2026-06-13 22:26:50.460 | SUCCESS  | __main__:main:110 - ✅ 特征配置已从 YAML 同步 | 基础列: 动态推断 | 真实特征维度: 284
+2026-06-13 22:26:50.460 | INFO     | models.lgbm_features:__init__:114 - ✅ 特征构建器初始化 (动态推断模式) | 等待首次 build() 以锁定特征维度...
+2026-06-13 22:26:50.460 | INFO     | __main__:<lambda>:123 - ⏳ 正在进行环境预检 (磁盘与权限)...
+2026-06-13 22:26:50.460 | INFO     | __main__:<lambda>:123 - --- 开始训练 LightGBM (Max 2000 Rounds) ---
+2026-06-13 22:26:50.468 | WARNING  | models.lgbm_features:align_columns:307 - ⚠️ 预期列未锁定，已从输入 DataFrame 自动推断 284 个特征列：['flow', 'inf_cod', 'inf_nh3', 'eff_nh3', 'do_meas', 'DO_reactor', 'MLSS_reactor', 'temp', 'pH', 'NH3_reactor', 'X_A_REACTOR', 'flow_lag_1', 'flow_lag_3', 'flow_lag_6', 'flow_lag_12', 'flow_lag_24', 'inf_cod_lag_1', 'inf_cod_lag_3', 'inf_cod_lag_6', 'inf_cod_lag_12', 'inf_cod_lag_24', 'inf_nh3_lag_1', 'inf_nh3_lag_3', 'inf_nh3_lag_6', 'inf_nh3_lag_12', 'inf_nh3_lag_24', 'eff_nh3_lag_1', 'eff_nh3_lag_3', 'eff_nh3_lag_6', 'eff_nh3_lag_12', 'eff_nh3_lag_24', 'do_meas_lag_1', 'do_meas_lag_3', 'do_meas_lag_6', 'do_meas_lag_12', 'do_meas_lag_24', 'DO_reactor_lag_1', 'DO_reactor_lag_3', 'DO_reactor_lag_6', 'DO_reactor_lag_12', 'DO_reactor_lag_24', 'MLSS_reactor_lag_1', 'MLSS_reactor_lag_3', 'MLSS_reactor_lag_6', 'MLSS_reactor_lag_12', 'MLSS_reactor_lag_24', 'temp_lag_1', 'temp_lag_3', 'temp_lag_6', 'temp_lag_12', 'temp_lag_24', 'pH_lag_1', 'pH_lag_3', 'pH_lag_6', 'pH_lag_12', 'pH_lag_24', 'NH3_reactor_lag_1', 'NH3_reactor_lag_3', 'NH3_reactor_lag_6', 'NH3_reactor_lag_12', 'NH3_reactor_lag_24', 'X_A_REACTOR_lag_1', 'X_A_REACTOR_lag_3', 'X_A_REACTOR_lag_6', 'X_A_REACTOR_lag_12', 'X_A_REACTOR_lag_24', 'flow_roll_mean_6', 'flow_roll_range_6', 'flow_roll_std_6', 'flow_roll_slope_6', 'flow_roll_entropy_6', 'flow_roll_crossrate_6', 'flow_roll_mean_12', 'flow_roll_range_12', 'flow_roll_std_12', 'flow_roll_slope_12', 'flow_roll_entropy_12', 'flow_roll_crossrate_12', 'flow_roll_mean_24', 'flow_roll_range_24', 'flow_roll_std_24', 'flow_roll_slope_24', 'flow_roll_entropy_24', 'flow_roll_crossrate_24', 'inf_cod_roll_mean_6', 'inf_cod_roll_range_6', 'inf_cod_roll_std_6', 'inf_cod_roll_slope_6', 'inf_cod_roll_entropy_6', 'inf_cod_roll_crossrate_6', 'inf_cod_roll_mean_12', 'inf_cod_roll_range_12', 'inf_cod_roll_std_12', 'inf_cod_roll_slope_12', 'inf_cod_roll_entropy_12', 'inf_cod_roll_crossrate_12', 'inf_cod_roll_mean_24', 'inf_cod_roll_range_24', 'inf_cod_roll_std_24', 'inf_cod_roll_slope_24', 'inf_cod_roll_entropy_24', 'inf_cod_roll_crossrate_24', 'inf_nh3_roll_mean_6', 'inf_nh3_roll_range_6', 'inf_nh3_roll_std_6', 'inf_nh3_roll_slope_6', 'inf_nh3_roll_entropy_6', 'inf_nh3_roll_crossrate_6', 'inf_nh3_roll_mean_12', 'inf_nh3_roll_range_12', 'inf_nh3_roll_std_12', 'inf_nh3_roll_slope_12', 'inf_nh3_roll_entropy_12', 'inf_nh3_roll_crossrate_12', 'inf_nh3_roll_mean_24', 'inf_nh3_roll_range_24', 'inf_nh3_roll_std_24', 'inf_nh3_roll_slope_24', 'inf_nh3_roll_entropy_24', 'inf_nh3_roll_crossrate_24', 'eff_nh3_roll_mean_6', 'eff_nh3_roll_range_6', 'eff_nh3_roll_std_6', 'eff_nh3_roll_slope_6', 'eff_nh3_roll_entropy_6', 'eff_nh3_roll_crossrate_6', 'eff_nh3_roll_mean_12', 'eff_nh3_roll_range_12', 'eff_nh3_roll_std_12', 'eff_nh3_roll_slope_12', 'eff_nh3_roll_entropy_12', 'eff_nh3_roll_crossrate_12', 'eff_nh3_roll_mean_24', 'eff_nh3_roll_range_24', 'eff_nh3_roll_std_24', 'eff_nh3_roll_slope_24', 'eff_nh3_roll_entropy_24', 'eff_nh3_roll_crossrate_24', 'do_meas_roll_mean_6', 'do_meas_roll_range_6', 'do_meas_roll_std_6', 'do_meas_roll_slope_6', 'do_meas_roll_entropy_6', 'do_meas_roll_crossrate_6', 'do_meas_roll_mean_12', 'do_meas_roll_range_12', 'do_meas_roll_std_12', 'do_meas_roll_slope_12', 'do_meas_roll_entropy_12', 'do_meas_roll_crossrate_12', 'do_meas_roll_mean_24', 'do_meas_roll_range_24', 'do_meas_roll_std_24', 'do_meas_roll_slope_24', 'do_meas_roll_entropy_24', 'do_meas_roll_crossrate_24', 'DO_reactor_roll_mean_6', 'DO_reactor_roll_range_6', 'DO_reactor_roll_std_6', 'DO_reactor_roll_slope_6', 'DO_reactor_roll_entropy_6', 'DO_reactor_roll_crossrate_6', 'DO_reactor_roll_mean_12', 'DO_reactor_roll_range_12', 'DO_reactor_roll_std_12', 'DO_reactor_roll_slope_12', 'DO_reactor_roll_entropy_12', 'DO_reactor_roll_crossrate_12', 'DO_reactor_roll_mean_24', 'DO_reactor_roll_range_24', 'DO_reactor_roll_std_24', 'DO_reactor_roll_slope_24', 'DO_reactor_roll_entropy_24', 'DO_reactor_roll_crossrate_24', 'MLSS_reactor_roll_mean_6', 'MLSS_reactor_roll_range_6', 'MLSS_reactor_roll_std_6', 'MLSS_reactor_roll_slope_6', 'MLSS_reactor_roll_entropy_6', 'MLSS_reactor_roll_crossrate_6', 'MLSS_reactor_roll_mean_12', 'MLSS_reactor_roll_range_12', 'MLSS_reactor_roll_std_12', 'MLSS_reactor_roll_slope_12', 'MLSS_reactor_roll_entropy_12', 'MLSS_reactor_roll_crossrate_12', 'MLSS_reactor_roll_mean_24', 'MLSS_reactor_roll_range_24', 'MLSS_reactor_roll_std_24', 'MLSS_reactor_roll_slope_24', 'MLSS_reactor_roll_entropy_24', 'MLSS_reactor_roll_crossrate_24', 'temp_roll_mean_6', 'temp_roll_range_6', 'temp_roll_std_6', 'temp_roll_slope_6', 'temp_roll_entropy_6', 'temp_roll_crossrate_6', 'temp_roll_mean_12', 'temp_roll_range_12', 'temp_roll_std_12', 'temp_roll_slope_12', 'temp_roll_entropy_12', 'temp_roll_crossrate_12', 'temp_roll_mean_24', 'temp_roll_range_24', 'temp_roll_std_24', 'temp_roll_slope_24', 'temp_roll_entropy_24', 'temp_roll_crossrate_24', 'pH_roll_mean_6', 'pH_roll_range_6', 'pH_roll_std_6', 'pH_roll_slope_6', 'pH_roll_entropy_6', 'pH_roll_crossrate_6', 'pH_roll_mean_12', 'pH_roll_range_12', 'pH_roll_std_12', 'pH_roll_slope_12', 'pH_roll_entropy_12', 'pH_roll_crossrate_12', 'pH_roll_mean_24', 'pH_roll_range_24', 'pH_roll_std_24', 'pH_roll_slope_24', 'pH_roll_entropy_24', 'pH_roll_crossrate_24', 'NH3_reactor_roll_mean_6', 'NH3_reactor_roll_range_6', 'NH3_reactor_roll_std_6', 'NH3_reactor_roll_slope_6', 'NH3_reactor_roll_entropy_6', 'NH3_reactor_roll_crossrate_6', 'NH3_reactor_roll_mean_12', 'NH3_reactor_roll_range_12', 'NH3_reactor_roll_std_12', 'NH3_reactor_roll_slope_12', 'NH3_reactor_roll_entropy_12', 'NH3_reactor_roll_crossrate_12', 'NH3_reactor_roll_mean_24', 'NH3_reactor_roll_range_24', 'NH3_reactor_roll_std_24', 'NH3_reactor_roll_slope_24', 'NH3_reactor_roll_entropy_24', 'NH3_reactor_roll_crossrate_24', 'X_A_REACTOR_roll_mean_6', 'X_A_REACTOR_roll_range_6', 'X_A_REACTOR_roll_std_6', 'X_A_REACTOR_roll_slope_6', 'X_A_REACTOR_roll_entropy_6', 'X_A_REACTOR_roll_crossrate_6', 'X_A_REACTOR_roll_mean_12', 'X_A_REACTOR_roll_range_12', 'X_A_REACTOR_roll_std_12', 'X_A_REACTOR_roll_slope_12', 'X_A_REACTOR_roll_entropy_12', 'X_A_REACTOR_roll_crossrate_12', 'X_A_REACTOR_roll_mean_24', 'X_A_REACTOR_roll_range_24', 'X_A_REACTOR_roll_std_24', 'X_A_REACTOR_roll_slope_24', 'X_A_REACTOR_roll_entropy_24', 'X_A_REACTOR_roll_crossrate_24', 'hour_sin', 'hour_cos', 'dow_sin', 'dow_cos', 'month_sin', 'month_cos', 'flow_x_inf_cod', 'MLSS_x_DO', 'temp_x_pH', 'flow_delta_1h', 'inf_cod_delta_1h', 'inf_nh3_delta_1h', 'eff_nh3_delta_1h', 'do_meas_delta_1h', 'DO_reactor_delta_1h', 'MLSS_reactor_delta_1h', 'temp_delta_1h', 'pH_delta_1h', 'NH3_reactor_delta_1h', 'X_A_REACTOR_delta_1h']
+2026-06-13 22:26:50.500 | INFO     | __main__:<lambda>:123 - --- Time-series 5-fold CV (Expanding Window) ---
+2026-06-13 22:26:50.937 | INFO     | __main__:<lambda>:123 -   Fold 1/5: MAE=4.239, RMSE=6.849
+2026-06-13 22:26:51.332 | INFO     | __main__:<lambda>:123 -   Fold 2/5: MAE=5.836, RMSE=8.368
+2026-06-13 22:26:53.035 | INFO     | __main__:<lambda>:123 -   Fold 3/5: MAE=7.804, RMSE=9.896
+2026-06-13 22:26:54.475 | INFO     | __main__:<lambda>:123 -   Fold 4/5: MAE=5.069, RMSE=6.442
+2026-06-13 22:26:55.399 | INFO     | __main__:<lambda>:123 -   Fold 5/5: MAE=3.846, RMSE=5.125
+2026-06-13 22:26:55.399 | SUCCESS  | __main__:<lambda>:123 - CV 5-fold: MAE=5.359+-1.402, RMSE=7.336+-1.646
+2026-06-13 22:26:56.702 | SUCCESS  | __main__:<lambda>:123 - ✅ 测试集评估: MAE = 3.920, RMSE = 5.213
+2026-06-13 22:26:56.723 | INFO     | models.lgbm:train_and_save:286 - 特征列名已保存至: D:\water_project\WWTP_AI_System\models\lgbm\lgbm_feature_cols.joblib
+2026-06-13 22:26:56.727 | SUCCESS  | __main__:main:137 - 
+==================================================
+2026-06-13 22:26:56.727 | SUCCESS  | __main__:main:138 - 🎉 真实数据 LGBM 模型训练圆满成功！
+2026-06-13 22:26:56.727 | SUCCESS  | __main__:main:139 - 📁 您的模型文件在这里: D:\water_project\WWTP_AI_System\models\lgbm\lgbm_wwtp.txt
+2026-06-13 22:26:56.727 | SUCCESS  | __main__:main:140 - 📊 模型 MAE: 3.920 | RMSE: 5.213
+2026-06-13 22:26:56.727 | SUCCESS  | __main__:main:141 - ==================================================
+
+2026-06-13 22:28:36.344 | INFO     | config.manager:load_config:591 - ✅ 配置文件 'config.yaml' 加载成功，日志与目录已就绪。
+2026-06-13 22:28:36.346 | DEBUG    | config.manager:load_config:592 - 📂 项目根目录锚定为: D:\water_project\WWTP_AI_System
+2026-06-13 22:43:30.165 | INFO     | config.manager:load_config:591 - ✅ 配置文件 'config.yaml' 加载成功，日志与目录已就绪。
+2026-06-13 22:43:30.167 | DEBUG    | config.manager:load_config:592 - 📂 项目根目录锚定为: D:\water_project\WWTP_AI_System
+2026-06-13 22:43:33.613 | INFO     | pipeline.gateway:__init__:175 - [DIAG] 模型搜索路径 (绝对路径):
+2026-06-13 22:43:33.613 | INFO     | pipeline.gateway:__init__:176 -   -> TFT  : D:\water_project\WWTP_AI_System\models\industrial_tft.onnx
+2026-06-13 22:43:33.613 | INFO     | pipeline.gateway:__init__:177 -   -> LGBM : D:\water_project\WWTP_AI_System\models\lgbm\lgbm_wwtp.txt
+2026-06-13 22:43:33.613 | WARNING  | pipeline.gateway:__init__:202 - [WARN] TFT 模型文件未找到: D:\water_project\WWTP_AI_System\models\industrial_tft.onnx，将仅使用 LGBM 推理
+2026-06-13 22:43:33.632 | INFO     | pipeline.gateway:__init__:221 - [OK] LGBM 模型加载成功: D:\water_project\WWTP_AI_System\models\lgbm\lgbm_wwtp.txt
+2026-06-13 22:43:33.635 | INFO     | pipeline.gateway:_load_scalers:289 - [OK] Feature scaler loaded (7 features)
+2026-06-13 22:43:33.637 | INFO     | pipeline.gateway:_load_scalers:306 - [OK] Target scaler loaded (mean=66.03, std=13.20)
+2026-06-13 22:43:33.638 | INFO     | pipeline.gateway:__init__:251 - LGBM columns loaded from training artifacts: 11 columns
+2026-06-13 22:43:33.638 | INFO     | models.lgbm_features:__init__:111 - ✅ 特征构建器初始化 (静态模式) | 预期特征维度: 284
+2026-06-13 22:43:33.638 | INFO     | pipeline.gateway:__init__:268 - [OK] Predictor ready | TFT features: 7 | Seq: 24h | Divergence threshold: 3.0
+2026-06-13 22:43:33.639 | INFO     | pipeline.data:__init__:108 -  管道初始化完成 | 频率:1h | 回溯:24h | 预测:24h
+2026-06-13 22:43:33.639 | INFO     | pipeline.gateway:__init__:175 - [DIAG] 模型搜索路径 (绝对路径):
+2026-06-13 22:43:33.639 | INFO     | pipeline.gateway:__init__:176 -   -> TFT  : D:\water_project\WWTP_AI_System\models\industrial_tft.onnx
+2026-06-13 22:43:33.639 | INFO     | pipeline.gateway:__init__:177 -   -> LGBM : D:\water_project\WWTP_AI_System\models\lgbm\lgbm_wwtp.txt
+2026-06-13 22:43:33.640 | WARNING  | pipeline.gateway:__init__:202 - [WARN] TFT 模型文件未找到: D:\water_project\WWTP_AI_System\models\industrial_tft.onnx，将仅使用 LGBM 推理
+2026-06-13 22:43:33.661 | INFO     | pipeline.gateway:__init__:221 - [OK] LGBM 模型加载成功: D:\water_project\WWTP_AI_System\models\lgbm\lgbm_wwtp.txt
+2026-06-13 22:43:33.664 | INFO     | pipeline.gateway:_load_scalers:289 - [OK] Feature scaler loaded (7 features)
+2026-06-13 22:43:33.666 | INFO     | pipeline.gateway:_load_scalers:306 - [OK] Target scaler loaded (mean=66.03, std=13.20)
+2026-06-13 22:43:33.668 | INFO     | pipeline.gateway:__init__:251 - LGBM columns loaded from training artifacts: 11 columns
+2026-06-13 22:43:33.668 | INFO     | models.lgbm_features:__init__:111 - ✅ 特征构建器初始化 (静态模式) | 预期特征维度: 284
+2026-06-13 22:43:33.668 | INFO     | pipeline.gateway:__init__:268 - [OK] Predictor ready | TFT features: 7 | Seq: 24h | Divergence threshold: 3.0
+2026-06-13 22:43:33.668 | INFO     | pipeline.data:__init__:108 -  管道初始化完成 | 频率:1h | 回溯:24h | 预测:24h
+2026-06-13 22:44:28.067 | INFO     | config.manager:load_config:591 - ✅ 配置文件 'config.yaml' 加载成功，日志与目录已就绪。
+2026-06-13 22:44:28.069 | DEBUG    | config.manager:load_config:592 - 📂 项目根目录锚定为: D:\water_project\WWTP_AI_System
+2026-06-13 22:44:29.931 | INFO     | pipeline.gateway:__init__:175 - [DIAG] 模型搜索路径 (绝对路径):
+2026-06-13 22:44:29.932 | INFO     | pipeline.gateway:__init__:176 -   -> TFT  : D:\water_project\WWTP_AI_System\models\industrial_tft.onnx
+2026-06-13 22:44:29.932 | INFO     | pipeline.gateway:__init__:177 -   -> LGBM : D:\water_project\WWTP_AI_System\models\lgbm\lgbm_wwtp.txt
+2026-06-13 22:44:29.932 | WARNING  | pipeline.gateway:__init__:202 - [WARN] TFT 模型文件未找到: D:\water_project\WWTP_AI_System\models\industrial_tft.onnx，将仅使用 LGBM 推理
+2026-06-13 22:44:29.951 | INFO     | pipeline.gateway:__init__:221 - [OK] LGBM 模型加载成功: D:\water_project\WWTP_AI_System\models\lgbm\lgbm_wwtp.txt
+2026-06-13 22:44:29.955 | INFO     | pipeline.gateway:_load_scalers:289 - [OK] Feature scaler loaded (7 features)
+2026-06-13 22:44:29.956 | INFO     | pipeline.gateway:_load_scalers:306 - [OK] Target scaler loaded (mean=66.03, std=13.20)
+2026-06-13 22:44:29.958 | INFO     | pipeline.gateway:__init__:251 - LGBM columns loaded from training artifacts: 11 columns
+2026-06-13 22:44:29.958 | INFO     | models.lgbm_features:__init__:111 - ✅ 特征构建器初始化 (静态模式) | 预期特征维度: 284
+2026-06-13 22:44:29.958 | INFO     | pipeline.gateway:__init__:268 - [OK] Predictor ready | TFT features: 7 | Seq: 24h | Divergence threshold: 3.0
+2026-06-13 22:44:29.958 | INFO     | pipeline.data:__init__:108 -  管道初始化完成 | 频率:1h | 回溯:24h | 预测:24h
+2026-06-13 22:44:29.958 | WARNING  | pipeline.gateway:predict:477 - [WARN] TFT 模型未加载，跳过推理
+2026-06-13 22:44:30.050 | WARNING  | models.lgbm_features:align_columns:313 - ⚠️ 推理数据缺少 1 个特征列，将使用 0 填充
+2026-06-13 22:44:30.185 | INFO     | config.manager:reload_config:625 - 🔄 正在热重载配置文件...
+2026-06-13 22:44:30.207 | INFO     | config.manager:load_config:591 - ✅ 配置文件 'config.yaml' 加载成功，日志与目录已就绪。
+2026-06-13 22:44:30.215 | DEBUG    | config.manager:load_config:592 - 📂 项目根目录锚定为: D:\water_project\WWTP_AI_System
+2026-06-13 22:44:54.346 | INFO     | config.manager:load_config:591 - ✅ 配置文件 'config.yaml' 加载成功，日志与目录已就绪。
+2026-06-13 22:44:54.346 | DEBUG    | config.manager:load_config:592 - 📂 项目根目录锚定为: D:\water_project\WWTP_AI_System
+2026-06-13 22:47:57.358 | INFO     | config.manager:load_config:591 - ✅ 配置文件 'config.yaml' 加载成功，日志与目录已就绪。
+2026-06-13 22:47:57.360 | DEBUG    | config.manager:load_config:592 - 📂 项目根目录锚定为: D:\water_project\WWTP_AI_System
+2026-06-13 22:47:59.630 | INFO     | __main__:report_progress:137 - [5%] 正在进行环境预检 (磁盘与权限)...
+2026-06-13 22:47:59.630 | INFO     | __main__:cli_progress:268 - 进度 [  5.0%] | 正在进行环境预检 (磁盘与权限)...
+2026-06-13 22:47:59.633 | INFO     | __main__:report_progress:137 - [10%] 正在初始化数据管道...
+2026-06-13 22:47:59.633 | INFO     | __main__:cli_progress:268 - 进度 [ 10.0%] | 正在初始化数据管道...
+2026-06-13 22:47:59.633 | INFO     | pipeline.data:__init__:108 -  管道初始化完成 | 频率:1h | 回溯:24h | 预测:24h
+2026-06-13 22:47:59.633 | INFO     | __main__:run_pipeline:178 - 🚀 启动数据管道 | 数据源: D:\water_project\WWTP_AI_System\data\scada_data.csv | 输出目录: D:\water_project\WWTP_AI_System\artifacts
+2026-06-13 22:47:59.633 | INFO     | __main__:report_progress:137 - [15%] 正在加载与校验 CSV 数据...
+2026-06-13 22:47:59.633 | INFO     | __main__:cli_progress:268 - 进度 [ 15.0%] | 正在加载与校验 CSV 数据...
+2026-06-13 22:47:59.667 | INFO     | pipeline.data:_emit:127 - [LOAD] (20%) 数据加载成功 | 形状:(8640, 13) | 时间范围:2024-01-01 00:00:00 ~ 2024-12-25 23:00:00
+2026-06-13 22:47:59.667 | INFO     | __main__:report_progress:137 - [30%] 正在清洗、对齐与插值...
+2026-06-13 22:47:59.667 | INFO     | __main__:cli_progress:268 - 进度 [ 30.0%] | 正在清洗、对齐与插值...
+2026-06-13 22:47:59.690 | INFO     | pipeline.data:_emit:127 - [CLEAN] (40%) 清洗完成 | 重采样至 1h | 有效样本:8640
+2026-06-13 22:47:59.692 | INFO     | __main__:report_progress:137 - [60%] 正在构建 TFT 时序滑窗序列...
+2026-06-13 22:47:59.692 | INFO     | __main__:cli_progress:268 - 进度 [ 60.0%] | 正在构建 TFT 时序滑窗序列...
+2026-06-13 22:47:59.695 | INFO     | pipeline.data:build_tft_sequences:314 -  Scaler 拟合完成 | 特征: 7维, 目标均值=66.03, 目标标准差=13.20
+2026-06-13 22:47:59.695 | INFO     | pipeline.data:_emit:127 - [TFT] (60%) TFT序列构建完成 | 训练:6874 | 测试:1719
+2026-06-13 22:47:59.695 | INFO     | __main__:report_progress:137 - [80%] 正在构建 LGBM 表格特征...
+2026-06-13 22:47:59.695 | INFO     | __main__:cli_progress:268 - 进度 [ 80.0%] | 正在构建 LGBM 表格特征...
+2026-06-13 22:47:59.704 | INFO     | models.lgbm_features:__init__:114 - ✅ 特征构建器初始化 (动态推断模式) | 等待首次 build() 以锁定特征维度...
+2026-06-13 22:47:59.704 | INFO     | models.lgbm_features:_infer_base_columns:172 - 💡 [动态推断] 配置为空，自动从数据中提取了 11 个基础特征: ['flow', 'inf_cod', 'inf_nh3', 'eff_nh3', 'do_meas', 'DO_reactor', 'MLSS_reactor', 'temp', 'pH', 'NH3_reactor', 'X_A_REACTOR']
+2026-06-13 22:48:23.180 | INFO     | models.lgbm_features:build:271 - 🔒 [维度锁定] 动态推断完成，已锁定预期特征维度: 284
+2026-06-13 22:48:23.184 | INFO     | models.lgbm_features:_infer_base_columns:172 - 💡 [动态推断] 配置为空，自动从数据中提取了 11 个基础特征: ['flow', 'inf_cod', 'inf_nh3', 'eff_nh3', 'do_meas', 'DO_reactor', 'MLSS_reactor', 'temp', 'pH', 'NH3_reactor', 'X_A_REACTOR']
+2026-06-13 22:48:23.194 | INFO     | pipeline.data:_emit:127 - [LGBM] (80%) LGBM特征构建完成 | 总样本:8616 | 特征维度:284
+2026-06-13 22:48:23.205 | INFO     | __main__:report_progress:137 - [95%] 正在持久化保存管道工件 (Scaler/Config)...
+2026-06-13 22:48:23.205 | INFO     | __main__:cli_progress:268 - 进度 [ 95.0%] | 正在持久化保存管道工件 (Scaler/Config)...
+2026-06-13 22:48:23.209 | INFO     | pipeline.data:save_artifacts:436 - Pipeline artifacts saved to: D:\water_project\WWTP_AI_System\artifacts
+2026-06-13 22:48:23.209 | SUCCESS  | __main__:run_pipeline:207 - 
+============================================================
+2026-06-13 22:48:23.209 | SUCCESS  | __main__:run_pipeline:208 - TFT 训练集形状: (6874, 24, 7)
+2026-06-13 22:48:23.209 | SUCCESS  | __main__:run_pipeline:209 - LGBM 特征数量:  284
+2026-06-13 22:48:23.209 | SUCCESS  | __main__:run_pipeline:210 - 清洗后有效样本:  8640
+2026-06-13 22:48:23.209 | SUCCESS  | __main__:run_pipeline:211 - ============================================================
+2026-06-13 22:48:23.239 | INFO     | __main__:report_progress:137 - [100%] ✅ 数据管道执行完毕! 产物已保存至: D:\water_project\WWTP_AI_System\artifacts
+2026-06-13 22:48:23.239 | INFO     | __main__:cli_progress:268 - 进度 [100.0%] | ✅ 数据管道执行完毕! 产物已保存至: D:\water_project\WWTP_AI_System\artifacts
+2026-06-13 22:48:23.239 | INFO     | __main__:run_pipeline:226 - 
+============================================================
+2026-06-13 22:48:23.239 | INFO     | __main__:run_pipeline:227 - 📋 【下一步操作指引】数据特征已就绪，请启动模型训练：
+2026-06-13 22:48:23.239 | INFO     | __main__:run_pipeline:228 -    1. 训练 LGBM/TFT 预测模型: python training/train_ppo.py --model lgbm_tft
+2026-06-13 22:48:23.239 | INFO     | __main__:run_pipeline:229 -    2. 训练 PPO 控制策略:      python training/train_ppo.py --model ppo
+2026-06-13 22:48:23.239 | INFO     | __main__:run_pipeline:230 -    3. 启动实时推理引擎:       python inference.py
+2026-06-13 22:48:23.239 | INFO     | __main__:run_pipeline:231 - ============================================================
+
+2026-06-13 22:48:23.239 | INFO     | __main__:<module>:275 - 
+🔍 [CLI模式] 开始验证持久化恢复...
+2026-06-13 22:48:23.239 | INFO     | pipeline.data:__init__:108 -  管道初始化完成 | 频率:1h | 回溯:24h | 预测:24h
+2026-06-13 22:48:23.239 | INFO     | pipeline.data:load_artifacts:463 - Pipeline restored from D:\water_project\WWTP_AI_System\artifacts
+2026-06-13 22:48:23.239 | SUCCESS  | __main__:<module>:277 - ✅ 管道恢复验证 | 特征数: 7 | 已拟合: True
+2026-06-13 22:48:57.260 | INFO     | config.manager:load_config:591 - ✅ 配置文件 'config.yaml' 加载成功，日志与目录已就绪。
+2026-06-13 22:48:57.262 | DEBUG    | config.manager:load_config:592 - 📂 项目根目录锚定为: D:\water_project\WWTP_AI_System
+2026-06-13 22:48:59.566 | INFO     | __main__:main:32 - 🚀 启动 WWTP LGBM 真实数据训练流水线...
+2026-06-13 22:48:59.566 | INFO     | __main__:main:42 - ⚡ 发现特征缓存，正在校验维度: D:\water_project\WWTP_AI_System\artifacts\lgbm_feature_cache.joblib
+2026-06-13 22:48:59.578 | SUCCESS  | __main__:main:49 - ✅ 缓存维度校验通过 (284维)，秒级加载！
+2026-06-13 22:48:59.578 | INFO     | __main__:main:75 - 🔍 数据交接诊断 | X_train矩阵: (6892, 284) | feature_names数量: 284
+2026-06-13 22:48:59.578 | INFO     | models.lgbm_features:__init__:114 - ✅ 特征构建器初始化 (动态推断模式) | 等待首次 build() 以锁定特征维度...
+2026-06-13 22:48:59.578 | SUCCESS  | __main__:main:110 - ✅ 特征配置已从 YAML 同步 | 基础列: 动态推断 | 真实特征维度: 284
+2026-06-13 22:48:59.578 | INFO     | models.lgbm_features:__init__:114 - ✅ 特征构建器初始化 (动态推断模式) | 等待首次 build() 以锁定特征维度...
+2026-06-13 22:48:59.578 | INFO     | __main__:<lambda>:123 - ⏳ 正在进行环境预检 (磁盘与权限)...
+2026-06-13 22:48:59.582 | INFO     | __main__:<lambda>:123 - --- 开始训练 LightGBM (Max 2000 Rounds) ---
+2026-06-13 22:48:59.583 | WARNING  | models.lgbm_features:align_columns:307 - ⚠️ 预期列未锁定，已从输入 DataFrame 自动推断 284 个特征列：['flow', 'inf_cod', 'inf_nh3', 'eff_nh3', 'do_meas', 'DO_reactor', 'MLSS_reactor', 'temp', 'pH', 'NH3_reactor', 'X_A_REACTOR', 'flow_lag_1', 'flow_lag_3', 'flow_lag_6', 'flow_lag_12', 'flow_lag_24', 'inf_cod_lag_1', 'inf_cod_lag_3', 'inf_cod_lag_6', 'inf_cod_lag_12', 'inf_cod_lag_24', 'inf_nh3_lag_1', 'inf_nh3_lag_3', 'inf_nh3_lag_6', 'inf_nh3_lag_12', 'inf_nh3_lag_24', 'eff_nh3_lag_1', 'eff_nh3_lag_3', 'eff_nh3_lag_6', 'eff_nh3_lag_12', 'eff_nh3_lag_24', 'do_meas_lag_1', 'do_meas_lag_3', 'do_meas_lag_6', 'do_meas_lag_12', 'do_meas_lag_24', 'DO_reactor_lag_1', 'DO_reactor_lag_3', 'DO_reactor_lag_6', 'DO_reactor_lag_12', 'DO_reactor_lag_24', 'MLSS_reactor_lag_1', 'MLSS_reactor_lag_3', 'MLSS_reactor_lag_6', 'MLSS_reactor_lag_12', 'MLSS_reactor_lag_24', 'temp_lag_1', 'temp_lag_3', 'temp_lag_6', 'temp_lag_12', 'temp_lag_24', 'pH_lag_1', 'pH_lag_3', 'pH_lag_6', 'pH_lag_12', 'pH_lag_24', 'NH3_reactor_lag_1', 'NH3_reactor_lag_3', 'NH3_reactor_lag_6', 'NH3_reactor_lag_12', 'NH3_reactor_lag_24', 'X_A_REACTOR_lag_1', 'X_A_REACTOR_lag_3', 'X_A_REACTOR_lag_6', 'X_A_REACTOR_lag_12', 'X_A_REACTOR_lag_24', 'flow_roll_mean_6', 'flow_roll_range_6', 'flow_roll_std_6', 'flow_roll_slope_6', 'flow_roll_entropy_6', 'flow_roll_crossrate_6', 'flow_roll_mean_12', 'flow_roll_range_12', 'flow_roll_std_12', 'flow_roll_slope_12', 'flow_roll_entropy_12', 'flow_roll_crossrate_12', 'flow_roll_mean_24', 'flow_roll_range_24', 'flow_roll_std_24', 'flow_roll_slope_24', 'flow_roll_entropy_24', 'flow_roll_crossrate_24', 'inf_cod_roll_mean_6', 'inf_cod_roll_range_6', 'inf_cod_roll_std_6', 'inf_cod_roll_slope_6', 'inf_cod_roll_entropy_6', 'inf_cod_roll_crossrate_6', 'inf_cod_roll_mean_12', 'inf_cod_roll_range_12', 'inf_cod_roll_std_12', 'inf_cod_roll_slope_12', 'inf_cod_roll_entropy_12', 'inf_cod_roll_crossrate_12', 'inf_cod_roll_mean_24', 'inf_cod_roll_range_24', 'inf_cod_roll_std_24', 'inf_cod_roll_slope_24', 'inf_cod_roll_entropy_24', 'inf_cod_roll_crossrate_24', 'inf_nh3_roll_mean_6', 'inf_nh3_roll_range_6', 'inf_nh3_roll_std_6', 'inf_nh3_roll_slope_6', 'inf_nh3_roll_entropy_6', 'inf_nh3_roll_crossrate_6', 'inf_nh3_roll_mean_12', 'inf_nh3_roll_range_12', 'inf_nh3_roll_std_12', 'inf_nh3_roll_slope_12', 'inf_nh3_roll_entropy_12', 'inf_nh3_roll_crossrate_12', 'inf_nh3_roll_mean_24', 'inf_nh3_roll_range_24', 'inf_nh3_roll_std_24', 'inf_nh3_roll_slope_24', 'inf_nh3_roll_entropy_24', 'inf_nh3_roll_crossrate_24', 'eff_nh3_roll_mean_6', 'eff_nh3_roll_range_6', 'eff_nh3_roll_std_6', 'eff_nh3_roll_slope_6', 'eff_nh3_roll_entropy_6', 'eff_nh3_roll_crossrate_6', 'eff_nh3_roll_mean_12', 'eff_nh3_roll_range_12', 'eff_nh3_roll_std_12', 'eff_nh3_roll_slope_12', 'eff_nh3_roll_entropy_12', 'eff_nh3_roll_crossrate_12', 'eff_nh3_roll_mean_24', 'eff_nh3_roll_range_24', 'eff_nh3_roll_std_24', 'eff_nh3_roll_slope_24', 'eff_nh3_roll_entropy_24', 'eff_nh3_roll_crossrate_24', 'do_meas_roll_mean_6', 'do_meas_roll_range_6', 'do_meas_roll_std_6', 'do_meas_roll_slope_6', 'do_meas_roll_entropy_6', 'do_meas_roll_crossrate_6', 'do_meas_roll_mean_12', 'do_meas_roll_range_12', 'do_meas_roll_std_12', 'do_meas_roll_slope_12', 'do_meas_roll_entropy_12', 'do_meas_roll_crossrate_12', 'do_meas_roll_mean_24', 'do_meas_roll_range_24', 'do_meas_roll_std_24', 'do_meas_roll_slope_24', 'do_meas_roll_entropy_24', 'do_meas_roll_crossrate_24', 'DO_reactor_roll_mean_6', 'DO_reactor_roll_range_6', 'DO_reactor_roll_std_6', 'DO_reactor_roll_slope_6', 'DO_reactor_roll_entropy_6', 'DO_reactor_roll_crossrate_6', 'DO_reactor_roll_mean_12', 'DO_reactor_roll_range_12', 'DO_reactor_roll_std_12', 'DO_reactor_roll_slope_12', 'DO_reactor_roll_entropy_12', 'DO_reactor_roll_crossrate_12', 'DO_reactor_roll_mean_24', 'DO_reactor_roll_range_24', 'DO_reactor_roll_std_24', 'DO_reactor_roll_slope_24', 'DO_reactor_roll_entropy_24', 'DO_reactor_roll_crossrate_24', 'MLSS_reactor_roll_mean_6', 'MLSS_reactor_roll_range_6', 'MLSS_reactor_roll_std_6', 'MLSS_reactor_roll_slope_6', 'MLSS_reactor_roll_entropy_6', 'MLSS_reactor_roll_crossrate_6', 'MLSS_reactor_roll_mean_12', 'MLSS_reactor_roll_range_12', 'MLSS_reactor_roll_std_12', 'MLSS_reactor_roll_slope_12', 'MLSS_reactor_roll_entropy_12', 'MLSS_reactor_roll_crossrate_12', 'MLSS_reactor_roll_mean_24', 'MLSS_reactor_roll_range_24', 'MLSS_reactor_roll_std_24', 'MLSS_reactor_roll_slope_24', 'MLSS_reactor_roll_entropy_24', 'MLSS_reactor_roll_crossrate_24', 'temp_roll_mean_6', 'temp_roll_range_6', 'temp_roll_std_6', 'temp_roll_slope_6', 'temp_roll_entropy_6', 'temp_roll_crossrate_6', 'temp_roll_mean_12', 'temp_roll_range_12', 'temp_roll_std_12', 'temp_roll_slope_12', 'temp_roll_entropy_12', 'temp_roll_crossrate_12', 'temp_roll_mean_24', 'temp_roll_range_24', 'temp_roll_std_24', 'temp_roll_slope_24', 'temp_roll_entropy_24', 'temp_roll_crossrate_24', 'pH_roll_mean_6', 'pH_roll_range_6', 'pH_roll_std_6', 'pH_roll_slope_6', 'pH_roll_entropy_6', 'pH_roll_crossrate_6', 'pH_roll_mean_12', 'pH_roll_range_12', 'pH_roll_std_12', 'pH_roll_slope_12', 'pH_roll_entropy_12', 'pH_roll_crossrate_12', 'pH_roll_mean_24', 'pH_roll_range_24', 'pH_roll_std_24', 'pH_roll_slope_24', 'pH_roll_entropy_24', 'pH_roll_crossrate_24', 'NH3_reactor_roll_mean_6', 'NH3_reactor_roll_range_6', 'NH3_reactor_roll_std_6', 'NH3_reactor_roll_slope_6', 'NH3_reactor_roll_entropy_6', 'NH3_reactor_roll_crossrate_6', 'NH3_reactor_roll_mean_12', 'NH3_reactor_roll_range_12', 'NH3_reactor_roll_std_12', 'NH3_reactor_roll_slope_12', 'NH3_reactor_roll_entropy_12', 'NH3_reactor_roll_crossrate_12', 'NH3_reactor_roll_mean_24', 'NH3_reactor_roll_range_24', 'NH3_reactor_roll_std_24', 'NH3_reactor_roll_slope_24', 'NH3_reactor_roll_entropy_24', 'NH3_reactor_roll_crossrate_24', 'X_A_REACTOR_roll_mean_6', 'X_A_REACTOR_roll_range_6', 'X_A_REACTOR_roll_std_6', 'X_A_REACTOR_roll_slope_6', 'X_A_REACTOR_roll_entropy_6', 'X_A_REACTOR_roll_crossrate_6', 'X_A_REACTOR_roll_mean_12', 'X_A_REACTOR_roll_range_12', 'X_A_REACTOR_roll_std_12', 'X_A_REACTOR_roll_slope_12', 'X_A_REACTOR_roll_entropy_12', 'X_A_REACTOR_roll_crossrate_12', 'X_A_REACTOR_roll_mean_24', 'X_A_REACTOR_roll_range_24', 'X_A_REACTOR_roll_std_24', 'X_A_REACTOR_roll_slope_24', 'X_A_REACTOR_roll_entropy_24', 'X_A_REACTOR_roll_crossrate_24', 'hour_sin', 'hour_cos', 'dow_sin', 'dow_cos', 'month_sin', 'month_cos', 'flow_x_inf_cod', 'MLSS_x_DO', 'temp_x_pH', 'flow_delta_1h', 'inf_cod_delta_1h', 'inf_nh3_delta_1h', 'eff_nh3_delta_1h', 'do_meas_delta_1h', 'DO_reactor_delta_1h', 'MLSS_reactor_delta_1h', 'temp_delta_1h', 'pH_delta_1h', 'NH3_reactor_delta_1h', 'X_A_REACTOR_delta_1h']
+2026-06-13 22:48:59.605 | INFO     | __main__:<lambda>:123 - --- Time-series 5-fold CV (Expanding Window) ---
+2026-06-13 22:48:59.908 | INFO     | __main__:<lambda>:123 -   Fold 1/5: MAE=4.239, RMSE=6.849
+2026-06-13 22:49:00.202 | INFO     | __main__:<lambda>:123 -   Fold 2/5: MAE=5.836, RMSE=8.368
+2026-06-13 22:49:01.240 | INFO     | __main__:<lambda>:123 -   Fold 3/5: MAE=7.804, RMSE=9.896
+2026-06-13 22:49:02.205 | INFO     | __main__:<lambda>:123 -   Fold 4/5: MAE=5.069, RMSE=6.442
+2026-06-13 22:49:02.854 | INFO     | __main__:<lambda>:123 -   Fold 5/5: MAE=3.846, RMSE=5.125
+2026-06-13 22:49:02.854 | SUCCESS  | __main__:<lambda>:123 - CV 5-fold: MAE=5.359+-1.402, RMSE=7.336+-1.646
+2026-06-13 22:49:03.703 | SUCCESS  | __main__:<lambda>:123 - ✅ 测试集评估: MAE = 3.920, RMSE = 5.213
+2026-06-13 22:49:03.720 | INFO     | models.lgbm:train_and_save:286 - 特征列名已保存至: D:\water_project\WWTP_AI_System\models\lgbm\lgbm_feature_cols.joblib
+2026-06-13 22:49:03.723 | SUCCESS  | __main__:main:137 - 
+==================================================
+2026-06-13 22:49:03.723 | SUCCESS  | __main__:main:138 - 🎉 真实数据 LGBM 模型训练圆满成功！
+2026-06-13 22:49:03.723 | SUCCESS  | __main__:main:139 - 📁 您的模型文件在这里: D:\water_project\WWTP_AI_System\models\lgbm\lgbm_wwtp.txt
+2026-06-13 22:49:03.723 | SUCCESS  | __main__:main:140 - 📊 模型 MAE: 3.920 | RMSE: 5.213
+2026-06-13 22:49:03.723 | SUCCESS  | __main__:main:141 - ==================================================
+
+2026-06-13 22:49:16.389 | INFO     | config.manager:load_config:591 - ✅ 配置文件 'config.yaml' 加载成功，日志与目录已就绪。
+2026-06-13 22:49:16.390 | DEBUG    | config.manager:load_config:592 - 📂 项目根目录锚定为: D:\water_project\WWTP_AI_System
+2026-06-13 22:49:18.530 | INFO     | __main__:train_tft:41 - ============================================================
+2026-06-13 22:49:18.530 | INFO     | __main__:train_tft:42 - 🚀 开始执行 TFT 模型训练任务
+2026-06-13 22:49:18.530 | INFO     | __main__:train_tft:43 - ============================================================
+2026-06-13 22:49:18.530 | INFO     | __main__:train_tft:66 - ⚙️  训练配置加载完成 | 轮次: 50 | 批次: 128
+2026-06-13 22:49:18.531 | INFO     | __main__:train_tft:69 - 🏭 初始化数据管道...
+2026-06-13 22:49:18.531 | INFO     | pipeline.data:__init__:108 -  管道初始化完成 | 频率:1h | 回溯:24h | 预测:24h
+2026-06-13 22:49:18.560 | INFO     | pipeline.data:_emit:127 - [LOAD] (20%) 数据加载成功 | 形状:(8640, 13) | 时间范围:2024-01-01 00:00:00 ~ 2024-12-25 23:00:00
+2026-06-13 22:49:18.585 | INFO     | pipeline.data:_emit:127 - [CLEAN] (40%) 清洗完成 | 重采样至 1h | 有效样本:8640
+2026-06-13 22:49:18.588 | INFO     | pipeline.data:build_tft_sequences:314 -  Scaler 拟合完成 | 特征: 7维, 目标均值=66.03, 目标标准差=13.20
+2026-06-13 22:49:18.591 | INFO     | pipeline.data:_emit:127 - [TFT] (60%) TFT序列构建完成 | 训练:6874 | 测试:1719
+2026-06-13 22:49:18.591 | INFO     | pipeline.data:save_artifacts:436 - Pipeline artifacts saved to: D:\water_project\WWTP_AI_System\artifacts
+2026-06-13 22:49:18.591 | INFO     | __main__:train_tft:92 - 🧠 初始化 TFT 算法引擎...
+2026-06-13 22:49:18.601 | INFO     | __main__:train_tft:119 - 📊 数据就绪 | X:torch.Size([6874, 24, 7]) | y:torch.Size([6874, 1])
+2026-06-13 22:49:18.603 | SUCCESS  | __main__:train_tft:136 - ✅ DataLoader 就绪 | 批次数: 53 | Workers: 0
+2026-06-13 22:49:18.603 | INFO     | models.tft:<lambda>:236 - 🚀 引擎初始化 | 使用设备: cpu
+2026-06-13 22:49:23.438 | INFO     | __main__:train_tft:155 - 🔥 开始训练循环...
+2026-06-13 22:49:23.438 | INFO     | models.tft:<lambda>:236 - --- 开始训练 TFT (50 Epochs) ---
+2026-06-13 22:52:25.466 | INFO     | config.manager:load_config:591 - ✅ 配置文件 'config.yaml' 加载成功，日志与目录已就绪。
+2026-06-13 22:52:25.467 | DEBUG    | config.manager:load_config:592 - 📂 项目根目录锚定为: D:\water_project\WWTP_AI_System
+2026-06-13 22:52:27.643 | INFO     | __main__:train_tft:41 - ============================================================
+2026-06-13 22:52:27.643 | INFO     | __main__:train_tft:42 - 🚀 开始执行 TFT 模型训练任务
+2026-06-13 22:52:27.643 | INFO     | __main__:train_tft:43 - ============================================================
+2026-06-13 22:52:27.643 | INFO     | __main__:train_tft:66 - ⚙️  训练配置加载完成 | 轮次: 50 | 批次: 128
+2026-06-13 22:52:27.643 | INFO     | __main__:train_tft:69 - 🏭 初始化数据管道...
+2026-06-13 22:52:27.644 | INFO     | pipeline.data:__init__:108 -  管道初始化完成 | 频率:1h | 回溯:24h | 预测:24h
+2026-06-13 22:52:27.678 | INFO     | pipeline.data:_emit:127 - [LOAD] (20%) 数据加载成功 | 形状:(8640, 13) | 时间范围:2024-01-01 00:00:00 ~ 2024-12-25 23:00:00
+2026-06-13 22:52:27.699 | INFO     | pipeline.data:_emit:127 - [CLEAN] (40%) 清洗完成 | 重采样至 1h | 有效样本:8640
+2026-06-13 22:52:27.703 | INFO     | pipeline.data:build_tft_sequences:314 -  Scaler 拟合完成 | 特征: 7维, 目标均值=66.03, 目标标准差=13.20
+2026-06-13 22:52:27.706 | INFO     | pipeline.data:_emit:127 - [TFT] (60%) TFT序列构建完成 | 训练:6874 | 测试:1719
+2026-06-13 22:52:27.714 | INFO     | pipeline.data:save_artifacts:436 - Pipeline artifacts saved to: D:\water_project\WWTP_AI_System\artifacts
+2026-06-13 22:52:27.714 | INFO     | __main__:train_tft:92 - 🧠 初始化 TFT 算法引擎...
+2026-06-13 22:52:27.718 | INFO     | __main__:train_tft:119 - 📊 数据就绪 | X:torch.Size([6874, 24, 7]) | y:torch.Size([6874, 1])
+2026-06-13 22:52:27.718 | SUCCESS  | __main__:train_tft:136 - ✅ DataLoader 就绪 | 批次数: 53 | Workers: 0
+2026-06-13 22:52:27.718 | INFO     | models.tft:<lambda>:236 - 🚀 引擎初始化 | 使用设备: cpu
+2026-06-13 22:52:31.015 | INFO     | __main__:train_tft:155 - 🔥 开始训练循环...
+2026-06-13 22:52:31.016 | INFO     | models.tft:<lambda>:236 - --- 开始训练 TFT (50 Epochs) ---
+2026-06-13 22:56:35.913 | INFO     | models.tft:<lambda>:236 - Early stopping at epoch 36: no improvement for 12 epochs
+2026-06-13 22:56:35.913 | SUCCESS  | models.tft:<lambda>:236 - Training complete | Best loss: 0.6179
+2026-06-13 22:56:35.913 | SUCCESS  | __main__:train_tft:162 - ✅ 训练完成！最终 Loss: 0.6179
+2026-06-13 22:56:35.913 | INFO     | __main__:train_tft:179 - 📦 正在导出 ONNX 模型...
+2026-06-13 22:56:47.569 | SUCCESS  | models.tft:<lambda>:236 - ONNX export success: D:\water_project\WWTP_AI_System\models\industrial_tft.onnx
+2026-06-13 22:56:47.803 | ERROR    | __main__:train_tft:200 - ❌ ONNX 导出失败: [ONNXRuntimeError] : 2 : INVALID_ARGUMENT : Non-zero status code returned while running LayerNormalization node. Name:'node_layer_norm_3' Status Message: Size of X.shape[axis:] must be larger than 1, got 1
+2026-06-13 22:56:47.808 | WARNING  | __main__:train_tft:203 - 模型权重已训练完成，但 ONNX 导出未完成。
+2026-06-13 22:56:47.813 | INFO     | __main__:train_tft:205 - ============================================================
+2026-06-13 22:56:47.813 | INFO     | __main__:train_tft:206 - 💾 流程结束
+2026-06-13 22:56:47.813 | INFO     | __main__:train_tft:207 - ============================================================
+2026-06-13 22:57:15.997 | INFO     | config.manager:load_config:591 - ✅ 配置文件 'config.yaml' 加载成功，日志与目录已就绪。
+2026-06-13 22:57:15.999 | DEBUG    | config.manager:load_config:592 - 📂 项目根目录锚定为: D:\water_project\WWTP_AI_System
+2026-06-13 22:57:17.853 | INFO     | pipeline.gateway:__init__:175 - [DIAG] 模型搜索路径 (绝对路径):
+2026-06-13 22:57:17.853 | INFO     | pipeline.gateway:__init__:176 -   -> TFT  : D:\water_project\WWTP_AI_System\models\industrial_tft.onnx
+2026-06-13 22:57:17.853 | INFO     | pipeline.gateway:__init__:177 -   -> LGBM : D:\water_project\WWTP_AI_System\models\lgbm\lgbm_wwtp.txt
+2026-06-13 22:57:17.985 | INFO     | pipeline.gateway:__init__:196 - [OK] TFT (ONNX) 模型加载成功: D:\water_project\WWTP_AI_System\models\industrial_tft.onnx
+2026-06-13 22:57:18.002 | INFO     | pipeline.gateway:__init__:221 - [OK] LGBM 模型加载成功: D:\water_project\WWTP_AI_System\models\lgbm\lgbm_wwtp.txt
+2026-06-13 22:57:18.006 | INFO     | pipeline.gateway:_load_scalers:289 - [OK] Feature scaler loaded (7 features)
+2026-06-13 22:57:18.009 | INFO     | pipeline.gateway:_load_scalers:306 - [OK] Target scaler loaded (mean=66.03, std=13.20)
+2026-06-13 22:57:18.011 | INFO     | pipeline.gateway:_infer_lgbm_base_columns_from_model:122 - 从 LGBM 模型反推基础列: 163 列 → ['flow', 'inf_cod', 'inf_nh3', 'eff_nh3', 'do_meas', 'DO_reactor', 'MLSS_reactor', 'temp', 'pH', 'NH3_reactor', 'X_A_REACTOR', 'flow_roll_range_6', 'flow_roll_slope_6', 'flow_roll_entropy_6', 'flow_roll_crossrate_6', 'flow_roll_range_12', 'flow_roll_slope_12', 'flow_roll_entropy_12', 'flow_roll_crossrate_12', 'flow_roll_range_24', 'flow_roll_slope_24', 'flow_roll_entropy_24', 'flow_roll_crossrate_24', 'inf_cod_roll_range_6', 'inf_cod_roll_slope_6', 'inf_cod_roll_entropy_6', 'inf_cod_roll_crossrate_6', 'inf_cod_roll_range_12', 'inf_cod_roll_slope_12', 'inf_cod_roll_entropy_12', 'inf_cod_roll_crossrate_12', 'inf_cod_roll_range_24', 'inf_cod_roll_slope_24', 'inf_cod_roll_entropy_24', 'inf_cod_roll_crossrate_24', 'inf_nh3_roll_range_6', 'inf_nh3_roll_slope_6', 'inf_nh3_roll_entropy_6', 'inf_nh3_roll_crossrate_6', 'inf_nh3_roll_range_12', 'inf_nh3_roll_slope_12', 'inf_nh3_roll_entropy_12', 'inf_nh3_roll_crossrate_12', 'inf_nh3_roll_range_24', 'inf_nh3_roll_slope_24', 'inf_nh3_roll_entropy_24', 'inf_nh3_roll_crossrate_24', 'eff_nh3_roll_range_6', 'eff_nh3_roll_slope_6', 'eff_nh3_roll_entropy_6', 'eff_nh3_roll_crossrate_6', 'eff_nh3_roll_range_12', 'eff_nh3_roll_slope_12', 'eff_nh3_roll_entropy_12', 'eff_nh3_roll_crossrate_12', 'eff_nh3_roll_range_24', 'eff_nh3_roll_slope_24', 'eff_nh3_roll_entropy_24', 'eff_nh3_roll_crossrate_24', 'do_meas_roll_range_6', 'do_meas_roll_slope_6', 'do_meas_roll_entropy_6', 'do_meas_roll_crossrate_6', 'do_meas_roll_range_12', 'do_meas_roll_slope_12', 'do_meas_roll_entropy_12', 'do_meas_roll_crossrate_12', 'do_meas_roll_range_24', 'do_meas_roll_slope_24', 'do_meas_roll_entropy_24', 'do_meas_roll_crossrate_24', 'DO_reactor_roll_range_6', 'DO_reactor_roll_slope_6', 'DO_reactor_roll_entropy_6', 'DO_reactor_roll_crossrate_6', 'DO_reactor_roll_range_12', 'DO_reactor_roll_slope_12', 'DO_reactor_roll_entropy_12', 'DO_reactor_roll_crossrate_12', 'DO_reactor_roll_range_24', 'DO_reactor_roll_slope_24', 'DO_reactor_roll_entropy_24', 'DO_reactor_roll_crossrate_24', 'MLSS_reactor_roll_range_6', 'MLSS_reactor_roll_slope_6', 'MLSS_reactor_roll_entropy_6', 'MLSS_reactor_roll_crossrate_6', 'MLSS_reactor_roll_range_12', 'MLSS_reactor_roll_slope_12', 'MLSS_reactor_roll_entropy_12', 'MLSS_reactor_roll_crossrate_12', 'MLSS_reactor_roll_range_24', 'MLSS_reactor_roll_slope_24', 'MLSS_reactor_roll_entropy_24', 'MLSS_reactor_roll_crossrate_24', 'temp_roll_range_6', 'temp_roll_slope_6', 'temp_roll_entropy_6', 'temp_roll_crossrate_6', 'temp_roll_range_12', 'temp_roll_slope_12', 'temp_roll_entropy_12', 'temp_roll_crossrate_12', 'temp_roll_range_24', 'temp_roll_slope_24', 'temp_roll_entropy_24', 'temp_roll_crossrate_24', 'pH_roll_range_6', 'pH_roll_slope_6', 'pH_roll_entropy_6', 'pH_roll_crossrate_6', 'pH_roll_range_12', 'pH_roll_slope_12', 'pH_roll_entropy_12', 'pH_roll_crossrate_12', 'pH_roll_range_24', 'pH_roll_slope_24', 'pH_roll_entropy_24', 'pH_roll_crossrate_24', 'NH3_reactor_roll_range_6', 'NH3_reactor_roll_slope_6', 'NH3_reactor_roll_entropy_6', 'NH3_reactor_roll_crossrate_6', 'NH3_reactor_roll_range_12', 'NH3_reactor_roll_slope_12', 'NH3_reactor_roll_entropy_12', 'NH3_reactor_roll_crossrate_12', 'NH3_reactor_roll_range_24', 'NH3_reactor_roll_slope_24', 'NH3_reactor_roll_entropy_24', 'NH3_reactor_roll_crossrate_24', 'X_A_REACTOR_roll_range_6', 'X_A_REACTOR_roll_slope_6', 'X_A_REACTOR_roll_entropy_6', 'X_A_REACTOR_roll_crossrate_6', 'X_A_REACTOR_roll_range_12', 'X_A_REACTOR_roll_slope_12', 'X_A_REACTOR_roll_entropy_12', 'X_A_REACTOR_roll_crossrate_12', 'X_A_REACTOR_roll_range_24', 'X_A_REACTOR_roll_slope_24', 'X_A_REACTOR_roll_entropy_24', 'X_A_REACTOR_roll_crossrate_24', 'hour_sin', 'hour_cos', 'dow_sin', 'dow_cos', 'month_sin', 'month_cos', 'flow_x_inf_cod', 'MLSS_x_DO', 'temp_x_pH', 'flow_delta_1h', 'inf_cod_delta_1h', 'inf_nh3_delta_1h', 'eff_nh3_delta_1h', 'do_meas_delta_1h', 'DO_reactor_delta_1h', 'MLSS_reactor_delta_1h', 'temp_delta_1h', 'pH_delta_1h', 'NH3_reactor_delta_1h', 'X_A_REACTOR_delta_1h']
+2026-06-13 22:57:18.011 | INFO     | pipeline.gateway:__init__:259 - LGBM columns inferred from model: 163 columns
+2026-06-13 22:57:18.012 | INFO     | models.lgbm_features:__init__:111 - ✅ 特征构建器初始化 (静态模式) | 预期特征维度: 4084
+2026-06-13 22:57:18.012 | INFO     | pipeline.gateway:__init__:268 - [OK] Predictor ready | TFT features: 7 | Seq: 24h | Divergence threshold: 3.0
+2026-06-13 22:57:18.013 | INFO     | pipeline.data:__init__:108 -  管道初始化完成 | 频率:1h | 回溯:24h | 预测:24h
+2026-06-13 22:57:18.025 | ERROR    | pipeline.gateway:predict:483 - [ERROR] TFT 推理失败: [ONNXRuntimeError] : 2 : INVALID_ARGUMENT : Non-zero status code returned while running LayerNormalization node. Name:'node_layer_norm_3' Status Message: Size of X.shape[axis:] must be larger than 1, got 1
+2026-06-13 22:57:19.333 | WARNING  | models.lgbm_features:align_columns:313 - ⚠️ 推理数据缺少 1 个特征列，将使用 0 填充
+2026-06-13 22:57:19.334 | ERROR    | pipeline.gateway:_prepare_lgbm_input:439 - [ERROR] LGBM feature construction failed: cannot reindex on an axis with duplicate labels
+2026-06-13 22:57:19.334 | ERROR    | pipeline.gateway:predict:498 - [ERROR] LGBM 输入特征构建失败
+2026-06-13 23:29:55.755 | INFO     | config.manager:load_config:591 - ✅ 配置文件 'config.yaml' 加载成功，日志与目录已就绪。
+2026-06-13 23:29:55.760 | DEBUG    | config.manager:load_config:592 - 📂 项目根目录锚定为: D:\water_project\WWTP_AI_System
+2026-06-13 23:29:59.051 | INFO     | pipeline.gateway:__init__:175 - [DIAG] 模型搜索路径 (绝对路径):
+2026-06-13 23:29:59.051 | INFO     | pipeline.gateway:__init__:176 -   -> TFT  : D:\water_project\WWTP_AI_System\models\industrial_tft.onnx
+2026-06-13 23:29:59.051 | INFO     | pipeline.gateway:__init__:177 -   -> LGBM : D:\water_project\WWTP_AI_System\models\lgbm\lgbm_wwtp.txt
+2026-06-13 23:29:59.222 | INFO     | pipeline.gateway:__init__:196 - [OK] TFT (ONNX) 模型加载成功: D:\water_project\WWTP_AI_System\models\industrial_tft.onnx
+2026-06-13 23:29:59.261 | INFO     | pipeline.gateway:__init__:221 - [OK] LGBM 模型加载成功: D:\water_project\WWTP_AI_System\models\lgbm\lgbm_wwtp.txt
+2026-06-13 23:29:59.266 | INFO     | pipeline.gateway:_load_scalers:289 - [OK] Feature scaler loaded (7 features)
+2026-06-13 23:29:59.270 | INFO     | pipeline.gateway:_load_scalers:306 - [OK] Target scaler loaded (mean=66.03, std=13.20)
+2026-06-13 23:29:59.274 | INFO     | pipeline.gateway:_infer_lgbm_base_columns_from_model:122 - 从 LGBM 模型反推基础列: 163 列 → ['flow', 'inf_cod', 'inf_nh3', 'eff_nh3', 'do_meas', 'DO_reactor', 'MLSS_reactor', 'temp', 'pH', 'NH3_reactor', 'X_A_REACTOR', 'flow_roll_range_6', 'flow_roll_slope_6', 'flow_roll_entropy_6', 'flow_roll_crossrate_6', 'flow_roll_range_12', 'flow_roll_slope_12', 'flow_roll_entropy_12', 'flow_roll_crossrate_12', 'flow_roll_range_24', 'flow_roll_slope_24', 'flow_roll_entropy_24', 'flow_roll_crossrate_24', 'inf_cod_roll_range_6', 'inf_cod_roll_slope_6', 'inf_cod_roll_entropy_6', 'inf_cod_roll_crossrate_6', 'inf_cod_roll_range_12', 'inf_cod_roll_slope_12', 'inf_cod_roll_entropy_12', 'inf_cod_roll_crossrate_12', 'inf_cod_roll_range_24', 'inf_cod_roll_slope_24', 'inf_cod_roll_entropy_24', 'inf_cod_roll_crossrate_24', 'inf_nh3_roll_range_6', 'inf_nh3_roll_slope_6', 'inf_nh3_roll_entropy_6', 'inf_nh3_roll_crossrate_6', 'inf_nh3_roll_range_12', 'inf_nh3_roll_slope_12', 'inf_nh3_roll_entropy_12', 'inf_nh3_roll_crossrate_12', 'inf_nh3_roll_range_24', 'inf_nh3_roll_slope_24', 'inf_nh3_roll_entropy_24', 'inf_nh3_roll_crossrate_24', 'eff_nh3_roll_range_6', 'eff_nh3_roll_slope_6', 'eff_nh3_roll_entropy_6', 'eff_nh3_roll_crossrate_6', 'eff_nh3_roll_range_12', 'eff_nh3_roll_slope_12', 'eff_nh3_roll_entropy_12', 'eff_nh3_roll_crossrate_12', 'eff_nh3_roll_range_24', 'eff_nh3_roll_slope_24', 'eff_nh3_roll_entropy_24', 'eff_nh3_roll_crossrate_24', 'do_meas_roll_range_6', 'do_meas_roll_slope_6', 'do_meas_roll_entropy_6', 'do_meas_roll_crossrate_6', 'do_meas_roll_range_12', 'do_meas_roll_slope_12', 'do_meas_roll_entropy_12', 'do_meas_roll_crossrate_12', 'do_meas_roll_range_24', 'do_meas_roll_slope_24', 'do_meas_roll_entropy_24', 'do_meas_roll_crossrate_24', 'DO_reactor_roll_range_6', 'DO_reactor_roll_slope_6', 'DO_reactor_roll_entropy_6', 'DO_reactor_roll_crossrate_6', 'DO_reactor_roll_range_12', 'DO_reactor_roll_slope_12', 'DO_reactor_roll_entropy_12', 'DO_reactor_roll_crossrate_12', 'DO_reactor_roll_range_24', 'DO_reactor_roll_slope_24', 'DO_reactor_roll_entropy_24', 'DO_reactor_roll_crossrate_24', 'MLSS_reactor_roll_range_6', 'MLSS_reactor_roll_slope_6', 'MLSS_reactor_roll_entropy_6', 'MLSS_reactor_roll_crossrate_6', 'MLSS_reactor_roll_range_12', 'MLSS_reactor_roll_slope_12', 'MLSS_reactor_roll_entropy_12', 'MLSS_reactor_roll_crossrate_12', 'MLSS_reactor_roll_range_24', 'MLSS_reactor_roll_slope_24', 'MLSS_reactor_roll_entropy_24', 'MLSS_reactor_roll_crossrate_24', 'temp_roll_range_6', 'temp_roll_slope_6', 'temp_roll_entropy_6', 'temp_roll_crossrate_6', 'temp_roll_range_12', 'temp_roll_slope_12', 'temp_roll_entropy_12', 'temp_roll_crossrate_12', 'temp_roll_range_24', 'temp_roll_slope_24', 'temp_roll_entropy_24', 'temp_roll_crossrate_24', 'pH_roll_range_6', 'pH_roll_slope_6', 'pH_roll_entropy_6', 'pH_roll_crossrate_6', 'pH_roll_range_12', 'pH_roll_slope_12', 'pH_roll_entropy_12', 'pH_roll_crossrate_12', 'pH_roll_range_24', 'pH_roll_slope_24', 'pH_roll_entropy_24', 'pH_roll_crossrate_24', 'NH3_reactor_roll_range_6', 'NH3_reactor_roll_slope_6', 'NH3_reactor_roll_entropy_6', 'NH3_reactor_roll_crossrate_6', 'NH3_reactor_roll_range_12', 'NH3_reactor_roll_slope_12', 'NH3_reactor_roll_entropy_12', 'NH3_reactor_roll_crossrate_12', 'NH3_reactor_roll_range_24', 'NH3_reactor_roll_slope_24', 'NH3_reactor_roll_entropy_24', 'NH3_reactor_roll_crossrate_24', 'X_A_REACTOR_roll_range_6', 'X_A_REACTOR_roll_slope_6', 'X_A_REACTOR_roll_entropy_6', 'X_A_REACTOR_roll_crossrate_6', 'X_A_REACTOR_roll_range_12', 'X_A_REACTOR_roll_slope_12', 'X_A_REACTOR_roll_entropy_12', 'X_A_REACTOR_roll_crossrate_12', 'X_A_REACTOR_roll_range_24', 'X_A_REACTOR_roll_slope_24', 'X_A_REACTOR_roll_entropy_24', 'X_A_REACTOR_roll_crossrate_24', 'hour_sin', 'hour_cos', 'dow_sin', 'dow_cos', 'month_sin', 'month_cos', 'flow_x_inf_cod', 'MLSS_x_DO', 'temp_x_pH', 'flow_delta_1h', 'inf_cod_delta_1h', 'inf_nh3_delta_1h', 'eff_nh3_delta_1h', 'do_meas_delta_1h', 'DO_reactor_delta_1h', 'MLSS_reactor_delta_1h', 'temp_delta_1h', 'pH_delta_1h', 'NH3_reactor_delta_1h', 'X_A_REACTOR_delta_1h']
+2026-06-13 23:29:59.274 | INFO     | pipeline.gateway:__init__:259 - LGBM columns inferred from model: 163 columns
+2026-06-13 23:29:59.276 | INFO     | models.lgbm_features:__init__:111 - ✅ 特征构建器初始化 (静态模式) | 预期特征维度: 4084
+2026-06-13 23:29:59.278 | INFO     | pipeline.gateway:__init__:268 - [OK] Predictor ready | TFT features: 7 | Seq: 24h | Divergence threshold: 3.0
+2026-06-13 23:29:59.280 | INFO     | pipeline.data:__init__:108 -  管道初始化完成 | 频率:1h | 回溯:24h | 预测:24h
+2026-06-13 23:30:08.425 | ERROR    | pipeline.gateway:predict:483 - [ERROR] TFT 推理失败: [ONNXRuntimeError] : 2 : INVALID_ARGUMENT : Non-zero status code returned while running LayerNormalization node. Name:'node_layer_norm_3' Status Message: Size of X.shape[axis:] must be larger than 1, got 1
+2026-06-13 23:30:10.405 | WARNING  | models.lgbm_features:align_columns:313 - ⚠️ 推理数据缺少 1 个特征列，将使用 0 填充
+2026-06-13 23:30:10.410 | ERROR    | pipeline.gateway:_prepare_lgbm_input:439 - [ERROR] LGBM feature construction failed: cannot reindex on an axis with duplicate labels
+2026-06-13 23:30:10.410 | ERROR    | pipeline.gateway:predict:498 - [ERROR] LGBM 输入特征构建失败
+2026-06-13 23:32:17.404 | ERROR    | pipeline.gateway:predict:483 - [ERROR] TFT 推理失败: [ONNXRuntimeError] : 2 : INVALID_ARGUMENT : Non-zero status code returned while running LayerNormalization node. Name:'node_layer_norm_3' Status Message: Size of X.shape[axis:] must be larger than 1, got 1
+2026-06-13 23:32:19.318 | WARNING  | models.lgbm_features:align_columns:313 - ⚠️ 推理数据缺少 1 个特征列，将使用 0 填充
+2026-06-13 23:32:19.318 | ERROR    | pipeline.gateway:_prepare_lgbm_input:439 - [ERROR] LGBM feature construction failed: cannot reindex on an axis with duplicate labels
+2026-06-13 23:32:19.318 | ERROR    | pipeline.gateway:predict:498 - [ERROR] LGBM 输入特征构建失败
+2026-06-13 23:34:13.172 | INFO     | config.manager:load_config:591 - ✅ 配置文件 'config.yaml' 加载成功，日志与目录已就绪。
+2026-06-13 23:34:13.172 | DEBUG    | config.manager:load_config:592 - 📂 项目根目录锚定为: D:\water_project\WWTP_AI_System
+2026-06-13 23:34:15.384 | INFO     | __main__:train_tft:41 - ============================================================
+2026-06-13 23:34:15.384 | INFO     | __main__:train_tft:42 - 🚀 开始执行 TFT 模型训练任务
+2026-06-13 23:34:15.384 | INFO     | __main__:train_tft:43 - ============================================================
+2026-06-13 23:34:15.384 | INFO     | __main__:train_tft:66 - ⚙️  训练配置加载完成 | 轮次: 50 | 批次: 128
+2026-06-13 23:34:15.384 | INFO     | __main__:train_tft:69 - 🏭 初始化数据管道...
+2026-06-13 23:34:15.384 | INFO     | pipeline.data:__init__:108 -  管道初始化完成 | 频率:1h | 回溯:24h | 预测:24h
+2026-06-13 23:34:15.428 | INFO     | pipeline.data:_emit:127 - [LOAD] (20%) 数据加载成功 | 形状:(8640, 13) | 时间范围:2024-01-01 00:00:00 ~ 2024-12-25 23:00:00
+2026-06-13 23:34:15.453 | INFO     | pipeline.data:_emit:127 - [CLEAN] (40%) 清洗完成 | 重采样至 1h | 有效样本:8640
+2026-06-13 23:34:15.455 | INFO     | pipeline.data:build_tft_sequences:314 -  Scaler 拟合完成 | 特征: 7维, 目标均值=66.03, 目标标准差=13.20
+2026-06-13 23:34:15.458 | INFO     | pipeline.data:_emit:127 - [TFT] (60%) TFT序列构建完成 | 训练:6874 | 测试:1719
+2026-06-13 23:34:15.464 | INFO     | pipeline.data:save_artifacts:436 - Pipeline artifacts saved to: D:\water_project\WWTP_AI_System\artifacts
+2026-06-13 23:34:15.466 | INFO     | __main__:train_tft:92 - 🧠 初始化 TFT 算法引擎...
+2026-06-13 23:34:15.482 | INFO     | __main__:train_tft:119 - 📊 数据就绪 | X:torch.Size([6874, 24, 7]) | y:torch.Size([6874, 1])
+2026-06-13 23:34:15.483 | SUCCESS  | __main__:train_tft:136 - ✅ DataLoader 就绪 | 批次数: 53 | Workers: 0
+2026-06-13 23:34:15.483 | INFO     | models.tft:<lambda>:236 - 🚀 引擎初始化 | 使用设备: cpu
+2026-06-13 23:34:21.707 | INFO     | __main__:train_tft:155 - 🔥 开始训练循环...
+2026-06-13 23:34:21.707 | INFO     | models.tft:<lambda>:236 - --- 开始训练 TFT (50 Epochs) ---
+2026-06-13 23:41:17.243 | SUCCESS  | models.tft:<lambda>:236 - Training complete | Best loss: 0.0029
+2026-06-13 23:41:17.272 | SUCCESS  | __main__:train_tft:162 - ✅ 训练完成！最终 Loss: 0.0029
+2026-06-13 23:41:17.274 | INFO     | __main__:train_tft:179 - 📦 正在导出 ONNX 模型...
+2026-06-13 23:41:17.309 | INFO     | models.tft:<lambda>:236 - 已清理旧模型文件: D:\water_project\WWTP_AI_System\models\industrial_tft.onnx
+2026-06-13 23:41:17.311 | INFO     | models.tft:<lambda>:236 - 已清理旧模型文件: D:\water_project\WWTP_AI_System\models\industrial_tft.onnx.data
+2026-06-13 23:41:40.435 | SUCCESS  | models.tft:<lambda>:236 - ONNX export success: D:\water_project\WWTP_AI_System\models\industrial_tft.onnx
+2026-06-13 23:41:40.714 | SUCCESS  | __main__:train_tft:192 - 🎉 ONNX 验证通过 | 示例预测: 0.1850
+2026-06-13 23:41:40.715 | INFO     | __main__:train_tft:205 - ============================================================
+2026-06-13 23:41:40.715 | INFO     | __main__:train_tft:206 - 💾 流程结束
+2026-06-13 23:41:40.715 | INFO     | __main__:train_tft:207 - ============================================================
+2026-06-13 23:44:50.444 | INFO     | config.manager:load_config:591 - ✅ 配置文件 'config.yaml' 加载成功，日志与目录已就绪。
+2026-06-13 23:44:50.447 | DEBUG    | config.manager:load_config:592 - 📂 项目根目录锚定为: D:\water_project\WWTP_AI_System
+2026-06-13 23:44:50.465 | INFO     | pipeline.gateway:__init__:175 - [DIAG] 模型搜索路径 (绝对路径):
+2026-06-13 23:44:50.465 | INFO     | pipeline.gateway:__init__:176 -   -> TFT  : D:\water_project\WWTP_AI_System\models\industrial_tft.onnx
+2026-06-13 23:44:50.465 | INFO     | pipeline.gateway:__init__:177 -   -> LGBM : D:\water_project\WWTP_AI_System\models\lgbm\lgbm_wwtp.txt
+2026-06-13 23:44:50.759 | INFO     | pipeline.gateway:__init__:196 - [OK] TFT (ONNX) 模型加载成功: D:\water_project\WWTP_AI_System\models\industrial_tft.onnx
+2026-06-13 23:44:50.794 | INFO     | pipeline.gateway:__init__:221 - [OK] LGBM 模型加载成功: D:\water_project\WWTP_AI_System\models\lgbm\lgbm_wwtp.txt
+2026-06-13 23:44:50.799 | INFO     | pipeline.gateway:_load_scalers:289 - [OK] Feature scaler loaded (7 features)
+2026-06-13 23:44:50.804 | INFO     | pipeline.gateway:_load_scalers:306 - [OK] Target scaler loaded (mean=66.03, std=13.20)
+2026-06-13 23:44:50.807 | INFO     | pipeline.gateway:_infer_lgbm_base_columns_from_model:122 - 从 LGBM 模型反推基础列: 163 列 → ['flow', 'inf_cod', 'inf_nh3', 'eff_nh3', 'do_meas', 'DO_reactor', 'MLSS_reactor', 'temp', 'pH', 'NH3_reactor', 'X_A_REACTOR', 'flow_roll_range_6', 'flow_roll_slope_6', 'flow_roll_entropy_6', 'flow_roll_crossrate_6', 'flow_roll_range_12', 'flow_roll_slope_12', 'flow_roll_entropy_12', 'flow_roll_crossrate_12', 'flow_roll_range_24', 'flow_roll_slope_24', 'flow_roll_entropy_24', 'flow_roll_crossrate_24', 'inf_cod_roll_range_6', 'inf_cod_roll_slope_6', 'inf_cod_roll_entropy_6', 'inf_cod_roll_crossrate_6', 'inf_cod_roll_range_12', 'inf_cod_roll_slope_12', 'inf_cod_roll_entropy_12', 'inf_cod_roll_crossrate_12', 'inf_cod_roll_range_24', 'inf_cod_roll_slope_24', 'inf_cod_roll_entropy_24', 'inf_cod_roll_crossrate_24', 'inf_nh3_roll_range_6', 'inf_nh3_roll_slope_6', 'inf_nh3_roll_entropy_6', 'inf_nh3_roll_crossrate_6', 'inf_nh3_roll_range_12', 'inf_nh3_roll_slope_12', 'inf_nh3_roll_entropy_12', 'inf_nh3_roll_crossrate_12', 'inf_nh3_roll_range_24', 'inf_nh3_roll_slope_24', 'inf_nh3_roll_entropy_24', 'inf_nh3_roll_crossrate_24', 'eff_nh3_roll_range_6', 'eff_nh3_roll_slope_6', 'eff_nh3_roll_entropy_6', 'eff_nh3_roll_crossrate_6', 'eff_nh3_roll_range_12', 'eff_nh3_roll_slope_12', 'eff_nh3_roll_entropy_12', 'eff_nh3_roll_crossrate_12', 'eff_nh3_roll_range_24', 'eff_nh3_roll_slope_24', 'eff_nh3_roll_entropy_24', 'eff_nh3_roll_crossrate_24', 'do_meas_roll_range_6', 'do_meas_roll_slope_6', 'do_meas_roll_entropy_6', 'do_meas_roll_crossrate_6', 'do_meas_roll_range_12', 'do_meas_roll_slope_12', 'do_meas_roll_entropy_12', 'do_meas_roll_crossrate_12', 'do_meas_roll_range_24', 'do_meas_roll_slope_24', 'do_meas_roll_entropy_24', 'do_meas_roll_crossrate_24', 'DO_reactor_roll_range_6', 'DO_reactor_roll_slope_6', 'DO_reactor_roll_entropy_6', 'DO_reactor_roll_crossrate_6', 'DO_reactor_roll_range_12', 'DO_reactor_roll_slope_12', 'DO_reactor_roll_entropy_12', 'DO_reactor_roll_crossrate_12', 'DO_reactor_roll_range_24', 'DO_reactor_roll_slope_24', 'DO_reactor_roll_entropy_24', 'DO_reactor_roll_crossrate_24', 'MLSS_reactor_roll_range_6', 'MLSS_reactor_roll_slope_6', 'MLSS_reactor_roll_entropy_6', 'MLSS_reactor_roll_crossrate_6', 'MLSS_reactor_roll_range_12', 'MLSS_reactor_roll_slope_12', 'MLSS_reactor_roll_entropy_12', 'MLSS_reactor_roll_crossrate_12', 'MLSS_reactor_roll_range_24', 'MLSS_reactor_roll_slope_24', 'MLSS_reactor_roll_entropy_24', 'MLSS_reactor_roll_crossrate_24', 'temp_roll_range_6', 'temp_roll_slope_6', 'temp_roll_entropy_6', 'temp_roll_crossrate_6', 'temp_roll_range_12', 'temp_roll_slope_12', 'temp_roll_entropy_12', 'temp_roll_crossrate_12', 'temp_roll_range_24', 'temp_roll_slope_24', 'temp_roll_entropy_24', 'temp_roll_crossrate_24', 'pH_roll_range_6', 'pH_roll_slope_6', 'pH_roll_entropy_6', 'pH_roll_crossrate_6', 'pH_roll_range_12', 'pH_roll_slope_12', 'pH_roll_entropy_12', 'pH_roll_crossrate_12', 'pH_roll_range_24', 'pH_roll_slope_24', 'pH_roll_entropy_24', 'pH_roll_crossrate_24', 'NH3_reactor_roll_range_6', 'NH3_reactor_roll_slope_6', 'NH3_reactor_roll_entropy_6', 'NH3_reactor_roll_crossrate_6', 'NH3_reactor_roll_range_12', 'NH3_reactor_roll_slope_12', 'NH3_reactor_roll_entropy_12', 'NH3_reactor_roll_crossrate_12', 'NH3_reactor_roll_range_24', 'NH3_reactor_roll_slope_24', 'NH3_reactor_roll_entropy_24', 'NH3_reactor_roll_crossrate_24', 'X_A_REACTOR_roll_range_6', 'X_A_REACTOR_roll_slope_6', 'X_A_REACTOR_roll_entropy_6', 'X_A_REACTOR_roll_crossrate_6', 'X_A_REACTOR_roll_range_12', 'X_A_REACTOR_roll_slope_12', 'X_A_REACTOR_roll_entropy_12', 'X_A_REACTOR_roll_crossrate_12', 'X_A_REACTOR_roll_range_24', 'X_A_REACTOR_roll_slope_24', 'X_A_REACTOR_roll_entropy_24', 'X_A_REACTOR_roll_crossrate_24', 'hour_sin', 'hour_cos', 'dow_sin', 'dow_cos', 'month_sin', 'month_cos', 'flow_x_inf_cod', 'MLSS_x_DO', 'temp_x_pH', 'flow_delta_1h', 'inf_cod_delta_1h', 'inf_nh3_delta_1h', 'eff_nh3_delta_1h', 'do_meas_delta_1h', 'DO_reactor_delta_1h', 'MLSS_reactor_delta_1h', 'temp_delta_1h', 'pH_delta_1h', 'NH3_reactor_delta_1h', 'X_A_REACTOR_delta_1h']
+2026-06-13 23:44:50.807 | INFO     | pipeline.gateway:__init__:259 - LGBM columns inferred from model: 163 columns
+2026-06-13 23:44:50.808 | INFO     | models.lgbm_features:__init__:111 - ✅ 特征构建器初始化 (静态模式) | 预期特征维度: 4084
+2026-06-13 23:44:50.808 | INFO     | pipeline.gateway:__init__:268 - [OK] Predictor ready | TFT features: 7 | Seq: 24h | Divergence threshold: 3.0
+2026-06-13 23:44:52.918 | WARNING  | models.lgbm_features:align_columns:313 - ⚠️ 推理数据缺少 1 个特征列，将使用 0 填充
+2026-06-13 23:44:52.919 | ERROR    | pipeline.gateway:_prepare_lgbm_input:439 - [ERROR] LGBM feature construction failed: cannot reindex on an axis with duplicate labels
+2026-06-13 23:44:52.922 | ERROR    | pipeline.gateway:predict:498 - [ERROR] LGBM 输入特征构建失败
+2026-06-13 23:46:51.526 | INFO     | config.manager:load_config:591 - ✅ 配置文件 'config.yaml' 加载成功，日志与目录已就绪。
+2026-06-13 23:46:51.529 | DEBUG    | config.manager:load_config:592 - 📂 项目根目录锚定为: D:\water_project\WWTP_AI_System
+2026-06-13 23:46:51.534 | INFO     | pipeline.data:__init__:108 -  管道初始化完成 | 频率:1h | 回溯:24h | 预测:24h
+2026-06-13 23:46:51.585 | INFO     | pipeline.data:_emit:127 - [LOAD] (20%) 数据加载成功 | 形状:(8640, 13) | 时间范围:2024-01-01 00:00:00 ~ 2024-12-25 23:00:00
+2026-06-13 23:46:51.622 | INFO     | pipeline.data:_emit:127 - [CLEAN] (40%) 清洗完成 | 重采样至 1h | 有效样本:8640
+2026-06-13 23:46:51.630 | INFO     | models.lgbm_features:__init__:114 - ✅ 特征构建器初始化 (动态推断模式) | 等待首次 build() 以锁定特征维度...
+2026-06-13 23:46:51.630 | INFO     | models.lgbm_features:_infer_base_columns:172 - 💡 [动态推断] 配置为空，自动从数据中提取了 11 个基础特征: ['flow', 'inf_cod', 'inf_nh3', 'eff_nh3', 'do_meas', 'DO_reactor', 'MLSS_reactor', 'temp', 'pH', 'NH3_reactor', 'X_A_REACTOR']
+2026-06-13 23:47:43.693 | INFO     | models.lgbm_features:build:271 - 🔒 [维度锁定] 动态推断完成，已锁定预期特征维度: 284
+2026-06-13 23:47:43.701 | INFO     | models.lgbm_features:_infer_base_columns:172 - 💡 [动态推断] 配置为空，自动从数据中提取了 11 个基础特征: ['flow', 'inf_cod', 'inf_nh3', 'eff_nh3', 'do_meas', 'DO_reactor', 'MLSS_reactor', 'temp', 'pH', 'NH3_reactor', 'X_A_REACTOR']
+2026-06-13 23:47:43.715 | INFO     | pipeline.data:_emit:127 - [LGBM] (80%) LGBM特征构建完成 | 总样本:8616 | 特征维度:284
+2026-06-13 23:53:07.606 | INFO     | config.manager:load_config:591 - ✅ 配置文件 'config.yaml' 加载成功，日志与目录已就绪。
+2026-06-13 23:53:07.609 | DEBUG    | config.manager:load_config:592 - 📂 项目根目录锚定为: D:\water_project\WWTP_AI_System
+2026-06-13 23:53:11.343 | INFO     | __main__:main:32 - 🚀 启动 WWTP LGBM 真实数据训练流水线...
+2026-06-13 23:53:11.344 | INFO     | __main__:main:42 - ⚡ 发现特征缓存，正在校验维度: D:\water_project\WWTP_AI_System\artifacts\lgbm_feature_cache.joblib
+2026-06-13 23:53:11.369 | SUCCESS  | __main__:main:49 - ✅ 缓存维度校验通过 (284维)，秒级加载！
+2026-06-13 23:53:11.370 | INFO     | __main__:main:75 - 🔍 数据交接诊断 | X_train矩阵: (6892, 284) | feature_names数量: 284
+2026-06-13 23:53:11.370 | INFO     | models.lgbm_features:__init__:114 - ✅ 特征构建器初始化 (动态推断模式) | 等待首次 build() 以锁定特征维度...
+2026-06-13 23:53:11.370 | SUCCESS  | __main__:main:110 - ✅ 特征配置已从 YAML 同步 | 基础列: 动态推断 | 真实特征维度: 284
+2026-06-13 23:53:11.370 | INFO     | models.lgbm_features:__init__:114 - ✅ 特征构建器初始化 (动态推断模式) | 等待首次 build() 以锁定特征维度...
+2026-06-13 23:53:11.370 | INFO     | __main__:<lambda>:123 - ⏳ 正在进行环境预检 (磁盘与权限)...
+2026-06-13 23:53:11.375 | INFO     | __main__:<lambda>:123 - --- 开始训练 LightGBM (Max 2000 Rounds) ---
+2026-06-13 23:53:11.378 | WARNING  | models.lgbm_features:align_columns:307 - ⚠️ 预期列未锁定，已从输入 DataFrame 自动推断 284 个特征列：['flow', 'inf_cod', 'inf_nh3', 'eff_nh3', 'do_meas', 'DO_reactor', 'MLSS_reactor', 'temp', 'pH', 'NH3_reactor', 'X_A_REACTOR', 'flow_lag_1', 'flow_lag_3', 'flow_lag_6', 'flow_lag_12', 'flow_lag_24', 'inf_cod_lag_1', 'inf_cod_lag_3', 'inf_cod_lag_6', 'inf_cod_lag_12', 'inf_cod_lag_24', 'inf_nh3_lag_1', 'inf_nh3_lag_3', 'inf_nh3_lag_6', 'inf_nh3_lag_12', 'inf_nh3_lag_24', 'eff_nh3_lag_1', 'eff_nh3_lag_3', 'eff_nh3_lag_6', 'eff_nh3_lag_12', 'eff_nh3_lag_24', 'do_meas_lag_1', 'do_meas_lag_3', 'do_meas_lag_6', 'do_meas_lag_12', 'do_meas_lag_24', 'DO_reactor_lag_1', 'DO_reactor_lag_3', 'DO_reactor_lag_6', 'DO_reactor_lag_12', 'DO_reactor_lag_24', 'MLSS_reactor_lag_1', 'MLSS_reactor_lag_3', 'MLSS_reactor_lag_6', 'MLSS_reactor_lag_12', 'MLSS_reactor_lag_24', 'temp_lag_1', 'temp_lag_3', 'temp_lag_6', 'temp_lag_12', 'temp_lag_24', 'pH_lag_1', 'pH_lag_3', 'pH_lag_6', 'pH_lag_12', 'pH_lag_24', 'NH3_reactor_lag_1', 'NH3_reactor_lag_3', 'NH3_reactor_lag_6', 'NH3_reactor_lag_12', 'NH3_reactor_lag_24', 'X_A_REACTOR_lag_1', 'X_A_REACTOR_lag_3', 'X_A_REACTOR_lag_6', 'X_A_REACTOR_lag_12', 'X_A_REACTOR_lag_24', 'flow_roll_mean_6', 'flow_roll_range_6', 'flow_roll_std_6', 'flow_roll_slope_6', 'flow_roll_entropy_6', 'flow_roll_crossrate_6', 'flow_roll_mean_12', 'flow_roll_range_12', 'flow_roll_std_12', 'flow_roll_slope_12', 'flow_roll_entropy_12', 'flow_roll_crossrate_12', 'flow_roll_mean_24', 'flow_roll_range_24', 'flow_roll_std_24', 'flow_roll_slope_24', 'flow_roll_entropy_24', 'flow_roll_crossrate_24', 'inf_cod_roll_mean_6', 'inf_cod_roll_range_6', 'inf_cod_roll_std_6', 'inf_cod_roll_slope_6', 'inf_cod_roll_entropy_6', 'inf_cod_roll_crossrate_6', 'inf_cod_roll_mean_12', 'inf_cod_roll_range_12', 'inf_cod_roll_std_12', 'inf_cod_roll_slope_12', 'inf_cod_roll_entropy_12', 'inf_cod_roll_crossrate_12', 'inf_cod_roll_mean_24', 'inf_cod_roll_range_24', 'inf_cod_roll_std_24', 'inf_cod_roll_slope_24', 'inf_cod_roll_entropy_24', 'inf_cod_roll_crossrate_24', 'inf_nh3_roll_mean_6', 'inf_nh3_roll_range_6', 'inf_nh3_roll_std_6', 'inf_nh3_roll_slope_6', 'inf_nh3_roll_entropy_6', 'inf_nh3_roll_crossrate_6', 'inf_nh3_roll_mean_12', 'inf_nh3_roll_range_12', 'inf_nh3_roll_std_12', 'inf_nh3_roll_slope_12', 'inf_nh3_roll_entropy_12', 'inf_nh3_roll_crossrate_12', 'inf_nh3_roll_mean_24', 'inf_nh3_roll_range_24', 'inf_nh3_roll_std_24', 'inf_nh3_roll_slope_24', 'inf_nh3_roll_entropy_24', 'inf_nh3_roll_crossrate_24', 'eff_nh3_roll_mean_6', 'eff_nh3_roll_range_6', 'eff_nh3_roll_std_6', 'eff_nh3_roll_slope_6', 'eff_nh3_roll_entropy_6', 'eff_nh3_roll_crossrate_6', 'eff_nh3_roll_mean_12', 'eff_nh3_roll_range_12', 'eff_nh3_roll_std_12', 'eff_nh3_roll_slope_12', 'eff_nh3_roll_entropy_12', 'eff_nh3_roll_crossrate_12', 'eff_nh3_roll_mean_24', 'eff_nh3_roll_range_24', 'eff_nh3_roll_std_24', 'eff_nh3_roll_slope_24', 'eff_nh3_roll_entropy_24', 'eff_nh3_roll_crossrate_24', 'do_meas_roll_mean_6', 'do_meas_roll_range_6', 'do_meas_roll_std_6', 'do_meas_roll_slope_6', 'do_meas_roll_entropy_6', 'do_meas_roll_crossrate_6', 'do_meas_roll_mean_12', 'do_meas_roll_range_12', 'do_meas_roll_std_12', 'do_meas_roll_slope_12', 'do_meas_roll_entropy_12', 'do_meas_roll_crossrate_12', 'do_meas_roll_mean_24', 'do_meas_roll_range_24', 'do_meas_roll_std_24', 'do_meas_roll_slope_24', 'do_meas_roll_entropy_24', 'do_meas_roll_crossrate_24', 'DO_reactor_roll_mean_6', 'DO_reactor_roll_range_6', 'DO_reactor_roll_std_6', 'DO_reactor_roll_slope_6', 'DO_reactor_roll_entropy_6', 'DO_reactor_roll_crossrate_6', 'DO_reactor_roll_mean_12', 'DO_reactor_roll_range_12', 'DO_reactor_roll_std_12', 'DO_reactor_roll_slope_12', 'DO_reactor_roll_entropy_12', 'DO_reactor_roll_crossrate_12', 'DO_reactor_roll_mean_24', 'DO_reactor_roll_range_24', 'DO_reactor_roll_std_24', 'DO_reactor_roll_slope_24', 'DO_reactor_roll_entropy_24', 'DO_reactor_roll_crossrate_24', 'MLSS_reactor_roll_mean_6', 'MLSS_reactor_roll_range_6', 'MLSS_reactor_roll_std_6', 'MLSS_reactor_roll_slope_6', 'MLSS_reactor_roll_entropy_6', 'MLSS_reactor_roll_crossrate_6', 'MLSS_reactor_roll_mean_12', 'MLSS_reactor_roll_range_12', 'MLSS_reactor_roll_std_12', 'MLSS_reactor_roll_slope_12', 'MLSS_reactor_roll_entropy_12', 'MLSS_reactor_roll_crossrate_12', 'MLSS_reactor_roll_mean_24', 'MLSS_reactor_roll_range_24', 'MLSS_reactor_roll_std_24', 'MLSS_reactor_roll_slope_24', 'MLSS_reactor_roll_entropy_24', 'MLSS_reactor_roll_crossrate_24', 'temp_roll_mean_6', 'temp_roll_range_6', 'temp_roll_std_6', 'temp_roll_slope_6', 'temp_roll_entropy_6', 'temp_roll_crossrate_6', 'temp_roll_mean_12', 'temp_roll_range_12', 'temp_roll_std_12', 'temp_roll_slope_12', 'temp_roll_entropy_12', 'temp_roll_crossrate_12', 'temp_roll_mean_24', 'temp_roll_range_24', 'temp_roll_std_24', 'temp_roll_slope_24', 'temp_roll_entropy_24', 'temp_roll_crossrate_24', 'pH_roll_mean_6', 'pH_roll_range_6', 'pH_roll_std_6', 'pH_roll_slope_6', 'pH_roll_entropy_6', 'pH_roll_crossrate_6', 'pH_roll_mean_12', 'pH_roll_range_12', 'pH_roll_std_12', 'pH_roll_slope_12', 'pH_roll_entropy_12', 'pH_roll_crossrate_12', 'pH_roll_mean_24', 'pH_roll_range_24', 'pH_roll_std_24', 'pH_roll_slope_24', 'pH_roll_entropy_24', 'pH_roll_crossrate_24', 'NH3_reactor_roll_mean_6', 'NH3_reactor_roll_range_6', 'NH3_reactor_roll_std_6', 'NH3_reactor_roll_slope_6', 'NH3_reactor_roll_entropy_6', 'NH3_reactor_roll_crossrate_6', 'NH3_reactor_roll_mean_12', 'NH3_reactor_roll_range_12', 'NH3_reactor_roll_std_12', 'NH3_reactor_roll_slope_12', 'NH3_reactor_roll_entropy_12', 'NH3_reactor_roll_crossrate_12', 'NH3_reactor_roll_mean_24', 'NH3_reactor_roll_range_24', 'NH3_reactor_roll_std_24', 'NH3_reactor_roll_slope_24', 'NH3_reactor_roll_entropy_24', 'NH3_reactor_roll_crossrate_24', 'X_A_REACTOR_roll_mean_6', 'X_A_REACTOR_roll_range_6', 'X_A_REACTOR_roll_std_6', 'X_A_REACTOR_roll_slope_6', 'X_A_REACTOR_roll_entropy_6', 'X_A_REACTOR_roll_crossrate_6', 'X_A_REACTOR_roll_mean_12', 'X_A_REACTOR_roll_range_12', 'X_A_REACTOR_roll_std_12', 'X_A_REACTOR_roll_slope_12', 'X_A_REACTOR_roll_entropy_12', 'X_A_REACTOR_roll_crossrate_12', 'X_A_REACTOR_roll_mean_24', 'X_A_REACTOR_roll_range_24', 'X_A_REACTOR_roll_std_24', 'X_A_REACTOR_roll_slope_24', 'X_A_REACTOR_roll_entropy_24', 'X_A_REACTOR_roll_crossrate_24', 'hour_sin', 'hour_cos', 'dow_sin', 'dow_cos', 'month_sin', 'month_cos', 'flow_x_inf_cod', 'MLSS_x_DO', 'temp_x_pH', 'flow_delta_1h', 'inf_cod_delta_1h', 'inf_nh3_delta_1h', 'eff_nh3_delta_1h', 'do_meas_delta_1h', 'DO_reactor_delta_1h', 'MLSS_reactor_delta_1h', 'temp_delta_1h', 'pH_delta_1h', 'NH3_reactor_delta_1h', 'X_A_REACTOR_delta_1h']
+2026-06-13 23:53:11.415 | INFO     | __main__:<lambda>:123 - --- Time-series 5-fold CV (Expanding Window) ---
+2026-06-13 23:53:12.040 | INFO     | __main__:<lambda>:123 -   Fold 1/5: MAE=4.239, RMSE=6.849
+2026-06-13 23:53:12.580 | INFO     | __main__:<lambda>:123 -   Fold 2/5: MAE=5.836, RMSE=8.368
+2026-06-13 23:53:14.811 | INFO     | __main__:<lambda>:123 -   Fold 3/5: MAE=7.804, RMSE=9.896
+2026-06-13 23:53:16.632 | INFO     | __main__:<lambda>:123 -   Fold 4/5: MAE=5.069, RMSE=6.442
+2026-06-13 23:53:17.633 | INFO     | __main__:<lambda>:123 -   Fold 5/5: MAE=3.846, RMSE=5.125
+2026-06-13 23:53:17.633 | SUCCESS  | __main__:<lambda>:123 - CV 5-fold: MAE=5.359+-1.402, RMSE=7.336+-1.646
+2026-06-13 23:53:18.947 | SUCCESS  | __main__:<lambda>:123 - ✅ 测试集评估: MAE = 3.920, RMSE = 5.213
+2026-06-13 23:53:18.966 | INFO     | models.lgbm:train_and_save:286 - 特征列名已保存至: D:\water_project\WWTP_AI_System\models\lgbm\lgbm_feature_cols.joblib
+2026-06-13 23:53:18.975 | SUCCESS  | __main__:main:137 - 
+==================================================
+2026-06-13 23:53:18.975 | SUCCESS  | __main__:main:138 - 🎉 真实数据 LGBM 模型训练圆满成功！
+2026-06-13 23:53:18.975 | SUCCESS  | __main__:main:139 - 📁 您的模型文件在这里: D:\water_project\WWTP_AI_System\models\lgbm\lgbm_wwtp.txt
+2026-06-13 23:53:18.975 | SUCCESS  | __main__:main:140 - 📊 模型 MAE: 3.920 | RMSE: 5.213
+2026-06-13 23:53:18.976 | SUCCESS  | __main__:main:141 - ==================================================
+
+2026-06-13 23:56:36.681 | INFO     | config.manager:load_config:591 - ✅ 配置文件 'config.yaml' 加载成功，日志与目录已就绪。
+2026-06-13 23:56:36.682 | DEBUG    | config.manager:load_config:592 - 📂 项目根目录锚定为: D:\water_project\WWTP_AI_System
+2026-06-13 23:56:36.692 | INFO     | pipeline.gateway:__init__:175 - [DIAG] 模型搜索路径 (绝对路径):
+2026-06-13 23:56:36.692 | INFO     | pipeline.gateway:__init__:176 -   -> TFT  : D:\water_project\WWTP_AI_System\models\industrial_tft.onnx
+2026-06-13 23:56:36.692 | INFO     | pipeline.gateway:__init__:177 -   -> LGBM : D:\water_project\WWTP_AI_System\models\lgbm\lgbm_wwtp.txt
+2026-06-13 23:56:36.916 | INFO     | pipeline.gateway:__init__:196 - [OK] TFT (ONNX) 模型加载成功: D:\water_project\WWTP_AI_System\models\industrial_tft.onnx
+2026-06-13 23:56:36.951 | INFO     | pipeline.gateway:__init__:221 - [OK] LGBM 模型加载成功: D:\water_project\WWTP_AI_System\models\lgbm\lgbm_wwtp.txt
+2026-06-13 23:56:36.955 | INFO     | pipeline.gateway:_load_scalers:289 - [OK] Feature scaler loaded (7 features)
+2026-06-13 23:56:36.961 | INFO     | pipeline.gateway:_load_scalers:306 - [OK] Target scaler loaded (mean=66.03, std=13.20)
+2026-06-13 23:56:36.963 | INFO     | pipeline.gateway:_infer_lgbm_base_columns_from_model:122 - 从 LGBM 模型反推基础列: 163 列 → ['flow', 'inf_cod', 'inf_nh3', 'eff_nh3', 'do_meas', 'DO_reactor', 'MLSS_reactor', 'temp', 'pH', 'NH3_reactor', 'X_A_REACTOR', 'flow_roll_range_6', 'flow_roll_slope_6', 'flow_roll_entropy_6', 'flow_roll_crossrate_6', 'flow_roll_range_12', 'flow_roll_slope_12', 'flow_roll_entropy_12', 'flow_roll_crossrate_12', 'flow_roll_range_24', 'flow_roll_slope_24', 'flow_roll_entropy_24', 'flow_roll_crossrate_24', 'inf_cod_roll_range_6', 'inf_cod_roll_slope_6', 'inf_cod_roll_entropy_6', 'inf_cod_roll_crossrate_6', 'inf_cod_roll_range_12', 'inf_cod_roll_slope_12', 'inf_cod_roll_entropy_12', 'inf_cod_roll_crossrate_12', 'inf_cod_roll_range_24', 'inf_cod_roll_slope_24', 'inf_cod_roll_entropy_24', 'inf_cod_roll_crossrate_24', 'inf_nh3_roll_range_6', 'inf_nh3_roll_slope_6', 'inf_nh3_roll_entropy_6', 'inf_nh3_roll_crossrate_6', 'inf_nh3_roll_range_12', 'inf_nh3_roll_slope_12', 'inf_nh3_roll_entropy_12', 'inf_nh3_roll_crossrate_12', 'inf_nh3_roll_range_24', 'inf_nh3_roll_slope_24', 'inf_nh3_roll_entropy_24', 'inf_nh3_roll_crossrate_24', 'eff_nh3_roll_range_6', 'eff_nh3_roll_slope_6', 'eff_nh3_roll_entropy_6', 'eff_nh3_roll_crossrate_6', 'eff_nh3_roll_range_12', 'eff_nh3_roll_slope_12', 'eff_nh3_roll_entropy_12', 'eff_nh3_roll_crossrate_12', 'eff_nh3_roll_range_24', 'eff_nh3_roll_slope_24', 'eff_nh3_roll_entropy_24', 'eff_nh3_roll_crossrate_24', 'do_meas_roll_range_6', 'do_meas_roll_slope_6', 'do_meas_roll_entropy_6', 'do_meas_roll_crossrate_6', 'do_meas_roll_range_12', 'do_meas_roll_slope_12', 'do_meas_roll_entropy_12', 'do_meas_roll_crossrate_12', 'do_meas_roll_range_24', 'do_meas_roll_slope_24', 'do_meas_roll_entropy_24', 'do_meas_roll_crossrate_24', 'DO_reactor_roll_range_6', 'DO_reactor_roll_slope_6', 'DO_reactor_roll_entropy_6', 'DO_reactor_roll_crossrate_6', 'DO_reactor_roll_range_12', 'DO_reactor_roll_slope_12', 'DO_reactor_roll_entropy_12', 'DO_reactor_roll_crossrate_12', 'DO_reactor_roll_range_24', 'DO_reactor_roll_slope_24', 'DO_reactor_roll_entropy_24', 'DO_reactor_roll_crossrate_24', 'MLSS_reactor_roll_range_6', 'MLSS_reactor_roll_slope_6', 'MLSS_reactor_roll_entropy_6', 'MLSS_reactor_roll_crossrate_6', 'MLSS_reactor_roll_range_12', 'MLSS_reactor_roll_slope_12', 'MLSS_reactor_roll_entropy_12', 'MLSS_reactor_roll_crossrate_12', 'MLSS_reactor_roll_range_24', 'MLSS_reactor_roll_slope_24', 'MLSS_reactor_roll_entropy_24', 'MLSS_reactor_roll_crossrate_24', 'temp_roll_range_6', 'temp_roll_slope_6', 'temp_roll_entropy_6', 'temp_roll_crossrate_6', 'temp_roll_range_12', 'temp_roll_slope_12', 'temp_roll_entropy_12', 'temp_roll_crossrate_12', 'temp_roll_range_24', 'temp_roll_slope_24', 'temp_roll_entropy_24', 'temp_roll_crossrate_24', 'pH_roll_range_6', 'pH_roll_slope_6', 'pH_roll_entropy_6', 'pH_roll_crossrate_6', 'pH_roll_range_12', 'pH_roll_slope_12', 'pH_roll_entropy_12', 'pH_roll_crossrate_12', 'pH_roll_range_24', 'pH_roll_slope_24', 'pH_roll_entropy_24', 'pH_roll_crossrate_24', 'NH3_reactor_roll_range_6', 'NH3_reactor_roll_slope_6', 'NH3_reactor_roll_entropy_6', 'NH3_reactor_roll_crossrate_6', 'NH3_reactor_roll_range_12', 'NH3_reactor_roll_slope_12', 'NH3_reactor_roll_entropy_12', 'NH3_reactor_roll_crossrate_12', 'NH3_reactor_roll_range_24', 'NH3_reactor_roll_slope_24', 'NH3_reactor_roll_entropy_24', 'NH3_reactor_roll_crossrate_24', 'X_A_REACTOR_roll_range_6', 'X_A_REACTOR_roll_slope_6', 'X_A_REACTOR_roll_entropy_6', 'X_A_REACTOR_roll_crossrate_6', 'X_A_REACTOR_roll_range_12', 'X_A_REACTOR_roll_slope_12', 'X_A_REACTOR_roll_entropy_12', 'X_A_REACTOR_roll_crossrate_12', 'X_A_REACTOR_roll_range_24', 'X_A_REACTOR_roll_slope_24', 'X_A_REACTOR_roll_entropy_24', 'X_A_REACTOR_roll_crossrate_24', 'hour_sin', 'hour_cos', 'dow_sin', 'dow_cos', 'month_sin', 'month_cos', 'flow_x_inf_cod', 'MLSS_x_DO', 'temp_x_pH', 'flow_delta_1h', 'inf_cod_delta_1h', 'inf_nh3_delta_1h', 'eff_nh3_delta_1h', 'do_meas_delta_1h', 'DO_reactor_delta_1h', 'MLSS_reactor_delta_1h', 'temp_delta_1h', 'pH_delta_1h', 'NH3_reactor_delta_1h', 'X_A_REACTOR_delta_1h']
+2026-06-13 23:56:36.963 | INFO     | pipeline.gateway:__init__:259 - LGBM columns inferred from model: 163 columns
+2026-06-13 23:56:36.964 | INFO     | models.lgbm_features:__init__:111 - ✅ 特征构建器初始化 (静态模式) | 预期特征维度: 4084
+2026-06-13 23:56:36.965 | INFO     | pipeline.gateway:__init__:268 - [OK] Predictor ready | TFT features: 7 | Seq: 24h | Divergence threshold: 3.0
+2026-06-13 23:56:38.824 | WARNING  | models.lgbm_features:align_columns:313 - ⚠️ 推理数据缺少 1 个特征列，将使用 0 填充
+2026-06-13 23:56:38.825 | ERROR    | pipeline.gateway:_prepare_lgbm_input:439 - [ERROR] LGBM feature construction failed: cannot reindex on an axis with duplicate labels
+2026-06-13 23:56:38.836 | ERROR    | pipeline.gateway:predict:498 - [ERROR] LGBM 输入特征构建失败
+2026-06-13 23:59:24.054 | INFO     | config.manager:load_config:591 - ✅ 配置文件 'config.yaml' 加载成功，日志与目录已就绪。
+2026-06-13 23:59:24.056 | DEBUG    | config.manager:load_config:592 - 📂 项目根目录锚定为: D:\water_project\WWTP_AI_System
+2026-06-13 23:59:24.070 | INFO     | pipeline.gateway:__init__:178 - [DIAG] 模型搜索路径 (绝对路径):
+2026-06-13 23:59:24.070 | INFO     | pipeline.gateway:__init__:179 -   -> TFT  : D:\water_project\WWTP_AI_System\models\industrial_tft.onnx
+2026-06-13 23:59:24.070 | INFO     | pipeline.gateway:__init__:180 -   -> LGBM : D:\water_project\WWTP_AI_System\models\lgbm\lgbm_wwtp.txt
+2026-06-13 23:59:24.354 | INFO     | pipeline.gateway:__init__:199 - [OK] TFT (ONNX) 模型加载成功: D:\water_project\WWTP_AI_System\models\industrial_tft.onnx
+2026-06-13 23:59:24.391 | INFO     | pipeline.gateway:__init__:224 - [OK] LGBM 模型加载成功: D:\water_project\WWTP_AI_System\models\lgbm\lgbm_wwtp.txt
+2026-06-13 23:59:24.397 | INFO     | pipeline.gateway:_load_scalers:292 - [OK] Feature scaler loaded (7 features)
+2026-06-13 23:59:24.403 | INFO     | pipeline.gateway:_load_scalers:309 - [OK] Target scaler loaded (mean=66.03, std=13.20)
+2026-06-13 23:59:24.406 | INFO     | pipeline.gateway:_infer_lgbm_base_columns_from_model:125 - 从 LGBM 模型反推基础列: 12 列 → ['flow', 'inf_cod', 'inf_nh3', 'eff_nh3', 'do_meas', 'DO_reactor', 'MLSS_reactor', 'temp', 'pH', 'NH3_reactor', 'X_A_REACTOR', 'MLSS']
+2026-06-13 23:59:24.408 | INFO     | pipeline.gateway:__init__:262 - LGBM columns inferred from model: 12 columns
+2026-06-13 23:59:24.408 | INFO     | models.lgbm_features:__init__:111 - ✅ 特征构建器初始化 (静态模式) | 预期特征维度: 309
+2026-06-13 23:59:24.408 | INFO     | pipeline.gateway:__init__:271 - [OK] Predictor ready | TFT features: 7 | Seq: 24h | Divergence threshold: 3.0
+2026-06-13 23:59:24.695 | WARNING  | models.lgbm_features:align_columns:313 - ⚠️ 推理数据缺少 1 个特征列，将使用 0 填充
+2026-06-13 23:59:24.699 | ERROR    | pipeline.gateway:_prepare_lgbm_input:420 - [ERROR] LGBM feature count mismatch: got 309, expected 284
+2026-06-13 23:59:24.702 | INFO     | pipeline.gateway:_infer_lgbm_base_columns_from_model:125 - 从 LGBM 模型反推基础列: 12 列 → ['flow', 'inf_cod', 'inf_nh3', 'eff_nh3', 'do_meas', 'DO_reactor', 'MLSS_reactor', 'temp', 'pH', 'NH3_reactor', 'X_A_REACTOR', 'MLSS']
+2026-06-13 23:59:24.704 | ERROR    | pipeline.gateway:predict:501 - [ERROR] LGBM 输入特征构建失败

@@ -1,0 +1,13 @@
+{
+  "tft_feature_names": [
+    "inf_cod",
+    "inf_nh3",
+    "flow",
+    "DO_reactor",
+    "MLSS_reactor",
+    "temp",
+    "pH"
+  ],
+  "tft_seq_len": 24,
+  "target_name": "eff_cod"
+}
